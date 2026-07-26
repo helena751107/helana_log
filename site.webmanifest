@@ -1,26 +1,18 @@
 {
   "id": "/helana_log/",
-  "name": "Helana Log",
-  "short_name": "Helana Log",
-  "description": "일일 로그, 트러블슈팅, 메모. 큰누나 생태계의 기록 창고.",
+  "name": "Helana Log · 행정 대화록",
+  "short_name": "행정대화록",
+  "description": "장애복지·기초생활·치매 돌봄 가정이 대한민국 행정을 마주한 체감·개선·솔루션 대화록.",
   "lang": "ko",
   "dir": "ltr",
   "start_url": "/helana_log/",
   "scope": "/helana_log/",
   "display": "standalone",
-  "display_override": [
-    "standalone",
-    "minimal-ui",
-    "browser"
-  ],
+  "display_override": ["standalone", "minimal-ui", "browser"],
   "orientation": "any",
   "background_color": "#0a0908",
   "theme_color": "#0a0908",
-  "categories": [
-    "productivity",
-    "education",
-    "utilities"
-  ],
+  "categories": ["government", "social", "education"],
   "prefer_related_applications": false,
   "icons": [
     {
