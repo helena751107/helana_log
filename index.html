@@ -1,88 +1,145 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Helana Log</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0d1117;
-      color: #e6edf3;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    header {
-      width: 100%;
-      max-width: 800px;
-      padding: 3rem 1.5rem 1.5rem;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.2rem;
-      background: linear-gradient(135deg, #ff6b6b, #ffd93d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    header p { color: #8b949e; margin-top: 0.5rem; }
-    .main-content { width: 100%; max-width: 800px; padding: 1.5rem; flex: 1; }
-    .card {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .card h2 { font-size: 1.2rem; margin-bottom: 1rem; color: #f0f6fc; }
-    .card p { color: #8b949e; line-height: 1.6; }
-    .card a { color: #58a6ff; text-decoration: none; }
-    .card a:hover { text-decoration: underline; }
-    .badge {
-      display: inline-block;
-      background: #21262d;
-      color: #58a6ff;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      margin-top: 0.5rem;
-    }
-    footer {
-      width: 100%;
-      max-width: 800px;
-      padding: 1.5rem;
-      text-align: center;
-      color: #484f58;
-      font-size: 0.85rem;
-      border-top: 1px solid #21262d;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Helana Log — Helena ecosystem webzine landing">
+<meta name="theme-color" content="#0a0908">
+<meta name="application-name" content="Helana Log">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Helana Log">
+<title>Helana Log — Webzine</title>
+<link rel="icon" href="https://helena751107.github.io/helena_phone/icons/favicon-32.png" type="image/png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
+  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
+  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
+  --gold:#d4a84b; --gold2:#f0c75e; --teal:#3db8a8; --coral:#e85d4c; --lilac:#8b7cf0;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1); --accent:var(--gold);
+}
+[data-accent="teal"] { --accent:var(--teal); }
+[data-accent="coral"] { --accent:var(--coral); }
+[data-accent="lilac"] { --accent:var(--lilac); }
+[data-accent="gold"] { --accent:var(--gold); }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 50% at 20% -10%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 55%),
+             radial-gradient(ellipse 50% 40% at 90% 80%, rgba(61,184,168,.06), transparent 50%)}
+a{color:var(--gold2);text-decoration:none}
+a:hover{color:var(--teal)}
+.wrap{max-width:720px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 80px max(16px,env(safe-area-inset-left));position:relative;z-index:1}
+.mast{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left));
+  padding-top:max(12px,env(safe-area-inset-top));
+  background:color-mix(in srgb,var(--paper) 88%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:1rem}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.mast nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.mast nav a,.mast nav button{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);
+  min-height:40px;padding:8px 10px;background:none;border:none;cursor:pointer;font-family:inherit}
+.mast nav a:hover,.mast nav button:hover{color:var(--accent)}
+.hero{padding:56px 0 28px}
+.kicker{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
+h1{font-family:var(--serif);font-size:clamp(2.2rem,9vw,3.4rem);line-height:1.08;font-weight:600;letter-spacing:-.02em;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--accent)}
+.deck{color:var(--ink-dim);font-weight:300;font-size:1.05rem;max-width:34em;border-left:2px solid var(--accent);padding-left:14px;margin-bottom:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border:1px solid var(--rule2);
+  background:var(--paper-2);color:var(--ink-dim);font-size:.82rem;transition:.25s}
+.chip:hover{border-color:var(--accent);color:var(--ink)}
+.eco{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 28px;padding:12px;border:1px dashed var(--rule);background:var(--paper-2)}
+.eco a{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);padding:8px 10px;min-height:36px;display:inline-flex;align-items:center}
+.eco a:hover{color:var(--accent)}
+.acc{border-top:1px solid var(--rule)}
+.acc-h{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;
+  text-align:left;background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:18px 0;min-height:56px}
+.acc-h .num{font-size:.72rem;letter-spacing:.12em;color:var(--accent);font-weight:600}
+.acc-h .t{font-family:var(--serif);font-size:1.35rem;font-weight:600}
+.acc-h .ico{width:34px;height:34px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent);transition:transform .3s var(--ease)}
+.acc.open .acc-h .ico{transform:rotate(45deg);background:color-mix(in srgb,var(--accent) 15%, transparent)}
+.acc-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
+.acc.open .acc-b{grid-template-rows:1fr}
+.acc-i{overflow:hidden;min-height:0;opacity:0;transition:opacity .25s;padding-bottom:0}
+.acc.open .acc-i{opacity:1;padding-bottom:18px}
+.acc-i p{color:var(--ink-dim);font-weight:300}
+.foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
+.foot .gold{color:var(--accent);margin-top:8px;font-weight:500}
+.giscus{min-height:120px}
+@media(max-width:520px){
+  .mast nav .hide{display:none}
+  h1{font-size:clamp(1.9rem,10vw,2.6rem)}
+  .acc-h .t{font-size:1.15rem}
+}
+</style>
 </head>
-<body>
-  <header>
-    <h1>📝 Helana Log</h1>
-    <p>학습 기록 · 문제 해결 · 일일 로그</p>
-  </header>
-  <div class="main-content">
-    <div class="card">
-      <h2>📂 개요</h2>
-      <p>이 레포지토리는 학습 과정에서 발생한 문제 해결 기록, 일일 로그, 그리고 각종 메모를 저장하는 공간입니다.</p>
-      <span class="badge">📅 2026-07-23 생성</span>
-      <span class="badge">🔗 <a href="https://github.com/helena751107/helana_log">helena751107/helana_log</a></span>
-    </div>
-    <div class="card">
-      <h2>🗣 댓글 / 게시판</h2>
-      <div class="giscus"></div>
-    </div>
+<body data-accent="teal">
+<header class="mast">
+  <a class="brand" href="./">Helana <em>Log</em></a>
+  <nav>
+    <a class="hide" href="https://helena751107.github.io/helena_phone/">Hub</a>
+    <a href="https://github.com/helena751107/helana_log">GitHub</a>
+    <button type="button" id="themeBtn">Theme</button>
+  </nav>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div class="kicker">Learning · Journal · Notes</div>
+    <h1>학습과 문제 해결을<br><em>기록하는</em> 로그.</h1>
+    <p class="deck">일일 로그, 트러블슈팅, 메모. 큰누나 생태계의 기록 창고.</p>
+    <div class="chips"><a class="chip" href="https://github.com/helena751107/helana_log" target="_blank" rel="noopener">GitHub</a><a class="chip" href="https://helena751107.github.io/helena_phone/" target="_blank" rel="noopener">S21 Phone Hub</a><a class="chip" href="https://github.com/helena751107/helana_log/tree/main/telegram" target="_blank" rel="noopener">Telegram bot</a></div>
+    
+  <div class="eco">
+    <a href="https://helena751107.github.io/helena_phone/">S21 Phone</a>
+    <a href="https://helena751107.github.io/helana_log/">Log</a>
+    <a href="https://helena751107.github.io/helana-faith/">Faith</a>
+    <a href="https://helena751107.github.io/helena-piano/">Piano</a>
+    <a href="https://helena751107.github.io/helena-psycare/">PsyCare</a>
   </div>
-  <footer>
-    <p>Helana Log · Powered by Claude Code + GitHub Pages</p>
-  </footer>
-
-  <!-- Giscus — GitHub Discussions 기반 댓글 -->
+  </section>
+  
+    <section class="acc open" data-acc>
+      <button class="acc-h" type="button" aria-expanded="true">
+        <span class="num">01</span>
+        <span class="t">개요</span>
+        <span class="ico" aria-hidden="true">+</span>
+      </button>
+      <div class="acc-b"><div class="acc-i"><p>이 레포는 학습 과정에서 생긴 문제 해결 기록, 일일 로그, 각종 메모를 쌓는 공간입니다.</p></div></div>
+    </section>
+    <section class="acc" data-acc>
+      <button class="acc-h" type="button" aria-expanded="false">
+        <span class="num">02</span>
+        <span class="t">구조</span>
+        <span class="ico" aria-hidden="true">+</span>
+      </button>
+      <div class="acc-b"><div class="acc-i"><p>logs/ 일별 기록 · telegram/ 봇 · index 랜딩 · CLAUDE.md 규칙.</p></div></div>
+    </section>
+    <section class="acc" data-acc>
+      <button class="acc-h" type="button" aria-expanded="false">
+        <span class="num">03</span>
+        <span class="t">연동</span>
+        <span class="ico" aria-hidden="true">+</span>
+      </button>
+      <div class="acc-b"><div class="acc-i"><p>GitHub Discussions(Giscus) 댓글 · helena_phone 메인 워크스테이션과 연결.</p></div></div>
+    </section>
+  
+  <section class="acc open" data-acc>
+    <button class="acc-h" type="button" aria-expanded="true">
+      <span class="num">💬</span>
+      <span class="t">댓글 · Discussions</span>
+      <span class="ico" aria-hidden="true">+</span>
+    </button>
+    <div class="acc-b open"><div class="acc-i">
+      <div class="giscus"></div>
+    </div></div>
+  </section>
   <script src="https://giscus.app/client.js"
     data-repo="helena751107/helana_log"
     data-repo-id="R_kgDOTg3TCg"
@@ -96,7 +153,49 @@
     data-theme="dark"
     data-lang="ko"
     crossorigin="anonymous"
-    async>
-  </script>
+    async></script>
+  <footer class="foot">
+    <div>Helana Log · Webzine landing</div>
+    <div class="gold">모든 계정은 큰누나 명의입니다.</div>
+    <p style="margin-top:12px"><a href="https://helena751107.github.io/helena_phone/">← S21 Phone Hub</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('s21-sat-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  // light vars
+  const apply = () => {
+    if (root.getAttribute('data-theme') === 'light') {
+      root.style.setProperty('--ink','#1a1510');
+      root.style.setProperty('--ink-dim','#5c5348');
+      root.style.setProperty('--ink-mute','#8a8074');
+      root.style.setProperty('--paper','#f7f1e6');
+      root.style.setProperty('--paper-2','#efe8db');
+      root.style.setProperty('--paper-3','#fffdf8');
+      root.style.setProperty('--rule','rgba(26,21,16,.1)');
+      root.style.setProperty('--rule2','rgba(26,21,16,.18)');
+    } else {
+      ['--ink','--ink-dim','--ink-mute','--paper','--paper-2','--paper-3','--rule','--rule2'].forEach(k => root.style.removeProperty(k));
+    }
+  };
+  apply();
+  document.getElementById('themeBtn')?.addEventListener('click', () => {
+    const n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    localStorage.setItem('s21-sat-theme', n);
+    apply();
+  });
+  document.querySelectorAll('[data-acc]').forEach(sec => {
+    const btn = sec.querySelector('.acc-h');
+    btn?.addEventListener('click', () => {
+      const on = !sec.classList.contains('open');
+      sec.classList.toggle('open', on);
+      btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+  });
+})();
+</script>
 </body>
 </html>
