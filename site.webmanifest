@@ -1,23 +1,57 @@
 {
+  "id": "/helana_log/",
   "name": "Helana Log",
-  "short_name": "Helana",
+  "short_name": "Helana Log",
   "description": "일일 로그, 트러블슈팅, 메모. 큰누나 생태계의 기록 창고.",
+  "lang": "ko",
+  "dir": "ltr",
   "start_url": "/helana_log/",
   "scope": "/helana_log/",
   "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+  "orientation": "any",
   "background_color": "#0a0908",
   "theme_color": "#0a0908",
-  "lang": "ko",
+  "categories": [
+    "productivity",
+    "education",
+    "utilities"
+  ],
+  "prefer_related_applications": false,
   "icons": [
     {
-      "src": "https://helena751107.github.io/helena_phone/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "/helana_log/icons/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "https://helena751107.github.io/helena_phone/icons/icon-512.png",
+      "src": "/helana_log/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/helana_log/icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/helana_log/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/helana_log/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }
