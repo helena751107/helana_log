@@ -434,6 +434,23 @@ td { color: var(--ink-dim); font-weight: 300; }
   .marquee, .svg-arch .flow, .reveal { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* —— Chapter accordion (default collapsed) —— */
+.acc-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 20px}
+.acc-toolbar button{min-height:40px;padding:8px 14px;border:1px solid var(--rule-strong,var(--rule2,rgba(244,239,230,.18)));background:var(--paper-2);color:var(--ink-dim);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:.25s}
+.acc-toolbar button:hover{border-color:var(--accent,var(--gold));color:var(--ink)}
+section.chapter.acc{border-top:1px solid var(--rule);padding:0}
+section.chapter.acc .acc-head{width:100%;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;gap:6px 16px;align-items:center;text-align:left;padding:22px 0;min-height:64px;background:none;border:none;color:inherit;font:inherit;cursor:pointer}
+section.chapter.acc .acc-head .ch-label{grid-column:1/-1;margin-bottom:0;pointer-events:none}
+section.chapter.acc .acc-head .ch-title{margin:0;pointer-events:none;font-size:clamp(1.6rem,4vw,2.4rem)}
+section.chapter.acc .acc-ico{width:36px;height:36px;border:1px solid var(--rule-strong,var(--rule2,rgba(244,239,230,.18)));display:grid;place-items:center;color:var(--accent,var(--gold));transition:transform .3s var(--ease);grid-row:2;justify-self:end}
+section.chapter.acc .acc-head[aria-expanded="true"] .acc-ico{transform:rotate(45deg);background:color-mix(in srgb,var(--accent,var(--gold)) 15%,transparent)}
+section.chapter.acc .acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+section.chapter.acc .acc-panel > .acc-inner{overflow:hidden;min-height:0;opacity:0;transition:opacity .3s,padding .3s;padding-bottom:0}
+section.chapter.acc .acc-panel.open{grid-template-rows:1fr}
+section.chapter.acc .acc-panel.open > .acc-inner{opacity:1;padding-bottom:clamp(36px,6vw,72px)}
+@media(max-width:640px){section.chapter.acc .acc-head .ch-title{font-size:1.35rem}}
+
 </style>
 </head>
 <body>
@@ -1025,6 +1042,92 @@ td { color: var(--ink-dim); font-weight: 300; }
     node.addEventListener('mouseleave', () => { tip.classList.remove('show'); node.classList.remove('active'); });
     node.addEventListener('click', show);
   });
+
+  /* —— Chapter accordion: all collapsed by default —— */
+  (() => {
+    const chapters = $$('section.chapter');
+    if (!chapters.length) return;
+    const shell = document.querySelector('main') || document.body;
+    const bar = document.createElement('div');
+    bar.className = 'acc-toolbar shell';
+    bar.innerHTML = '<button type="button" id="accExpand" data-cursor>Expand all</button><button type="button" id="accCollapse" data-cursor>Collapse all</button>';
+    const first = chapters[0];
+    first.parentNode.insertBefore(bar, first);
+
+    function setOpen(sec, open, scrollInto) {
+      const head = sec.querySelector('.acc-head');
+      const panel = sec.querySelector('.acc-panel');
+      if (!head || !panel) return;
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      panel.classList.toggle('open', open);
+      if (open) {
+        sec.querySelectorAll('.meter-fill[data-w]').forEach(f => { f.style.width = f.dataset.w + '%'; });
+        sec.querySelectorAll('.f[data-pct]').forEach(f => { f.style.width = f.dataset.pct + '%'; });
+        sec.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+        if (scrollInto) setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 40);
+      }
+    }
+
+    chapters.forEach((sec, i) => {
+      const label = sec.querySelector('.ch-label');
+      const title = sec.querySelector('.ch-title');
+      if (!label || !title) return;
+      if (sec.querySelector('.acc-head')) return; // already wired
+      const kids = [...sec.childNodes];
+      const head = document.createElement('button');
+      head.type = 'button';
+      head.className = 'acc-head';
+      head.id = (sec.id || 'ch' + i) + '-head';
+      const ico = document.createElement('span');
+      ico.className = 'acc-ico';
+      ico.setAttribute('aria-hidden', 'true');
+      ico.textContent = '+';
+      head.appendChild(label);
+      head.appendChild(title);
+      head.appendChild(ico);
+      const panel = document.createElement('div');
+      panel.className = 'acc-panel';
+      panel.id = (sec.id || 'ch' + i) + '-panel';
+      const inner = document.createElement('div');
+      inner.className = 'acc-inner';
+      kids.forEach(n => {
+        if (n === label || n === title) return;
+        if (n.nodeType === 1 || (n.nodeType === 3 && n.textContent.trim())) inner.appendChild(n);
+      });
+      panel.appendChild(inner);
+      sec.classList.add('acc');
+      sec.innerHTML = '';
+      sec.appendChild(head);
+      sec.appendChild(panel);
+      head.setAttribute('aria-controls', panel.id);
+      setOpen(sec, false, false);
+      head.addEventListener('click', () => {
+        const open = head.getAttribute('aria-expanded') !== 'true';
+        setOpen(sec, open, open);
+      });
+    });
+
+    $('#accExpand')?.addEventListener('click', () => chapters.forEach(s => setOpen(s, true, false)));
+    $('#accCollapse')?.addEventListener('click', () => chapters.forEach(s => setOpen(s, false, false)));
+
+    const openHash = () => {
+      const id = location.hash.replace('#', '');
+      if (!id) return;
+      const sec = document.getElementById(id);
+      if (sec && sec.classList.contains('chapter')) setOpen(sec, true, true);
+    };
+    openHash();
+    addEventListener('hashchange', openHash);
+
+    $$('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => {
+        const id = a.getAttribute('href')?.slice(1);
+        const sec = id && document.getElementById(id);
+        if (sec && sec.classList.contains('chapter')) setOpen(sec, true, false);
+      });
+    });
+  })();
+
 })();
 </script>
 </body>
