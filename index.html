@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Helana Log — 장애복지·기초생활·치매 돌봄 가정이 대한민국 행정을 마주한 체감·개선·솔루션 대화록.">
-<meta name="theme-color" content="#0a0908">
+<meta name="description" content="Helana Log — 장애복지·기초생활·치매 돌봄 가정이 대한민국 행정을 마주한 체감·개선·솔루션 대화록. Editorial Webzine.">
+<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f1e6" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
 <meta name="application-name" content="Helana Log">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,11 +14,11 @@
 <meta name="apple-mobile-web-app-title" content="행정대화록">
 <meta name="msapplication-TileColor" content="#0a0908">
 <meta name="msapplication-TileImage" content="icons/icon-192.png">
-<meta property="og:title" content="Helana Log — 행정 대화록">
+<meta property="og:title" content="Helana Log — 행정 대화록 Webzine">
 <meta property="og:description" content="조현병 당사자 누나 · 기초생활 · 치매 어머니. 창구로 쪼개진 행정을 가정의 하루로 다시 잇는 기록.">
 <meta property="og:image" content="https://helena751107.github.io/helana_log/icons/icon-512.png">
 <meta property="og:type" content="website">
-<title>Helana Log — 행정 대화록</title>
+<title>Helana Log — 행정 대화록 · Webzine</title>
 <link rel="manifest" href="site.webmanifest">
 <link rel="icon" href="icons/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="icons/favicon-16.png" type="image/png" sizes="16x16">
@@ -25,508 +27,1003 @@
 <link rel="mask-icon" href="icons/icon.svg" color="#3db8a8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════
+   HELANA LOG — Admin Dialogue Webzine
+   Mirrors helena_phone editorial system · accent teal
+   ═══════════════════════════════════════════════════ */
 :root {
-  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
-  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
-  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
-  --gold:#d4a84b; --gold2:#f0c75e; --teal:#3db8a8; --coral:#e85d4c; --lilac:#8b7cf0;
-  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1); --accent:var(--teal);
-  --max:720px;
+  --ink: #f4efe6; --ink-dim: #b5a999; --ink-mute: #7a7064;
+  --paper: #0a0908; --paper-2: #12100e; --paper-3: #1a1714;
+  --rule: rgba(244,239,230,0.1); --rule-strong: rgba(244,239,230,0.18);
+  --gold: #d4a84b; --gold-bright: #f0c75e;
+  --crimson: #e85d4c; --teal: #3db8a8; --indigo: #8b7cf0;
+  --cream: #f7f1e6;
+  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --sans: 'DM Sans', 'Noto Sans KR', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --max: 1180px; --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --accent: var(--teal);
 }
 [data-theme="light"] {
-  --ink:#1a1510; --ink-dim:#5c5348; --ink-mute:#8a8074;
-  --paper:#f7f1e6; --paper-2:#efe8db; --paper-3:#fffdf8;
-  --rule:rgba(26,21,16,.1); --rule2:rgba(26,21,16,.18);
+  --ink: #1a1510; --ink-dim: #5c5348; --ink-mute: #8a8074;
+  --paper: #f7f1e6; --paper-2: #efe8db; --paper-3: #fffdf8;
+  --rule: rgba(26,21,16,0.1); --rule-strong: rgba(26,21,16,0.18);
+  --cream: #0a0908;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans); background: var(--paper); color: var(--ink);
+  line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased; cursor: none;
+}
+@media (pointer: coarse) { body { cursor: auto; } .cursor, .cursor-dot { display: none !important; } }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: none; }
+@media (pointer: coarse) { button { cursor: pointer; } }
+::selection { background: var(--teal); color: #041210; }
+
+.cursor, .cursor-dot {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+  border-radius: 50%; transform: translate(-50%, -50%);
+  transition: width .25s var(--ease), height .25s var(--ease), border-color .25s, opacity .3s;
+  mix-blend-mode: difference;
+}
+.cursor { width: 36px; height: 36px; border: 1px solid rgba(244,239,230,.55); opacity: .85; }
+.cursor.hover { width: 56px; height: 56px; border-color: var(--teal); }
+.cursor-dot { width: 5px; height: 5px; background: var(--teal); mix-blend-mode: normal; }
+
+.spine { position: fixed; left: 0; top: 0; bottom: 0; width: 3px; z-index: 200; background: var(--rule); }
+.spine-fill {
+  width: 100%; height: 0%;
+  background: linear-gradient(180deg, var(--teal), var(--gold), var(--crimson));
+  transition: height .1s linear;
+}
+
+.masthead {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 150;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+  padding: 12px clamp(14px, 3vw, 36px);
+  padding-top: max(12px, env(safe-area-inset-top));
+  padding-left: max(14px, env(safe-area-inset-left));
+  padding-right: max(14px, env(safe-area-inset-right));
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border-bottom: 1px solid transparent; transition: border-color .3s; min-height: 56px;
+}
+.masthead.scrolled { border-bottom-color: var(--rule); }
+.mast-left { display: flex; align-items: center; gap: 12px; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+.mast-left .issue { color: var(--teal); }
+.mast-brand {
+  justify-self: center; font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; gap: 10px;
+}
+.mast-brand img { width: 28px; height: 28px; border-radius: 6px; }
+.mast-brand em { font-style: italic; color: var(--teal); font-weight: 400; }
+.mast-right { justify-self: end; display: flex; align-items: center; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
+.mast-right a, .mast-right button {
+  font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; padding: 10px 11px;
+  color: var(--ink-dim); transition: color .2s; font-weight: 500; min-height: 44px;
+  display: inline-flex; align-items: center; background: none; border: none; font-family: inherit; cursor: pointer;
+}
+.mast-right a:hover, .mast-right button:hover { color: var(--teal); }
+.mast-cta { background: var(--teal) !important; color: #041210 !important; border-radius: 2px; font-weight: 600 !important; padding: 10px 14px !important; }
+.menu-btn {
+  display: none; font-size: 1.25rem; width: 44px; height: 44px; min-height: 44px;
+  border: 1px solid var(--rule-strong) !important; border-radius: 8px; color: var(--ink); background: var(--paper-2); z-index: 160;
+}
+.nav-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 145; opacity: 0; transition: opacity .25s; border: none; }
+.nav-backdrop.show { display: block; opacity: 1; }
+
+.chapter-rail {
+  position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+  z-index: 140; display: flex; flex-direction: column; gap: 14px;
+}
+.chapter-rail a {
+  width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink-mute);
+  background: transparent; position: relative; transition: .3s var(--ease);
+}
+.chapter-rail a.on { background: var(--teal); border-color: var(--teal); transform: scale(1.3); }
+.chapter-rail a span {
+  position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  white-space: nowrap; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-mute); opacity: 0; transition: .25s; pointer-events: none;
+}
+.chapter-rail a:hover span, .chapter-rail a.on span { opacity: 1; color: var(--ink-dim); }
+
+.shell { max-width: var(--max); margin: 0 auto; padding: 0 clamp(18px, 4vw, 32px); position: relative; z-index: 1; }
+.chapter { padding: clamp(72px, 12vw, 120px) 0; border-top: 1px solid var(--rule); }
+.ch-label {
+  display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px;
+  font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--teal); font-weight: 600;
+}
+.ch-label .num { font-family: var(--mono); font-size: .75rem; }
+.ch-label .line { flex: 1; height: 1px; background: var(--rule); }
+.ch-title {
+  font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 600; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 16px;
+}
+.ch-title em { font-style: italic; color: var(--gold-bright); }
+.ch-deck { max-width: 540px; color: var(--ink-dim); font-size: 1.05rem; font-weight: 300; margin-bottom: 40px; }
+
+.cover {
+  min-height: 100vh; display: grid; place-items: center;
+  position: relative; padding: 100px 0 60px; overflow: hidden;
+}
+.cover-bg {
+  position: absolute; inset: 0; z-index: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 15% -10%, color-mix(in srgb, var(--teal) 20%, transparent), transparent 55%),
-    radial-gradient(ellipse 45% 40% at 95% 70%, rgba(212,168,75,.07), transparent 50%),
-    radial-gradient(ellipse 40% 35% at 40% 100%, rgba(232,93,76,.05), transparent 50%)}
-a{color:var(--gold2);text-decoration:none}
-a:hover{color:var(--teal)}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 80px max(16px,env(safe-area-inset-left));position:relative;z-index:1}
-.mast{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;
-  padding:12px max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left));
-  padding-top:max(12px,env(safe-area-inset-top));
-  background:color-mix(in srgb,var(--paper) 88%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
-.brand{font-family:var(--serif);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:1rem;color:var(--ink);display:flex;align-items:center;gap:10px}
-.brand img{width:28px;height:28px;border-radius:6px}
-.brand em{font-style:italic;color:var(--accent);font-weight:400}
-.mast nav{display:flex;gap:2px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
-.mast nav a,.mast nav button{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);
-  min-height:40px;padding:8px 9px;background:none;border:none;cursor:pointer;font-family:inherit}
-.mast nav a:hover,.mast nav button:hover{color:var(--accent)}
-.hero{padding:44px 0 12px}
-.kicker{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
-.kicker .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-mute)}
-h1{font-family:var(--serif);font-size:clamp(2rem,8.5vw,3.2rem);line-height:1.1;font-weight:600;letter-spacing:-.02em;margin-bottom:16px}
-h1 em{font-style:italic;color:var(--accent)}
-.deck{color:var(--ink-dim);font-weight:300;font-size:1.05rem;max-width:36em;border-left:2px solid var(--accent);padding-left:14px;margin-bottom:20px}
-.deck strong{color:var(--ink);font-weight:500}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-.chip{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border:1px solid var(--rule2);
-  background:var(--paper-2);color:var(--ink-dim);font-size:.82rem;transition:.25s;border-radius:2px}
-.chip:hover{border-color:var(--accent);color:var(--ink)}
-.chip.primary{background:color-mix(in srgb,var(--teal) 18%, var(--paper-2));border-color:color-mix(in srgb,var(--teal) 45%, var(--rule2));color:var(--ink)}
-.who{display:grid;gap:10px;margin:0 0 24px;padding:16px;border:1px solid var(--rule);background:var(--paper-2);border-radius:4px}
-.who h2{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:4px}
-.who ul{list-style:none;display:grid;gap:12px}
-.who li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:.92rem;color:var(--ink-dim);font-weight:300}
-.who .tag{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:4px 8px;border:1px solid var(--rule2);color:var(--accent);white-space:nowrap;margin-top:2px}
-.who li[data-c="bl"] .tag{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 40%, var(--rule2))}
-.who li[data-c="dc"] .tag{color:var(--coral);border-color:color-mix(in srgb,var(--coral) 40%, var(--rule2))}
-.who strong{color:var(--ink);font-weight:500}
-.quote{margin:0 0 28px;padding:18px 16px;border:1px solid var(--rule);background:var(--paper-3);border-radius:4px;
-  font-family:var(--serif);font-size:1.15rem;line-height:1.45;font-style:italic;color:var(--ink-dim)}
-.quote cite{display:block;margin-top:10px;font-family:var(--sans);font-size:.72rem;font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:600}
-.eco{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 32px;padding:12px;border:1px dashed var(--rule);background:var(--paper-2)}
-.eco a{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);padding:8px 10px;min-height:36px;display:inline-flex;align-items:center}
-.eco a:hover,.eco a.on{color:var(--accent)}
-.sec-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin:28px 0 14px;display:flex;align-items:center;gap:12px}
-.sec-label::after{content:'';flex:1;height:1px;background:var(--rule)}
-.method{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
-.method .step{padding:12px 8px;background:var(--paper-2);border:1px solid var(--rule);border-radius:4px;min-height:100%}
-.method .n{font-family:var(--serif);font-size:1.15rem;color:var(--accent);line-height:1;margin-bottom:6px}
-.method .l{font-size:.72rem;font-weight:600;letter-spacing:.03em;margin-bottom:4px}
-.method .d{font-size:.68rem;color:var(--ink-mute);font-weight:300;line-height:1.4}
-.method-note{font-size:.85rem;color:var(--ink-dim);font-weight:300;margin:12px 0 8px}
-.tracks{display:grid;gap:12px;margin-bottom:8px}
-.track{padding:16px;border:1px solid var(--rule);background:var(--paper-2);border-radius:4px;border-left:3px solid var(--accent)}
-.track[data-c="dw"]{border-left-color:var(--teal)}
-.track[data-c="bl"]{border-left-color:var(--gold)}
-.track[data-c="dc"]{border-left-color:var(--coral)}
-.track .code{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:6px}
-.track[data-c="bl"] .code{color:var(--gold)}
-.track[data-c="dc"] .code{color:var(--coral)}
-.track h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin-bottom:8px}
-.track p{font-size:.9rem;color:var(--ink-dim);font-weight:300;margin-bottom:10px}
-.track ul{margin:0 0 0 1.05em;font-size:.85rem;color:var(--ink-dim);font-weight:300}
-.track li{margin-bottom:5px}
-.dlg{margin:8px 0 24px;padding:0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper-2)}
-.dlg-head{padding:16px 16px 12px;border-bottom:1px solid var(--rule);background:var(--paper-3)}
-.dlg-head .meta{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
-.dlg-head h2{font-family:var(--serif);font-size:1.35rem;font-weight:600;line-height:1.25;margin-bottom:6px}
-.dlg-head .sub{font-size:.85rem;color:var(--ink-mute);font-weight:300}
-.dlg-block{padding:14px 16px;border-bottom:1px solid var(--rule)}
-.dlg-block:last-child{border-bottom:none}
-.dlg-block h3{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
-.dlg-block p,.dlg-block li{font-size:.92rem;color:var(--ink-dim);font-weight:300}
-.dlg-block ul{margin:6px 0 0 1.1em}
-.dlg-block li{margin-bottom:6px}
-.dlg-block strong{color:var(--ink);font-weight:500}
-.table-wrap{overflow-x:auto;margin-top:8px;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:280px}
-th,td{text-align:left;padding:8px 10px;border:1px solid var(--rule);vertical-align:top}
-th{background:var(--paper-3);color:var(--ink-mute);font-weight:600;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
-td{color:var(--ink-dim);font-weight:300}
-.acc{border-top:1px solid var(--rule)}
-.acc-h{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;
-  text-align:left;background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:18px 0;min-height:56px}
-.acc-h .num{font-size:.72rem;letter-spacing:.12em;color:var(--accent);font-weight:600}
-.acc-h .t{font-family:var(--serif);font-size:1.25rem;font-weight:600}
-.acc-h .ico{width:34px;height:34px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent);transition:transform .3s var(--ease);flex-shrink:0}
-.acc.open .acc-h .ico{transform:rotate(45deg);background:color-mix(in srgb,var(--accent) 15%, transparent)}
-.acc-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
-.acc.open .acc-b{grid-template-rows:1fr}
-.acc-i{overflow:hidden;min-height:0;opacity:0;transition:opacity .25s;padding-bottom:0}
-.acc.open .acc-i{opacity:1;padding-bottom:18px}
-.acc-i p,.acc-i li{color:var(--ink-dim);font-weight:300;font-size:.95rem}
-.acc-i ul{margin:8px 0 0 1.1em}
-.acc-i li{margin-bottom:6px}
-.card-list{display:grid;gap:10px;margin-top:8px}
-.card{padding:14px;border:1px solid var(--rule);background:var(--paper-3);border-radius:4px}
-.card h4{font-size:.95rem;font-weight:600;margin-bottom:6px}
-.card p{font-size:.85rem;color:var(--ink-dim);font-weight:300}
-.sol{display:grid;gap:8px;margin-bottom:8px}
-.sol .row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 14px;border:1px solid var(--rule);background:var(--paper-2);border-radius:4px;font-size:.88rem}
-.sol .st{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:4px 8px;border:1px solid var(--rule2);color:var(--ink-mute);white-space:nowrap}
-.sol .tk{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);white-space:nowrap}
-.note{margin:24px 0;padding:14px 16px;border:1px solid var(--rule2);background:color-mix(in srgb,var(--gold) 8%, var(--paper-2));font-size:.85rem;color:var(--ink-dim);font-weight:300;border-radius:4px}
-.note strong{color:var(--gold2);font-weight:600}
-.foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
-.foot .gold{color:var(--accent);margin-top:8px;font-weight:500}
-.giscus{min-height:120px}
-code{font-size:.85em;color:var(--accent)}
-@media(max-width:640px){
-  .method{grid-template-columns:1fr 1fr;gap:8px}
-  .method .step:last-child{grid-column:1 / -1}
-  .mast nav .hide{display:none}
-  h1{font-size:clamp(1.85rem,9.5vw,2.5rem)}
-  .acc-h .t{font-size:1.1rem}
-  .who li{grid-template-columns:1fr;gap:4px}
-  .sol .row{grid-template-columns:1fr;gap:6px}
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(61,184,168,0.14), transparent 55%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(212,168,75,0.08), transparent 50%),
+    radial-gradient(ellipse 40% 40% at 90% 90%, rgba(232,93,76,0.07), transparent 50%);
 }
-@media(max-width:380px){
-  .method{grid-template-columns:1fr}
-  .method .step:last-child{grid-column:auto}
+.cover-noise {
+  position: absolute; inset: 0; opacity: .04; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.cover-inner { position: relative; z-index: 1; width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 clamp(18px, 4vw, 32px); }
+.cover-kicker {
+  display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+  font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 28px;
+}
+.cover-kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 12px var(--teal); animation: blink 2s infinite; }
+@keyframes blink { 50% { opacity: .35; } }
+.cover h1 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(2.8rem, 10vw, 6.5rem); line-height: .95;
+  letter-spacing: -.03em; margin-bottom: 24px;
+}
+.cover h1 .thin { font-weight: 400; font-style: italic; color: var(--gold-bright); display: block; }
+.cover h1 .line2 { display: block; font-size: .72em; font-weight: 500; margin-top: .08em; }
+.cover-sub {
+  max-width: 520px; font-size: clamp(1rem, 2vw, 1.15rem); color: var(--ink-dim);
+  font-weight: 300; margin-bottom: 36px; border-left: 2px solid var(--teal); padding-left: 18px;
+}
+.cover-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px;
+  font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  border: 1px solid var(--rule-strong); transition: .35s var(--ease); background: transparent; color: var(--ink);
+}
+.btn-solid { background: var(--teal); color: #041210; border-color: var(--teal); }
+.btn-solid:hover { filter: brightness(1.08); transform: translateY(-2px); }
+.btn-line:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+.btn-gold { background: var(--gold); color: #1a1508; border-color: var(--gold); }
+.btn-gold:hover { background: var(--gold-bright); transform: translateY(-2px); }
+
+.cover-stats {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
+  background: var(--rule); border: 1px solid var(--rule);
+}
+.cover-stats .s { background: var(--paper-2); padding: 20px 10px; text-align: center; transition: background .3s; }
+.cover-stats .s:hover { background: var(--paper-3); }
+.cover-stats .v {
+  font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700;
+  color: var(--teal); line-height: 1;
+}
+.cover-stats .l { font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-mute); margin-top: 8px; }
+
+.marquee-wrap { overflow: hidden; border-block: 1px solid var(--rule); background: var(--paper-2); padding: 14px 0; }
+.marquee {
+  display: flex; width: max-content; animation: marquee 42s linear infinite;
+  font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500;
+}
+.marquee span { padding: 0 28px; white-space: nowrap; }
+.marquee span::after { content: '◆'; margin-left: 28px; color: var(--teal); font-size: .55rem; vertical-align: middle; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.ed-card {
+  background: var(--paper-2); border: 1px solid var(--rule); padding: 28px;
+  position: relative; overflow: hidden; transition: border-color .35s, transform .4s var(--ease), box-shadow .4s;
+}
+.ed-card:hover { border-color: var(--rule-strong); transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+.ed-card .eyebrow { font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; font-weight: 600; }
+.ed-card h3 { font-family: var(--serif); font-size: 1.55rem; font-weight: 600; line-height: 1.15; margin-bottom: 12px; }
+.ed-card p { color: var(--ink-dim); font-size: .95rem; font-weight: 300; }
+.tag {
+  font-size: .65rem; letter-spacing: .06em; text-transform: uppercase;
+  padding: 4px 10px; border: 1px solid var(--rule); color: var(--ink-mute); font-weight: 500; display: inline-block;
+}
+.tag.ok { border-color: rgba(61,184,168,.4); color: var(--teal); }
+.tag.gold { border-color: rgba(212,168,75,.45); color: var(--gold); }
+.tag.hot { border-color: rgba(232,93,76,.4); color: var(--crimson); }
+
+.track-card {
+  background: var(--paper-2); border: 1px solid var(--rule); padding: 26px;
+  cursor: none; transition: .4s var(--ease); position: relative; overflow: hidden;
+}
+@media (pointer: coarse) { .track-card { cursor: pointer; } }
+.track-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--tc, var(--teal)); opacity: .7;
+}
+.track-card:hover, .track-card.active {
+  border-color: var(--tc, var(--teal)); transform: translateY(-6px);
+  box-shadow: 0 28px 50px rgba(0,0,0,.35);
+}
+.track-card .code { font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--tc, var(--teal)); margin-bottom: 10px; }
+.track-card h3 { font-family: var(--serif); font-size: 1.7rem; font-weight: 600; margin-bottom: 10px; }
+.track-card p { color: var(--ink-dim); font-size: .9rem; font-weight: 300; margin-bottom: 14px; }
+.track-card ul { margin: 0 0 0 1.05em; color: var(--ink-dim); font-size: .85rem; font-weight: 300; }
+.track-card li { margin-bottom: 5px; }
+.track-card .meter { margin-top: 18px; }
+.track-card .meter-label { display: flex; justify-content: space-between; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; }
+.track-card .meter-bar { height: 4px; background: var(--rule); overflow: hidden; }
+.track-card .meter-fill { height: 100%; width: 0; background: var(--tc, var(--teal)); transition: width 1.2s var(--ease); }
+
+.infograph-box {
+  background: var(--paper-2); border: 1px solid var(--rule);
+  padding: clamp(20px, 4vw, 36px); position: relative;
+}
+.infograph-box .hint {
+  position: absolute; top: 14px; right: 16px;
+  font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute);
+}
+.svg-arch { width: 100%; height: auto; display: block; max-height: 440px; }
+.svg-arch .node { transition: opacity .25s; }
+.svg-arch .node rect { transition: fill .3s, stroke .3s, filter .3s; }
+.svg-arch .node:hover rect, .svg-arch .node.active rect {
+  fill: rgba(61,184,168,0.14); stroke: var(--teal);
+  filter: drop-shadow(0 0 8px rgba(61,184,168,.35));
+}
+.svg-arch .node:hover text, .svg-arch .node.active text { fill: var(--gold-bright); }
+.svg-arch .flow { stroke-dasharray: 6 6; animation: dash 16s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -120; } }
+.tooltip {
+  position: absolute; pointer-events: none; z-index: 10;
+  background: var(--paper-3); border: 1px solid var(--teal);
+  padding: 12px 14px; max-width: 260px; opacity: 0; transform: translateY(6px);
+  transition: opacity .2s, transform .2s; font-size: .82rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,.4);
+}
+.tooltip.show { opacity: 1; transform: none; }
+.tooltip strong { display: block; font-family: var(--serif); font-size: 1.05rem; margin-bottom: 4px; color: var(--teal); }
+.tooltip span { color: var(--ink-dim); font-weight: 300; line-height: 1.45; }
+
+.method-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+.m-step {
+  background: var(--paper-2); border: 1px solid var(--rule); padding: 18px 14px;
+  transition: .35s var(--ease); cursor: none; min-height: 140px;
+}
+@media (pointer: coarse) { .m-step { cursor: pointer; } }
+.m-step:hover, .m-step.active {
+  border-color: var(--teal); transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.3);
+}
+.m-step .n { font-family: var(--serif); font-size: 1.8rem; color: var(--teal); line-height: 1; margin-bottom: 8px; }
+.m-step .en { font-family: var(--mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; }
+.m-step .ko { font-weight: 600; font-size: .95rem; margin-bottom: 8px; }
+.m-step .d { font-size: .78rem; color: var(--ink-dim); font-weight: 300; line-height: 1.45; }
+.method-panel {
+  background: var(--paper-2); border: 1px solid var(--rule); padding: 28px;
+  min-height: 160px; border-left: 3px solid var(--teal);
+}
+.method-panel h3 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 10px; }
+.method-panel p { color: var(--ink-dim); font-weight: 300; font-size: .95rem; }
+
+.ibar { margin-top: 8px; display: flex; flex-direction: column; gap: 12px; }
+.ibar-row { display: grid; grid-template-columns: 110px 1fr 52px; gap: 12px; align-items: center; font-size: .78rem; }
+.ibar-row .n { color: var(--ink-mute); text-align: right; font-size: .72rem; }
+.ibar-row .t { height: 6px; background: var(--rule); overflow: hidden; border-radius: 1px; }
+.ibar-row .f { height: 100%; width: 0; transition: width 1.4s var(--ease); border-radius: 1px; }
+.ibar-row .p { font-family: var(--mono); font-size: .72rem; color: var(--ink-dim); }
+
+.dlg-board {
+  background: var(--paper-2); border: 1px solid var(--rule); overflow: hidden;
+}
+.dlg-head { padding: 22px 24px; border-bottom: 1px solid var(--rule); background: var(--paper-3); }
+.dlg-head .meta { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: 8px; }
+.dlg-head h3 { font-family: var(--serif); font-size: 1.55rem; font-weight: 600; margin-bottom: 6px; }
+.dlg-head .sub { font-size: .85rem; color: var(--ink-mute); font-weight: 300; }
+.dlg-tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--rule); }
+.dlg-tabs button {
+  flex: 1; min-width: 72px; padding: 14px 10px; font-size: .72rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-mute); border-bottom: 2px solid transparent;
+  transition: .25s; font-weight: 600; min-height: 48px;
+}
+.dlg-tabs button:hover { color: var(--ink); }
+.dlg-tabs button.on { color: var(--teal); border-bottom-color: var(--teal); background: color-mix(in srgb, var(--teal) 8%, transparent); }
+.dlg-pane { padding: 24px; display: none; }
+.dlg-pane.on { display: block; animation: fadein .35s var(--ease); }
+@keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.dlg-pane p, .dlg-pane li { color: var(--ink-dim); font-weight: 300; font-size: .95rem; }
+.dlg-pane ul { margin: 10px 0 0 1.1em; }
+.dlg-pane li { margin-bottom: 6px; }
+.dlg-pane strong { color: var(--ink); font-weight: 500; }
+.table-wrap { overflow-x: auto; margin-top: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 280px; }
+th, td { text-align: left; padding: 10px 12px; border: 1px solid var(--rule); vertical-align: top; }
+th { background: var(--paper-3); color: var(--ink-mute); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+td { color: var(--ink-dim); font-weight: 300; }
+
+.sol-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.sol-card {
+  background: var(--paper-2); border: 1px solid var(--rule); padding: 20px;
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+  transition: .35s var(--ease);
+}
+.sol-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+.sol-card .badge {
+  font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700;
+  padding: 6px 8px; border: 1px solid var(--rule); color: var(--ink-mute); white-space: nowrap;
+}
+.sol-card h4 { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 6px; }
+.sol-card p { font-size: .85rem; color: var(--ink-dim); font-weight: 300; }
+.sol-card .tk { font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--teal); margin-top: 8px; }
+
+.note {
+  margin-top: 32px; padding: 16px 18px; border: 1px solid var(--rule-strong);
+  background: color-mix(in srgb, var(--gold) 8%, var(--paper-2));
+  font-size: .88rem; color: var(--ink-dim); font-weight: 300; border-radius: 2px;
+}
+.note strong { color: var(--gold-bright); font-weight: 600; }
+
+.install-box {
+  background: var(--paper-2); border: 1px solid var(--rule); padding: 28px;
+  display: grid; gap: 16px;
+}
+.install-box code {
+  font-family: var(--mono); font-size: .85rem; color: var(--teal);
+  background: var(--paper); padding: 14px 16px; border: 1px solid var(--rule); display: block; overflow-x: auto;
+}
+.eco-bar {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding: 14px;
+  border: 1px dashed var(--rule); background: var(--paper-2);
+}
+.eco-bar a {
+  font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute);
+  padding: 8px 12px; min-height: 36px; display: inline-flex; align-items: center; transition: color .2s;
+}
+.eco-bar a:hover, .eco-bar a.on { color: var(--teal); }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: .08s; }
+.reveal-d2 { transition-delay: .16s; }
+.reveal-d3 { transition-delay: .24s; }
+
+.site-foot {
+  border-top: 1px solid var(--rule); padding: 48px 0 80px; text-align: center;
+  color: var(--ink-mute); font-size: .82rem;
+}
+.site-foot .gold { color: var(--teal); margin-top: 8px; font-weight: 500; }
+.to-top {
+  position: fixed; right: 18px; bottom: 22px; z-index: 160;
+  width: 44px; height: 44px; border: 1px solid var(--rule-strong); background: var(--paper-2);
+  border-radius: 50%; opacity: 0; pointer-events: none; transition: .3s; color: var(--ink);
+  display: grid; place-items: center; font-size: 1.1rem;
+}
+.to-top.show { opacity: 1; pointer-events: auto; }
+.giscus-wrap { margin-top: 28px; }
+
+@media (max-width: 900px) {
+  .g3, .method-steps, .cover-stats { grid-template-columns: repeat(3, 1fr); }
+  .method-steps { grid-template-columns: repeat(2, 1fr); }
+  .method-steps .m-step:last-child { grid-column: 1 / -1; }
+  .sol-grid { grid-template-columns: 1fr; }
+  .chapter-rail { display: none; }
+  .menu-btn { display: grid; place-items: center; }
+  .masthead { grid-template-columns: 1fr auto; }
+  .mast-brand { justify-self: start; }
+  .mast-left { display: none; }
+  .mast-right {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(300px, 86vw);
+    background: var(--paper-2); border-left: 1px solid var(--rule);
+    flex-direction: column; align-items: stretch; justify-content: flex-start;
+    padding: 72px 16px 24px; gap: 4px; transform: translateX(105%);
+    transition: transform .3s var(--ease); z-index: 155; justify-self: end;
+  }
+  .mast-right.open { transform: translateX(0); }
+  .mast-right a, .mast-right button { justify-content: flex-start; width: 100%; padding: 14px 12px; }
+}
+@media (max-width: 640px) {
+  .g2, .g3 { grid-template-columns: 1fr; }
+  .cover-stats { grid-template-columns: repeat(2, 1fr); }
+  .method-steps { grid-template-columns: 1fr; }
+  .method-steps .m-step:last-child { grid-column: auto; }
+  .ibar-row { grid-template-columns: 80px 1fr 44px; gap: 8px; }
+  .cover h1 { font-size: clamp(2.4rem, 12vw, 3.4rem); }
+  .infograph-box .hint { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee, .svg-arch .flow, .reveal { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
 }
 </style>
 </head>
 <body>
-<header class="mast">
-  <a class="brand" href="./">
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="spine" aria-hidden="true"><div class="spine-fill" id="spineFill"></div></div>
+<button type="button" class="to-top" id="toTop" aria-label="맨 위로">↑</button>
+
+<header class="masthead" id="masthead">
+  <div class="mast-left">
+    <span class="issue">Vol. 行政</span>
+    <span>Dialogue Log</span>
+  </div>
+  <a class="mast-brand" href="./" data-cursor>
     <img src="icons/favicon-32.png" width="28" height="28" alt="">
     Helana <em>Log</em>
   </a>
-  <nav>
-    <a class="hide" href="#charter">헌장</a>
-    <a class="hide" href="#method">방법</a>
-    <a class="hide" href="#tracks">트랙</a>
-    <a href="#dialogue">대화록</a>
-    <a href="https://github.com/helena751107/helana_log/tree/main/docs" target="_blank" rel="noopener">Docs</a>
-    <button type="button" id="themeBtn" aria-label="테마 전환">Theme</button>
-  </nav>
+  <div class="mast-actions" style="justify-self:end;display:flex;align-items:center;gap:8px">
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="메뉴" aria-expanded="false">☰</button>
+    <nav class="mast-right" id="mastRight">
+      <a href="#tracks" data-cursor>Tracks</a>
+      <a href="#map" data-cursor>Map</a>
+      <a href="#method" data-cursor>Method</a>
+      <a href="#dialogue" data-cursor>Dialogue</a>
+      <a href="#solutions" data-cursor>Solutions</a>
+      <a href="https://github.com/helena751107/helana_log/tree/main/docs" target="_blank" rel="noopener" data-cursor>Docs</a>
+      <button type="button" id="themeBtn" data-cursor>Theme</button>
+      <a class="mast-cta" href="#install" data-cursor>Install</a>
+    </nav>
+  </div>
 </header>
-<main class="wrap">
-  <section class="hero">
-    <div class="kicker">
+<div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+<nav class="chapter-rail" aria-label="챕터">
+  <a href="#cover" data-ch="cover" class="on"><span>Cover</span></a>
+  <a href="#tracks" data-ch="tracks"><span>Tracks</span></a>
+  <a href="#map" data-ch="map"><span>Map</span></a>
+  <a href="#method" data-ch="method"><span>Method</span></a>
+  <a href="#gaps" data-ch="gaps"><span>Gaps</span></a>
+  <a href="#dialogue" data-ch="dialogue"><span>Dialogue</span></a>
+  <a href="#solutions" data-ch="solutions"><span>Solutions</span></a>
+  <a href="#install" data-ch="install"><span>Install</span></a>
+  <a href="#board" data-ch="board"><span>Board</span></a>
+</nav>
+
+<section class="cover" id="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-noise"></div>
+  <div class="cover-inner">
+    <div class="cover-kicker">
+      <span class="dot"></span>
       <span>대한민국 행정 대화록</span>
-      <span class="dot" aria-hidden="true"></span>
-      <span>Updated 2026-07-26</span>
+      <span>DW · BL · DC</span>
+      <span>Webzine Vol.01</span>
     </div>
-    <h1>행정은 창구로 쪼개지고,<br>가정은 <em>하루</em>로 이어진다.</h1>
-    <p class="deck">
-      일반 학습·코딩 로그가 아닙니다.
-      조현병 등 정신질환 당사자인 <strong>누나</strong>,
-      <strong>기초생활</strong> 보장 가구,
-      <strong>치매 어머니</strong>를 포함한 복합 돌봄 가정이
-      대한민국 행정과 만날 때의 체감·빈칸·해법을
-      <strong>대화록</strong>으로 쌓습니다.
+    <h1>
+      ONE HOME.
+      <span class="thin">Three windows.</span>
+      <span class="line2">One day.</span>
+    </h1>
+    <p class="cover-sub">
+      행정은 창구로 쪼개지고, 가정은 하루로 이어진다.
+      조현병 당사자 누나 · 기초생활 · 치매 어머니 —
+      복합 돌봄 가정이 행정을 마주한 <strong style="color:var(--ink);font-weight:500">체감·빈칸·해법</strong>을 대화록으로 남깁니다.
     </p>
-    <div class="chips">
-      <a class="chip primary" href="#dialogue">최신 대화록</a>
-      <a class="chip" href="#method">작성 방법</a>
-      <a class="chip" href="#tracks">세 트랙</a>
-      <a class="chip" href="#solutions">솔루션</a>
-      <a class="chip" href="https://helena751107.github.io/helena_phone/" target="_blank" rel="noopener">S21 Hub</a>
+    <div class="cover-cta">
+      <a class="btn btn-solid" href="#dialogue" data-cursor>Read dialogue</a>
+      <a class="btn btn-line" href="#map" data-cursor>Explore the map</a>
+      <a class="btn btn-gold" href="#install" data-cursor>Add to home</a>
     </div>
-
-    <div class="who" aria-label="이 기록이 향하는 가정">
-      <h2>한 집의 세 축 · 같은 하루</h2>
-      <ul>
-        <li data-c="dw"><span class="tag">DW · 장애</span><span>조현병 등 정신질환 당사자인 <strong>누나</strong> — 장애인 등록, 활동지원, 정신건강복지센터, 병원–행정 연계, 위기 대응</span></li>
-        <li data-c="bl"><span class="tag">BL · 생계</span><span><strong>기초생활</strong> 보장 가구 — 생계·의료·주거 급여, 재산·소득 조사, 신고·갱신, 가구 기준이 돌봄 여력과 직결</span></li>
-        <li data-c="dc"><span class="tag">DC · 치매</span><span><strong>치매 어머니</strong> — 치매안심센터, 장기요양, 노인 돌봄, 보호자 부하·안전(배회·복약·화기)</span></li>
-      </ul>
-    </div>
-
-    <blockquote class="quote">
-      행정 용어는 창구마다 다르고, 집에 돌아오면 “오늘 뭘 합의했는지”가 금방 흐려진다.
-      원망만 남는 메모는 다시 읽고 싶지 않고, 공식 민원 서식만으로는 숨이 막힌 지점이 안 보인다.
-      <cite>— 대화록 · 느낀 바</cite>
-    </blockquote>
-
-    <div class="eco" aria-label="생태계">
-      <a href="https://helena751107.github.io/helena_phone/">S21 Phone</a>
-      <a class="on" href="./">Log</a>
-      <a href="https://helena751107.github.io/helana-faith/">Faith</a>
-      <a href="https://helena751107.github.io/helena-piano/">Piano</a>
-      <a href="https://helena751107.github.io/helena-psycare/">PsyCare</a>
-    </div>
-  </section>
-
-  <!-- 헌장 -->
-  <p class="sec-label" id="charter">정체성 헌장</p>
-  <section class="acc open" data-acc>
-    <button class="acc-h" type="button" aria-expanded="true">
-      <span class="num">헌장</span>
-      <span class="t">이 레포가 하는 일</span>
-      <span class="ico" aria-hidden="true">+</span>
-    </button>
-    <div class="acc-b"><div class="acc-i">
-      <p style="margin-bottom:12px"><strong style="color:var(--ink);font-weight:500">Helana Log</strong> =
-        복합 돌봄 가정이 행정과 만날 때 생기는 마찰·공백·희망을,
-        AI·가족과 나눈 대화로 기록하고 정책 개선 씨앗으로 남기는 공간입니다.</p>
-      <ul>
-        <li><strong style="color:var(--ink)">대화록</strong> — 질문–답–반박–정리–다음 행동</li>
-        <li><strong style="color:var(--ink)">개선 카드</strong> — 한 문장 문제 + 관할 추정 + 제안</li>
-        <li><strong style="color:var(--ink)">솔루션 스케치</strong> — 체크리스트, 질문 카드, 연계 맵, 프로토타입 아이디어</li>
-        <li>서류상 부서는 갈라져 있어도, <strong style="color:var(--ink)">하루의 돌봄</strong> 안에서는 세 축이 동시에 움직입니다. 로그는 그 동시성을 숨기지 않습니다.</li>
-      </ul>
-      <p style="margin-top:14px;font-size:.85rem">톤: 존중 · 구체 · 실행 가능 · 공개 신중 (주민번호·계좌·정확한 주소·진료 원문 금지)</p>
-      <p style="margin-top:10px;font-size:.85rem">
-        <a href="https://github.com/helena751107/helana_log/blob/main/docs/IDENTITY.md" target="_blank" rel="noopener">docs/IDENTITY.md 전문 →</a>
-      </p>
-    </div></div>
-  </section>
-
-  <!-- 방법 5단 -->
-  <p class="sec-label" id="method">기록 방법 · 5단</p>
-  <div class="method" role="list">
-    <div class="step" role="listitem">
-      <div class="n">01</div>
-      <div class="l">상황 Fact</div>
-      <div class="d">날짜·창구·요청·받은 답. 일어난 일만.</div>
-    </div>
-    <div class="step" role="listitem">
-      <div class="n">02</div>
-      <div class="l">느낀 바 Feel</div>
-      <div class="d">몸이 먼저 아는 것. 감정 단어 허용.</div>
-    </div>
-    <div class="step" role="listitem">
-      <div class="n">03</div>
-      <div class="l">개선점 Gap</div>
-      <div class="d">프로세스 빈칸. 누가·무엇을·언제.</div>
-    </div>
-    <div class="step" role="listitem">
-      <div class="n">04</div>
-      <div class="l">솔루션 Fix</div>
-      <div class="d">개인 대응 · 창구 제안 · 제도 스케치.</div>
-    </div>
-    <div class="step" role="listitem">
-      <div class="n">05</div>
-      <div class="l">다음 Next</div>
-      <div class="d">48시간 안 1~3개. 가정 내 역할 명시.</div>
+    <div class="cover-stats" id="coverStats">
+      <div class="s"><div class="v" data-count="3">0</div><div class="l">Tracks</div></div>
+      <div class="s"><div class="v" data-count="5">0</div><div class="l">Method</div></div>
+      <div class="s"><div class="v" data-count="4">0</div><div class="l">Solutions</div></div>
+      <div class="s"><div class="v" data-count="1">0</div><div class="l">Dialogues</div></div>
+      <div class="s"><div class="v" data-count="12">0</div><div class="l">Docs</div></div>
+      <div class="s"><div class="v" data-count="0">0</div><div class="l">SW</div></div>
     </div>
   </div>
-  <p class="method-note">Fact와 Feel을 섞지 않습니다. Blame보다 Gap. “정부가 알아서”만 쓰지 않고, 손댈 수 있는 한 걸음을 남깁니다.</p>
+</section>
 
-  <!-- 트랙 -->
-  <p class="sec-label" id="tracks">트랙 · 자주 비는 틈</p>
-  <div class="tracks">
-    <article class="track" data-c="dw">
-      <div class="code">DW · Disability / Mental health</div>
-      <h3>장애 · 정신건강 복지</h3>
-      <p>등록·활동지원·정신건강 창구가 갈라질 때, 가정은 한 번에 설명해야 합니다. 위기 연락 순서부터 대화록에 고정합니다.</p>
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee">
+    <span>장애복지</span><span>정신건강</span><span>기초생활</span><span>치매안심</span><span>장기요양</span><span>행정복지센터</span><span>느낀 바</span><span>개선점</span><span>솔루션</span><span>대화록</span><span>Helana Log</span><span>큰누나</span>
+    <span>장애복지</span><span>정신건강</span><span>기초생활</span><span>치매안심</span><span>장기요양</span><span>행정복지센터</span><span>느낀 바</span><span>개선점</span><span>솔루션</span><span>대화록</span><span>Helana Log</span><span>큰누나</span>
+  </div>
+</div>
+
+<main>
+<section class="chapter shell" id="tracks">
+  <div class="ch-label"><span class="num">01</span><span>Tracks</span><span class="line"></span></div>
+  <h2 class="ch-title">한 집의 <em>세 축</em></h2>
+  <p class="ch-deck">서류를 나누는 부서와, 하루를 잇는 가정. 카드를 누르면 해당 축의 빈칸 강도가 채워집니다.</p>
+  <div class="g3">
+    <article class="track-card reveal active" data-track="dw" data-cursor style="--tc:var(--teal)">
+      <div class="code">DW · Disability</div>
+      <h3>장애 · 정신건강</h3>
+      <p>조현병 등 당사자 <strong style="color:var(--ink)">누나</strong>. 등록·활동지원·센터·위기 대응.</p>
       <ul>
-        <li>병원 소견 ↔ 장애인 등록·재판정 일정 불일치</li>
-        <li>정신건강복지센터 vs 행정복지센터 안내 불일치</li>
-        <li>위기 시 가정 내 합의된 첫 번호 부재</li>
-        <li>활동지원·주간이용 공백 시간대 (보호자 외출·근로)</li>
+        <li>소견 ↔ 재판정 일정 불일치</li>
+        <li>센터 vs 동 안내 어긋남</li>
+        <li>위기 시 첫 번호 부재</li>
       </ul>
+      <div class="meter"><div class="meter-label"><span>Friction</span><span>82%</span></div><div class="meter-bar"><div class="meter-fill" data-w="82"></div></div></div>
     </article>
-    <article class="track" data-c="bl">
-      <div class="code">BL · Basic livelihood</div>
+    <article class="track-card reveal reveal-d1" data-track="bl" data-cursor style="--tc:var(--gold)">
+      <div class="code">BL · Livelihood</div>
       <h3>기초생활 보장</h3>
-      <p>급여·재산 조사 일정이 돌봄 일정과 겹칩니다. 구두로만 들은 “다음 서류”를 Fact로 붙잡습니다.</p>
+      <p>수급 가구. 급여·조사·신고가 돌봄 여력과 직결.</p>
       <ul>
-        <li>생계·의료·주거 중 실제 사용 급여 가정 내 공유 부족</li>
-        <li>재산·금융 조사 안내가 보호자에게 과하게 어려움</li>
-        <li>가구원 변동·장기 입원 시 신고 시점 모호</li>
-        <li>온라인 신청과 방문 창구 정보 어긋남</li>
+        <li>급여 종류 가정 내 공유 부족</li>
+        <li>조사 안내 문장 난이도</li>
+        <li>구두 “다음 서류” 유실</li>
       </ul>
+      <div class="meter"><div class="meter-label"><span>Friction</span><span>74%</span></div><div class="meter-bar"><div class="meter-fill" data-w="74"></div></div></div>
     </article>
-    <article class="track" data-c="dc">
-      <div class="code">DC · Dementia care</div>
+    <article class="track-card reveal reveal-d2" data-track="dc" data-cursor style="--tc:var(--crimson)">
+      <div class="code">DC · Dementia</div>
       <h3>치매 · 노인 돌봄</h3>
-      <p>어머니 하루 타임라인과 보호자 동선. 정신건강 축과 “우리 소관 아님”으로 미루는 틈을 기록합니다.</p>
+      <p><strong style="color:var(--ink)">치매 어머니</strong>. 안심센터·장기요양·보호자 부하.</p>
       <ul>
-        <li>진단·등급·서비스 신청 순서를 한 번에 듣기 어려움</li>
-        <li>주간보호·방문요양과 병원 동행 시간 충돌</li>
-        <li>실종·낙상·섬망 시 기관 간 인수인계 공백</li>
-        <li>보호자 휴식(단기보호) 정보 지연</li>
+        <li>신청 순서 한 번에 안 들림</li>
+        <li>요양 시간 ↔ 병원 동행 충돌</li>
+        <li>“소관 아님” 핑퐁</li>
       </ul>
+      <div class="meter"><div class="meter-label"><span>Friction</span><span>88%</span></div><div class="meter-bar"><div class="meter-fill" data-w="88"></div></div></div>
     </article>
   </div>
+</section>
 
-  <!-- 대화록 본문 임베드 -->
-  <p class="sec-label" id="dialogue">대화록</p>
-  <article class="dlg" aria-labelledby="dlg-title">
-    <header class="dlg-head">
-      <div class="meta">2026-07-26 · CROSS (DW · BL · DC) · 민감정보 없음</div>
-      <h2 id="dlg-title">레포 성격 전환 — 행정 대화록으로</h2>
-      <p class="sub">참여자: 보호자(기록 주체) · AI 편집 보조 · 현장 방문 아님 (헌장 수립)</p>
-    </header>
-    <div class="dlg-block">
-      <h3>01 · 상황 Fact</h3>
-      <p>기존 Helana Log는 “학습·트러블슈팅·일일 로그” 성격이었습니다. 같은 날 정체성을 바꿨습니다.</p>
+<section class="chapter shell" id="map">
+  <div class="ch-label"><span class="num">02</span><span>Infographic</span><span class="line"></span></div>
+  <h2 class="ch-title">창구와 하루의 <em>지도</em></h2>
+  <p class="ch-deck">노드에 마우스를 올리거나 탭하면 창구·가정 노드 설명이 열립니다. 점선은 정보 흐름입니다.</p>
+  <div class="infograph-box reveal" id="archBox">
+    <span class="hint">Hover / tap nodes</span>
+    <div class="tooltip" id="archTip"></div>
+    <svg class="svg-arch" viewBox="0 0 960 420" role="img" aria-label="행정 창구와 가정 연계 지도">
+      <defs>
+        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3db8a8"/><stop offset="100%" stop-color="#d4a84b"/></linearGradient>
+      </defs>
+      <!-- flows -->
+      <path class="flow" d="M180 90 C300 90, 300 210, 480 210" fill="none" stroke="#3db8a8" stroke-width="1.5" opacity=".55"/>
+      <path class="flow" d="M480 70 C480 120, 480 160, 480 210" fill="none" stroke="#d4a84b" stroke-width="1.5" opacity=".55"/>
+      <path class="flow" d="M780 90 C660 90, 660 210, 480 210" fill="none" stroke="#e85d4c" stroke-width="1.5" opacity=".55"/>
+      <path class="flow" d="M480 250 C480 300, 300 340, 200 340" fill="none" stroke="#8b7cf0" stroke-width="1.2" opacity=".4"/>
+      <path class="flow" d="M480 250 C480 300, 660 340, 760 340" fill="none" stroke="#8b7cf0" stroke-width="1.2" opacity=".4"/>
+
+      <g class="node" data-tip="정신건강복지센터|위기·상담·지역 연계. DW 축의 1차 접점." data-cursor>
+        <rect x="60" y="48" width="240" height="84" rx="8" fill="#12100e" stroke="#3db8a8" stroke-width="1.5"/>
+        <text x="180" y="88" text-anchor="middle" fill="#3db8a8" font-family="DM Sans,sans-serif" font-size="13" font-weight="600">정신건강복지센터</text>
+        <text x="180" y="110" text-anchor="middle" fill="#7a7064" font-family="DM Sans,sans-serif" font-size="11">DW · Crisis &amp; care</text>
+      </g>
+      <g class="node" data-tip="행정복지센터|기초생활·장애인 등록·각종 급여 창구. BL+DW 서류." data-cursor>
+        <rect x="360" y="28" width="240" height="84" rx="8" fill="#12100e" stroke="#d4a84b" stroke-width="1.5"/>
+        <text x="480" y="68" text-anchor="middle" fill="#d4a84b" font-family="DM Sans,sans-serif" font-size="13" font-weight="600">행정복지센터</text>
+        <text x="480" y="90" text-anchor="middle" fill="#7a7064" font-family="DM Sans,sans-serif" font-size="11">BL · Benefits desk</text>
+      </g>
+      <g class="node" data-tip="치매안심·장기요양|진단·등급·주간보호·방문요양. DC 축." data-cursor>
+        <rect x="660" y="48" width="240" height="84" rx="8" fill="#12100e" stroke="#e85d4c" stroke-width="1.5"/>
+        <text x="780" y="88" text-anchor="middle" fill="#e85d4c" font-family="DM Sans,sans-serif" font-size="13" font-weight="600">치매안심 · 장기요양</text>
+        <text x="780" y="110" text-anchor="middle" fill="#7a7064" font-family="DM Sans,sans-serif" font-size="11">DC · Elder care</text>
+      </g>
+
+      <g class="node" data-tip="한 집의 하루|세 창구가 동시에 들어오는 단위. 대화록의 무대." data-cursor>
+        <rect x="320" y="190" width="320" height="100" rx="10" fill="#0c1412" stroke="url(#lg)" stroke-width="2"/>
+        <text x="480" y="235" text-anchor="middle" fill="#f4efe6" font-family="Cormorant Garamond,serif" font-size="28" font-weight="600">HOME · ONE DAY</text>
+        <text x="480" y="262" text-anchor="middle" fill="#7a7064" font-family="DM Sans,sans-serif" font-size="12">누나 · 어머니 · 보호자</text>
+      </g>
+
+      <g class="node" data-tip="대화록|Fact→Feel→Gap→Fix→Next. 기록을 재사용 재료로." data-cursor>
+        <rect x="80" y="310" width="240" height="72" rx="8" fill="#12100e" stroke="#3db8a8" stroke-width="1.2"/>
+        <text x="200" y="350" text-anchor="middle" fill="#3db8a8" font-family="DM Sans,sans-serif" font-size="14" font-weight="600">대화록 Dialogue</text>
+      </g>
+      <g class="node" data-tip="솔루션|체크리스트·연계 맵·질문 카드. Fix 승격." data-cursor>
+        <rect x="640" y="310" width="240" height="72" rx="8" fill="#12100e" stroke="#d4a84b" stroke-width="1.2"/>
+        <text x="760" y="350" text-anchor="middle" fill="#d4a84b" font-family="DM Sans,sans-serif" font-size="14" font-weight="600">솔루션 Solutions</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section class="chapter shell" id="method">
+  <div class="ch-label"><span class="num">03</span><span>Method</span><span class="line"></span></div>
+  <h2 class="ch-title">기록 방법 <em>5단</em></h2>
+  <p class="ch-deck">단계를 누르면 패널이 바뀝니다. Fact와 Feel을 섞지 않는 것이 핵심입니다.</p>
+  <div class="method-steps" id="methodSteps">
+    <div class="m-step active reveal" data-m="0" data-cursor>
+      <div class="n">01</div>
+      <div class="en">Fact</div>
+      <div class="ko">상황</div>
+      <div class="d">날짜·창구·요청·받은 답.</div>
+    </div>
+    <div class="m-step reveal reveal-d1" data-m="1" data-cursor>
+      <div class="n">02</div>
+      <div class="en">Feel</div>
+      <div class="ko">느낀 바</div>
+      <div class="d">몸이 먼저 아는 것.</div>
+    </div>
+    <div class="m-step reveal reveal-d2" data-m="2" data-cursor>
+      <div class="n">03</div>
+      <div class="en">Gap</div>
+      <div class="ko">개선점</div>
+      <div class="d">프로세스 빈칸.</div>
+    </div>
+    <div class="m-step reveal reveal-d3" data-m="3" data-cursor>
+      <div class="n">04</div>
+      <div class="en">Fix</div>
+      <div class="ko">솔루션</div>
+      <div class="d">손댈 수 있는 해법.</div>
+    </div>
+    <div class="m-step reveal" data-m="4" data-cursor>
+      <div class="n">05</div>
+      <div class="en">Next</div>
+      <div class="ko">다음</div>
+      <div class="d">48시간 1~3개.</div>
+    </div>
+  </div>
+  <div class="method-panel reveal" id="methodPanel">
+    <h3>01 · 상황 Fact</h3>
+    <p>무엇이 일어났는가. 날짜·창구·요청 내용·받은 답. 추측 법령 해석은 넣지 않습니다.</p>
+  </div>
+</section>
+
+<section class="chapter shell" id="gaps">
+  <div class="ch-label"><span class="num">04</span><span>Gaps</span><span class="line"></span></div>
+  <h2 class="ch-title">어디에 <em>비는가</em></h2>
+  <p class="ch-deck">레포 전환 시점 자가 진단 인포그래픽. 스크롤하면 바가 채워집니다.</p>
+  <div class="ed-card reveal">
+    <div class="eyebrow">Opening audit · 2026-07-26</div>
+    <h3>기록 체계 빈칸 스코어</h3>
+    <p style="margin-bottom:18px">일반 학습 로그에서 행정 대화록으로 바꾸기 전, 무엇이 없었는가.</p>
+    <div class="ibar" id="gapBars">
+      <div class="ibar-row"><span class="n">기록 목적</span><div class="t"><div class="f" data-pct="90" style="background:var(--crimson)"></div></div><span class="p">90%</span></div>
+      <div class="ibar-row"><span class="n">5단 구조</span><div class="t"><div class="f" data-pct="95" style="background:var(--teal)"></div></div><span class="p">95%</span></div>
+      <div class="ibar-row"><span class="n">트랙 분리</span><div class="t"><div class="f" data-pct="85" style="background:var(--gold)"></div></div><span class="p">85%</span></div>
+      <div class="ibar-row"><span class="n">공개 경계</span><div class="t"><div class="f" data-pct="70" style="background:var(--indigo)"></div></div><span class="p">70%</span></div>
+      <div class="ibar-row"><span class="n">랜딩 톤</span><div class="t"><div class="f" data-pct="80" style="background:var(--gold-bright)"></div></div><span class="p">80%</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter shell" id="dialogue">
+  <div class="ch-label"><span class="num">05</span><span>Dialogue</span><span class="line"></span></div>
+  <h2 class="ch-title">최신 <em>대화록</em></h2>
+  <p class="ch-deck">탭으로 Fact부터 Next까지 읽습니다. 전문은 GitHub docs에도 있습니다.</p>
+  <div class="dlg-board reveal">
+    <div class="dlg-head">
+      <div class="meta">2026-07-26 · CROSS · 민감정보 없음</div>
+      <h3>레포 성격 전환 — 행정 대화록으로</h3>
+      <p class="sub">참여자: 보호자 · AI 편집 보조 · 헌장 수립 (현장 방문 아님)</p>
+    </div>
+    <div class="dlg-tabs" role="tablist">
+      <button type="button" class="on" data-tab="0" role="tab" aria-selected="true">Fact</button>
+      <button type="button" data-tab="1" role="tab">Feel</button>
+      <button type="button" data-tab="2" role="tab">Gap</button>
+      <button type="button" data-tab="3" role="tab">Fix</button>
+      <button type="button" data-tab="4" role="tab">Next</button>
+    </div>
+    <div class="dlg-pane on" data-pane="0">
+      <p>기존 Helana Log는 학습·트러블슈팅 로그였습니다. 정체성을 바꿨습니다.</p>
       <ul>
-        <li>조현병 등 정신질환 당사자인 <strong>누나</strong></li>
-        <li><strong>기초생활</strong> 보장 가구 맥락</li>
-        <li><strong>치매 어머니</strong></li>
-        <li>위 세 축이 겹치는 가정에서 본 대한민국 행정의 체감·개선·솔루션을 <strong>대화록</strong>으로 축적</li>
+        <li>조현병 등 당사자 <strong>누나</strong> (DW)</li>
+        <li><strong>기초생활</strong> 보장 가구 (BL)</li>
+        <li><strong>치매 어머니</strong> (DC)</li>
+        <li>세 축이 겹치는 가정 × 대한민국 행정 → <strong>대화록</strong></li>
       </ul>
-      <p style="margin-top:10px">문서 트리: <code>docs/IDENTITY</code> · <code>METHOD</code> · <code>tracks/*</code> · <code>dialogue/*</code>. 이 랜딩과 매니페스트 카피도 동일 성격으로 재구성.</p>
     </div>
-    <div class="dlg-block">
-      <h3>02 · 느낀 바 Feel</h3>
-      <p>일반 개발 로그로는 이 집의 하루가 설명되지 않습니다. 행정 용어는 창구마다 다르고, 집에 돌아오면 합의 내용이 흐려집니다. 원망만 남는 메모는 다시 읽고 싶지 않고, 공식 서식만으로는 숨이 막힌 지점이 안 보입니다. <strong>대화로 남기되, 끝에 반드시 손댈 수 있는 한 걸음</strong>이 있어야 기록이 살아 있습니다.</p>
+    <div class="dlg-pane" data-pane="1">
+      <p>일반 개발 로그로는 이 집의 하루가 설명되지 않습니다. 행정 용어는 창구마다 다르고, 집에 돌아오면 합의가 흐려집니다. 원망만 남는 메모는 다시 읽고 싶지 않습니다. <strong>대화로 남기되, 끝에 손댈 수 있는 한 걸음</strong>이 있어야 합니다.</p>
     </div>
-    <div class="dlg-block">
-      <h3>03 · 개선점 Gap</h3>
+    <div class="dlg-pane" data-pane="2">
       <div class="table-wrap">
         <table>
           <thead><tr><th>영역</th><th>빈칸</th></tr></thead>
           <tbody>
-            <tr><td>기록 목적</td><td>“무엇이든 적기” → 행정·돌봄 마찰 초점 없음</td></tr>
-            <tr><td>구조</td><td>Fact / Feel / Gap / Fix / Next 구분 없음</td></tr>
-            <tr><td>트랙</td><td>장애·기초생활·치매가 한 페이지에 섞여 검색 불가</td></tr>
-            <tr><td>공개 경계</td><td>민감정보 규칙 미문서화</td></tr>
-            <tr><td>첫인상</td><td>랜딩이 학습 로그로 읽힘</td></tr>
+            <tr><td>목적</td><td>행정·돌봄 마찰 초점 없음</td></tr>
+            <tr><td>구조</td><td>Fact/Feel/Gap/Fix/Next 없음</td></tr>
+            <tr><td>트랙</td><td>DW·BL·DC 검색 불가</td></tr>
+            <tr><td>공개</td><td>민감정보 규칙 미문서화</td></tr>
+            <tr><td>랜딩</td><td>학습 로그로 읽힘</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="dlg-block">
-      <h3>04 · 솔루션 Fix</h3>
+    <div class="dlg-pane" data-pane="3">
       <ul>
-        <li>헌장·방법론 문서화 (완료)</li>
-        <li>트랙 3분면 DW / BL / DC + CROSS</li>
-        <li>템플릿 강제 — <code>_TEMPLATE.md</code> 복사 후 작성</li>
-        <li>랜딩 재편집 — 3분 안에 “행정 대화록” 이해 (이 페이지)</li>
-        <li>솔루션 폴더 — 반복 Fix 승격</li>
-        <li>개인정보 원칙 — 주민번호·계좌·주소·진료 원문 금지</li>
+        <li>헌장·방법론 문서화</li>
+        <li>트랙 3분면 + CROSS</li>
+        <li>템플릿 강제 · 솔루션 폴더</li>
+        <li>랜딩 웹진화 (이 페이지)</li>
+        <li>개인정보 원칙 명문화</li>
       </ul>
     </div>
-    <div class="dlg-block">
-      <h3>05 · 다음 한 걸음 Next</h3>
+    <div class="dlg-pane" data-pane="4">
       <ul>
-        <li>실제 창구 방문 또는 전화 후, 템플릿으로 1편 추가 (7일 이내)</li>
-        <li>DW 위기 연락 1페이지 초안 (<code>docs/solutions/dw-crisis-map.md</code>)</li>
-        <li>기초생활 갱신 체크리스트 · 치매 하루 타임라인 스케치</li>
+        <li>실제 창구·전화 후 템플릿 1편 (7일)</li>
+        <li>DW 위기 연락 1페이지 초안</li>
+        <li>BL 갱신 체크 · DC 하루 타임라인</li>
       </ul>
-      <p style="margin-top:12px;font-size:.85rem">
-        <a href="https://github.com/helena751107/helana_log/blob/main/docs/dialogue/2026-07-26-opening.md" target="_blank" rel="noopener">GitHub 원문 →</a>
-        ·
-        <a href="https://github.com/helena751107/helana_log/blob/main/docs/dialogue/_TEMPLATE.md" target="_blank" rel="noopener">빈 템플릿</a>
+      <p style="margin-top:14px">
+        <a class="btn btn-line" style="padding:10px 16px" href="https://github.com/helena751107/helana_log/blob/main/docs/dialogue/2026-07-26-opening.md" target="_blank" rel="noopener" data-cursor>GitHub 원문 →</a>
       </p>
     </div>
-  </article>
-
-  <!-- 솔루션 -->
-  <p class="sec-label" id="solutions">솔루션 보드</p>
-  <div class="sol">
-    <div class="row">
-      <span class="st">예정</span>
-      <span>정신건강·장애 위기 연락 1페이지</span>
-      <span class="tk">DW</span>
-    </div>
-    <div class="row">
-      <span class="st">예정</span>
-      <span>기초생활 갱신·신고 체크리스트</span>
-      <span class="tk" style="color:var(--gold)">BL</span>
-    </div>
-    <div class="row">
-      <span class="st">예정</span>
-      <span>치매 가정 하루 타임라인</span>
-      <span class="tk" style="color:var(--coral)">DC</span>
-    </div>
-    <div class="row">
-      <span class="st">예정</span>
-      <span>세 창구 방문 전 질문 카드 (5문)</span>
-      <span class="tk">CROSS</span>
-    </div>
   </div>
+</section>
 
-  <section class="acc" data-acc id="not">
-    <button class="acc-h" type="button" aria-expanded="false">
-      <span class="num">경계</span>
-      <span class="t">이 레포가 아닌 것</span>
-      <span class="ico" aria-hidden="true">+</span>
-    </button>
-    <div class="acc-b"><div class="acc-i">
-      <ul>
-        <li>법률 자문·개별 수급 심사 대행</li>
-        <li>의료 진단·처방 가이드</li>
-        <li>일반 코딩 트러블슈팅 일지 (기술 메모는 helena_phone 등)</li>
-        <li>특정 공무원·기관 실명 비난 — 겨냥은 <em>제도·프로세스·정보 설계</em></li>
-      </ul>
-    </div></div>
-  </section>
-
-  <section class="acc" data-acc id="docs">
-    <button class="acc-h" type="button" aria-expanded="false">
-      <span class="num">지도</span>
-      <span class="t">문서 · 폴더</span>
-      <span class="ico" aria-hidden="true">+</span>
-    </button>
-    <div class="acc-b"><div class="acc-i">
-      <div class="card-list">
-        <div class="card">
-          <h4>docs/IDENTITY.md · METHOD.md</h4>
-          <p>정체성 헌장과 대화록 필수 섹션 정의.</p>
-        </div>
-        <div class="card">
-          <h4>docs/dialogue/</h4>
-          <p>정제된 대화록 본문. 템플릿 복사 후 작성.</p>
-        </div>
-        <div class="card">
-          <h4>docs/tracks/ · solutions/</h4>
-          <p>트랙별 빈칸 체크리스트와 반복 Fix 승격.</p>
-        </div>
-        <div class="card">
-          <h4>logs/</h4>
-          <p>날것 캡처. 가치 있으면 dialogue로 정제 이전. 토큰·개인정보 금지.</p>
-        </div>
+<section class="chapter shell" id="solutions">
+  <div class="ch-label"><span class="num">06</span><span>Solutions</span><span class="line"></span></div>
+  <h2 class="ch-title">솔루션 <em>보드</em></h2>
+  <p class="ch-deck">대화록 Fix 중 반복되면 여기로 승격합니다. 지금은 예정 카드입니다.</p>
+  <div class="sol-grid">
+    <article class="sol-card reveal" data-cursor>
+      <span class="badge">예정</span>
+      <div>
+        <h4>위기 연락 1페이지</h4>
+        <p>평상시 / 악화 / 응급 3단 연락처. 가정 냉장고용.</p>
+        <div class="tk">DW</div>
       </div>
-    </div></div>
-  </section>
-
-  <section class="acc" data-acc id="install">
-    <button class="acc-h" type="button" aria-expanded="false">
-      <span class="num">설치</span>
-      <span class="t">홈 화면 추가</span>
-      <span class="ico" aria-hidden="true">+</span>
-    </button>
-    <div class="acc-b"><div class="acc-i">
-      <p>서비스 워커 없이 <code>site.webmanifest</code> + 아이콘만 연결했습니다. Chrome/Edge에서 이 페이지를 연 뒤 <strong style="color:var(--ink);font-weight:500">홈 화면에 추가 / 앱 설치</strong> → 이름 <em>행정대화록</em>, 인장·서류 모노그램 아이콘.</p>
-    </div></div>
-  </section>
-
-  <div class="note">
-    <strong>안내.</strong> 여기는 공적 기록 실험이지 상담소가 아닙니다.
-    긴급 위기 시에는 지역 정신건강복지센터·응급의료·112/119 등 <em>공식 경로</em>를 우선하세요.
+    </article>
+    <article class="sol-card reveal reveal-d1" data-cursor>
+      <span class="badge">예정</span>
+      <div>
+        <h4>기초생활 갱신 체크</h4>
+        <p>신고·증빙·마감만 모은 가정용 달력.</p>
+        <div class="tk" style="color:var(--gold)">BL</div>
+      </div>
+    </article>
+    <article class="sol-card reveal reveal-d2" data-cursor>
+      <span class="badge">예정</span>
+      <div>
+        <h4>치매 하루 타임라인</h4>
+        <p>어머니 / 누나 / 보호자 동선 한 장.</p>
+        <div class="tk" style="color:var(--crimson)">DC</div>
+      </div>
+    </article>
+    <article class="sol-card reveal reveal-d3" data-cursor>
+      <span class="badge">예정</span>
+      <div>
+        <h4>창구 질문 카드 5문</h4>
+        <p>방문 전 물어볼 문장. CROSS.</p>
+        <div class="tk">CROSS</div>
+      </div>
+    </article>
+  </div>
+  <div class="note reveal">
+    <strong>안내.</strong> 법률 자문·의료 가이드·수급 대행이 아닙니다.
+    긴급 시 정신건강복지센터·응급의료·112/119 등 <em>공식 경로</em>를 우선하세요.
     주민번호·계좌·정확한 주소·진료 원문은 올리지 않습니다.
   </div>
+</section>
 
-  <section class="acc open" data-acc>
-    <button class="acc-h" type="button" aria-expanded="true">
-      <span class="num">💬</span>
-      <span class="t">댓글 · Discussions</span>
-      <span class="ico" aria-hidden="true">+</span>
-    </button>
-    <div class="acc-b"><div class="acc-i">
-      <p style="margin-bottom:12px;font-size:.85rem">경험 공유·정정 환영. 개인정보는 남기지 말아 주세요.</p>
-      <div class="giscus"></div>
-    </div></div>
-  </section>
+<section class="chapter shell" id="install">
+  <div class="ch-label"><span class="num">07</span><span>Install</span><span class="line"></span></div>
+  <h2 class="ch-title">홈 화면에 <em>추가</em></h2>
+  <p class="ch-deck">서비스 워커 없음. manifest + 아이콘만. Chrome / Edge에서 Install.</p>
+  <div class="install-box reveal">
+    <div>
+      <span class="tag ok">No service worker</span>
+      <span class="tag gold">standalone</span>
+      <span class="tag">short_name · 행정대화록</span>
+    </div>
+    <p style="color:var(--ink-dim);font-weight:300;font-size:.95rem">
+      이 페이지를 연 뒤 브라우저 메뉴 → <strong style="color:var(--ink)">홈 화면에 추가 / 앱 설치</strong>.
+      인장·서류 모노그램 아이콘이 붙습니다.
+    </p>
+    <code>site.webmanifest · /helana_log/icons/icon-192|512.png</code>
+    <div style="display:flex;flex-wrap:wrap;gap:10px">
+      <a class="btn btn-solid" href="site.webmanifest" data-cursor>Open manifest</a>
+      <a class="btn btn-line" href="https://github.com/helena751107/helana_log" target="_blank" rel="noopener" data-cursor>GitHub repo</a>
+      <a class="btn btn-line" href="https://helena751107.github.io/helena_phone/" data-cursor>S21 Phone Hub</a>
+    </div>
+  </div>
+  <div class="eco-bar reveal">
+    <a href="https://helena751107.github.io/helena_phone/">S21 Phone</a>
+    <a class="on" href="./">Log</a>
+    <a href="https://helena751107.github.io/helana-faith/">Faith</a>
+    <a href="https://helena751107.github.io/helena-piano/">Piano</a>
+    <a href="https://helena751107.github.io/helena-psycare/">PsyCare</a>
+  </div>
+</section>
 
-  <script src="https://giscus.app/client.js"
-    data-repo="helena751107/helana_log"
-    data-repo-id="R_kgDOTg3TCg"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOTg3TCg4DBygA"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="dark"
-    data-lang="ko"
-    crossorigin="anonymous"
-    async></script>
-
-  <footer class="foot">
-    <div>Helana Log · 대한민국 행정 대화록</div>
-    <div class="gold">장애 · 기초생활 · 치매 — 창구 사이 틈을 기록합니다.</div>
-    <div style="margin-top:6px">모든 계정은 큰누나 명의입니다.</div>
-    <p style="margin-top:12px"><a href="https://helena751107.github.io/helena_phone/">← S21 Phone Hub</a></p>
-  </footer>
+<section class="chapter shell" id="board">
+  <div class="ch-label"><span class="num">08</span><span>Board</span><span class="line"></span></div>
+  <h2 class="ch-title">댓글 · <em>Discussions</em></h2>
+  <p class="ch-deck">경험 공유·정정 환영. 개인정보는 남기지 말아 주세요.</p>
+  <div class="giscus-wrap reveal">
+    <div class="giscus"></div>
+  </div>
+</section>
 </main>
+
+<footer class="site-foot shell">
+  <div>Helana Log · 대한민국 행정 대화록 · Webzine</div>
+  <div class="gold">장애 · 기초생활 · 치매 — 창구 사이 틈을 기록합니다.</div>
+  <div style="margin-top:6px">모든 계정은 큰누나 명의입니다. · agent design _Grok</div>
+  <p style="margin-top:16px"><a href="https://helena751107.github.io/helena_phone/" data-cursor>← S21 Phone Hub</a></p>
+</footer>
+
+<script src="https://giscus.app/client.js"
+  data-repo="helena751107/helana_log"
+  data-repo-id="R_kgDOTg3TCg"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOTg3TCg4DBygA"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="dark"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async></script>
+
 <script>
 (() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const coarse = matchMedia('(pointer: coarse)').matches;
+
+  /* cursor */
+  const cur = $('#cursor'), dot = $('#cursorDot');
+  let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
+  if (!coarse && cur && dot) {
+    addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    }, { passive: true });
+    (function loop() {
+      cx += (mx - cx) * 0.18; cy += (my - cy) * 0.18;
+      cur.style.left = cx + 'px'; cur.style.top = cy + 'px';
+      requestAnimationFrame(loop);
+    })();
+    const setHover = on => cur.classList.toggle('hover', on);
+    $$('a, button, [data-cursor], .track-card, .m-step, .node, .sol-card').forEach(el => {
+      el.addEventListener('mouseenter', () => setHover(true));
+      el.addEventListener('mouseleave', () => setHover(false));
+    });
+  }
+
+  /* spine + rail */
+  const spine = $('#spineFill'), mast = $('#masthead'), toTop = $('#toTop');
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? (scrollY / max) * 100 : 0;
+    if (spine) spine.style.height = p + '%';
+    mast?.classList.toggle('scrolled', scrollY > 40);
+    toTop?.classList.toggle('show', scrollY > 600);
+    let curId = 'cover';
+    $$('section[id]').forEach(s => {
+      if (s.getBoundingClientRect().top < innerHeight * 0.35) curId = s.id;
+    });
+    $$('.chapter-rail a').forEach(a => a.classList.toggle('on', a.dataset.ch === curId));
+  }, { passive: true });
+  toTop && (toTop.onclick = () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* theme */
   const root = document.documentElement;
-  const saved = localStorage.getItem('helana-log-theme');
+  const saved = localStorage.getItem('helana-log-wz-theme');
   if (saved) root.setAttribute('data-theme', saved);
-  document.getElementById('themeBtn')?.addEventListener('click', () => {
+  $('#themeBtn')?.addEventListener('click', () => {
     const n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', n);
-    localStorage.setItem('helana-log-theme', n);
+    localStorage.setItem('helana-log-wz-theme', n);
   });
-  document.querySelectorAll('[data-acc]').forEach(sec => {
-    const btn = sec.querySelector('.acc-h');
-    btn?.addEventListener('click', () => {
-      const on = !sec.classList.contains('open');
-      sec.classList.toggle('open', on);
-      btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+
+  /* mobile nav */
+  const drawer = $('#mastRight'), burger = $('#menuBtn');
+  let backdrop = $('#navBackdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    backdrop.id = 'navBackdrop';
+    document.body.appendChild(backdrop);
+  }
+  const closeNav = () => {
+    drawer?.classList.remove('open');
+    backdrop.classList.remove('show');
+    burger?.setAttribute('aria-expanded', 'false');
+  };
+  const openNav = () => {
+    drawer?.classList.add('open');
+    backdrop.classList.add('show');
+    burger?.setAttribute('aria-expanded', 'true');
+  };
+  burger?.addEventListener('click', () => {
+    drawer?.classList.contains('open') ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  drawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  /* reveal */
+  if (!reduce) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    $$('.reveal').forEach(el => io.observe(el));
+  } else $$('.reveal').forEach(el => el.classList.add('in'));
+
+  /* counters */
+  const countIo = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      const target = +el.dataset.count || 0;
+      if (reduce) { el.textContent = target.toLocaleString(); countIo.unobserve(el); return; }
+      const t0 = performance.now(), dur = 1200;
+      const tick = now => {
+        const p = Math.min(1, (now - t0) / dur);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * e).toLocaleString();
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      countIo.unobserve(el);
     });
+  }, { threshold: 0.5 });
+  $$('[data-count]').forEach(el => countIo.observe(el));
+
+  /* meters + bars */
+  const barIo = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      en.target.querySelectorAll('.meter-fill[data-w]').forEach(f => { f.style.width = f.dataset.w + '%'; });
+      en.target.querySelectorAll('.f[data-pct]').forEach(f => { f.style.width = f.dataset.pct + '%'; });
+      barIo.unobserve(en.target);
+    });
+  }, { threshold: 0.25 });
+  $$('.track-card, #gapBars, .ed-card').forEach(el => barIo.observe(el));
+
+  /* track cards */
+  $$('.track-card').forEach(card => {
+    card.addEventListener('click', () => {
+      $$('.track-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const fill = card.querySelector('.meter-fill');
+      if (fill) { fill.style.width = '0'; requestAnimationFrame(() => { fill.style.width = fill.dataset.w + '%'; }); }
+    });
+  });
+
+  /* method panels */
+  const METHOD = [
+    { t: '01 · 상황 Fact', b: '무엇이 일어났는가. 날짜·창구·요청 내용·받은 답. 추측 법령 해석은 넣지 않습니다.' },
+    { t: '02 · 느낀 바 Feel', b: '당사자·보호자가 몸으로 느낀 것. 수치 없이도 됩니다. 감정 단어를 허용합니다. 여기에 제도 해석을 섞지 않습니다.' },
+    { t: '03 · 개선점 Gap', b: '제도·안내·연계·시간·정보 비대칭 중 어디가 비었는지. 가능하면 “누가 / 무엇을 / 언제” 단위로.' },
+    { t: '04 · 솔루션 Fix', b: '당장 시도할 것부터: 개인 체크리스트, 창구 질문 카드, 연계 맵, 중장기 제도 스케치. “정부가 알아서”만 쓰지 않습니다.' },
+    { t: '05 · 다음 Next', b: '48시간 안에 할 일 1~3개. 가정 내 역할을 명시합니다. 대화록이 살아 있게 만드는 단락입니다.' },
+  ];
+  const panel = $('#methodPanel');
+  $$('.m-step').forEach(step => {
+    step.addEventListener('click', () => {
+      $$('.m-step').forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+      const i = +step.dataset.m;
+      const m = METHOD[i];
+      if (panel && m) panel.innerHTML = `<h3>${m.t}</h3><p>${m.b}</p>`;
+    });
+  });
+
+  /* dialogue tabs */
+  const tabs = $$('.dlg-tabs button');
+  const panes = $$('.dlg-pane');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = btn.dataset.tab;
+      tabs.forEach(b => { b.classList.toggle('on', b === btn); b.setAttribute('aria-selected', b === btn ? 'true' : 'false'); });
+      panes.forEach(p => p.classList.toggle('on', p.dataset.pane === i));
+    });
+  });
+
+  /* arch tooltip */
+  const tip = $('#archTip'), box = $('#archBox');
+  $$('.svg-arch .node').forEach(node => {
+    const show = e => {
+      const [title, body] = (node.dataset.tip || '|').split('|');
+      tip.innerHTML = `<strong>${title}</strong><span>${body || ''}</span>`;
+      tip.classList.add('show');
+      node.classList.add('active');
+      if (!box) return;
+      const r = box.getBoundingClientRect();
+      const x = (e.clientX || r.left + r.width / 2) - r.left;
+      const y = (e.clientY || r.top + 40) - r.top;
+      tip.style.left = Math.min(Math.max(8, x + 12), r.width - 220) + 'px';
+      tip.style.top = Math.min(Math.max(8, y + 12), r.height - 80) + 'px';
+    };
+    node.addEventListener('mouseenter', show);
+    node.addEventListener('mousemove', show);
+    node.addEventListener('mouseleave', () => { tip.classList.remove('show'); node.classList.remove('active'); });
+    node.addEventListener('click', show);
   });
 })();
 </script>
