@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="대화록 · 2026-07-26 · 레포 성격 전환 — 행정 대화록으로">
+<meta name="theme-color" content="#0a0908">
+<title>대화록 · 2026-07-26 · 레포 성격 전환 — 행정 대화록으로 — Helana Log</title>
+<link rel="icon" href="../../icons/favicon-32.png" type="image/png">
+<link rel="manifest" href="../../site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=JetBrains+Mono:wght@400&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
+  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
+  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
+  --accent:#3db8a8; --gold:#d4a84b;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --gutter:max(22px, calc(env(safe-area-inset-left,0px) + 16px));
+  --gutter-r:max(22px, calc(env(safe-area-inset-right,0px) + 16px));
+}
+[data-theme="light"] {
+  --ink:#1a1510; --ink-dim:#5c5348; --ink-mute:#8a8074;
+  --paper:#f7f1e6; --paper-2:#efe8db; --paper-3:#fffdf8;
+  --rule:rgba(26,21,16,.1); --rule2:rgba(26,21,16,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+a:hover{filter:brightness(1.15)}
+.spine{position:fixed;left:0;top:0;bottom:0;width:2px;background:var(--rule);z-index:50}
+.spine-fill{width:100%;height:0;background:var(--accent)}
+.mast{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px var(--gutter-r) 12px var(--gutter);padding-top:max(12px,env(safe-area-inset-top));
+  background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:1rem;color:var(--ink)}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.mast nav{display:flex;flex-wrap:wrap;gap:6px}
+.mast a,.mast button{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);
+  min-height:40px;padding:8px 10px;background:none;border:none;cursor:pointer;font-family:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:28px var(--gutter-r) 80px var(--gutter)}
+.kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.4rem);font-weight:600;margin-bottom:10px;padding-inline:2px}
+.deck{color:var(--ink-dim);font-weight:300;border-left:2px solid var(--accent);padding-left:12px;margin-bottom:18px}
+.meta{font-size:.75rem;color:var(--ink-mute);margin-bottom:22px;font-family:var(--mono)}
+.prose h2{font-family:var(--serif);font-size:1.35rem;margin:1.6em 0 .6em;color:var(--ink)}
+.prose h3{font-size:1.05rem;margin:1.2em 0 .5em}
+.prose p,.prose li{color:var(--ink-dim);font-weight:300;margin-bottom:.7em}
+.prose ul,.prose ol{margin:0 0 1em 1.2em}
+.prose code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
+.prose pre{background:var(--paper-2);border:1px solid var(--rule);padding:14px;overflow-x:auto;margin:1em 0;font-size:.82rem}
+.prose table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1em 0}
+.prose th,.prose td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+.prose th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.prose blockquote{border-left:2px solid var(--accent);padding:8px 14px;color:var(--ink-dim);margin:1em 0;background:var(--paper-2)}
+.appbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;padding:10px;background:var(--paper-2);border:1px solid var(--rule);position:sticky;top:56px;z-index:30}
+.appbar input{flex:1 1 140px;min-height:40px;padding:8px 10px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink);font:inherit}
+.appbar button{min-height:40px;padding:8px 12px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
+.foot .a{color:var(--accent);margin-top:8px}
+.sec{border:1px solid var(--rule);background:var(--paper-2);margin:1em 0;border-radius:2px;overflow:hidden}
+.sec > .sec-h{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:none;border:none;color:inherit;font:inherit;cursor:pointer;text-align:left;min-height:48px}
+.sec > .sec-h h2{margin:0;font-size:1.15rem;font-family:var(--serif)}
+.sec .ico{width:28px;height:28px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent)}
+.sec.open .ico{transform:rotate(45deg)}
+.sec .sec-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.sec.open .sec-b{grid-template-rows:1fr}
+.sec .sec-i{overflow:hidden;min-height:0;opacity:0;padding:0 14px;transition:opacity .25s}
+.sec.open .sec-i{opacity:1;padding:0 14px 14px}
+mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+</style>
+</head>
+<body>
+<div class="spine" aria-hidden="true"><div class="spine-fill" id="spineFill"></div></div>
+<header class="mast">
+  <a class="brand" href="../../">Helana <em>Log</em></a>
+  <nav>
+    <a href="../../">Home</a>
+    <a href="../../docs/">Docs</a>
+    <a href="https://helena751107.github.io/helena_phone/">Hub</a>
+    <button type="button" id="themeBtn">Theme</button>
+  </nav>
+</header>
+<main class="wrap">
+  <div class="kicker">행정 대화록 · Docs</div>
+  <h1>대화록 · 2026-07-26 · 레포 성격 전환 — 행정 대화록으로</h1>
+  
+  <div class="meta">source · docs/dialogue/2026-07-26-opening.md · bridge docs↔web · _Grok</div>
+  <div class="appbar">
+    <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
+    <button type="button" id="fold">접기</button>
+    <button type="button" id="expand">펼치기</button>
+  </div>
+  <article class="prose" id="prose"><ul>
+<li>트랙: CROSS (DW · BL · DC)</li>
+<li>참여자: 보호자(기록 주체) · AI 편집 보조</li>
+<li>장소/창구: 레포 헌장 수립 (현장 방문 아님)</li>
+<li>민감정보: 없음 (역할만 기술, 개인 식별정보 없음)</li>
+</ul>
+<h2 id="1-fact">1. 상황 (Fact)</h2>
+<p>기존 <code>helana_log</code>는 “학습·트러블슈팅·일일 로그” 성격의 일반 기록 창고로 쓰였다.<br>
+같은 날, 레포 정체성을 다음으로 바꾸기로 했다.</p>
+<ul>
+<li>조현병 등 정신질환 당사자인 <strong>누나</strong></li>
+<li><strong>기초생활</strong> 보장 가구 맥락</li>
+<li><strong>치매 어머니</strong></li>
+<li>위 세 축이 겹치는 가정에서 본 <strong>대한민국 행정</strong>에 대한 체감·개선·솔루션을<br>
+<strong>대화록</strong> 형식으로 축적한다.</li>
+</ul>
+<p>문서 트리: <code>docs/IDENTITY.md</code>, <code>docs/METHOD.md</code>, <code>docs/tracks/*</code>, <code>docs/dialogue/*</code>.<br>
+랜딩(<code>index.html</code>)과 매니페스트 카피도 동일 성격으로 재구성한다.</p>
+<h2 id="2-feel">2. 느낀 바 (Feel)</h2>
+<p>일반 개발 로그로는 이 집의 하루가 설명되지 않는다.<br>
+행정 용어는 창구마다 다르고, 집에 돌아오면 “오늘 뭘 합의했는지”가 금방 흐려진다.<br>
+원망만 남는 메모는 다시 읽고 싶지 않고, 공식 민원 서식만으로는 숨이 막힌 지점이 안 보인다.<br>
+<strong>대화로 남기되, 끝에 반드시 손댈 수 있는 한 걸음</strong>이 있어야 기록이 살아 있다.</p>
+<h2 id="3-gap">3. 개선점 (Gap)</h2>
+<table>
+<thead>
+<tr>
+<th>영역</th>
+<th>빈칸</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기록 목적</td>
+<td>“무엇이든 적기” → 행정·돌봄 마찰에 초점 없음</td>
+</tr>
+<tr>
+<td>구조</td>
+<td>Fact / Feel / Gap / Fix / Next 구분 없음</td>
+</tr>
+<tr>
+<td>트랙</td>
+<td>장애·기초생활·치매가 한 페이지에 섞여 검색 불가</td>
+</tr>
+<tr>
+<td>공개 경계</td>
+<td>민감정보 규칙이 문서화되지 않음</td>
+</tr>
+<tr>
+<td>방문 첫인상</td>
+<td>랜딩이 학습 로그로 읽힘</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-fix">4. 솔루션 스케치 (Fix)</h2>
+<ol>
+<li><strong>헌장·방법론 문서화</strong> — 이 대화록이 그 시작.  </li>
+<li><strong>트랙 3분면</strong> — DW / BL / DC + CROSS.  </li>
+<li><strong>템플릿 강제</strong> — <code>_TEMPLATE.md</code> 복사 후 작성.  </li>
+<li><strong>랜딩 재편집</strong> — 3분 안에 “행정 대화록”임을 이해.  </li>
+<li><strong>솔루션 폴더</strong> — 나중에 체크리스트·연계 맵만 모아 <code>docs/solutions/</code>.  </li>
+<li><strong>개인정보 원칙</strong> — 주민번호·계좌·정확한 주소·진료 원문 금지.</li>
+</ol>
+<h2 id="5-next">5. 다음 한 걸음 (Next)</h2>
+<ol>
+<li>랜딩·매니페스트 배포 (오늘)  </li>
+<li>실제 창구 방문 또는 전화 후, 템플릿으로 1편 추가 (7일 이내)  </li>
+<li>DW 위기 연락 1페이지 초안 (<code>docs/solutions/dw-crisis-map.md</code>) 착수</li>
+</ol>
+<h2 id="6-optional">6. 원문·링크 (Optional)</h2>
+<ul>
+<li>헌장: <a href="../IDENTITY.html"><code>../IDENTITY.md</code></a>  </li>
+<li>방법: <a href="../METHOD.html"><code>../METHOD.md</code></a>  </li>
+<li>사이트: https://helena751107.github.io/helana_log/</li>
+</ul></article>
+  <footer class="foot">
+    <div>Helana Log · Docs Webzine</div>
+    <div class="a">모든 계정은 큰누나 명의입니다.</div>
+    <p style="margin-top:12px"><a href="../../">← Landing</a> · <a href="https://helena751107.github.io/helena_phone/">S21 Hub</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('helena-doc-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn')?.addEventListener('click', () => {
+    const n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    localStorage.setItem('helena-doc-theme', n);
+  });
+  const spine = document.getElementById('spineFill');
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (spine) spine.style.height = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+  }, { passive: true });
+  const prose = document.getElementById('prose');
+  if (prose) {
+    [...prose.querySelectorAll(':scope > h2')].forEach((h2) => {
+      const sec = document.createElement('div');
+      sec.className = 'sec open';
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'sec-h';
+      const tw = document.createElement('div'); tw.appendChild(h2.cloneNode(true));
+      const ico = document.createElement('span'); ico.className = 'ico'; ico.textContent = '+';
+      btn.appendChild(tw); btn.appendChild(ico);
+      const body = document.createElement('div'); body.className = 'sec-b';
+      const inner = document.createElement('div'); inner.className = 'sec-i';
+      let n = h2.nextSibling; const move = [];
+      while (n && !(n.nodeType === 1 && n.tagName === 'H2')) { move.push(n); n = n.nextSibling; }
+      move.forEach(x => inner.appendChild(x));
+      body.appendChild(inner); sec.appendChild(btn); sec.appendChild(body);
+      h2.replaceWith(sec);
+      btn.addEventListener('click', () => {
+        const on = !sec.classList.contains('open');
+        sec.classList.toggle('open', on);
+      });
+    });
+    const setAll = (open) => prose.querySelectorAll('.sec').forEach(s => s.classList.toggle('open', open));
+    document.getElementById('fold')?.addEventListener('click', () => setAll(false));
+    document.getElementById('expand')?.addEventListener('click', () => setAll(true));
+    document.getElementById('q')?.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      prose.querySelectorAll('.sec').forEach(sec => {
+        const hit = !q || sec.innerText.toLowerCase().includes(q);
+        sec.style.display = hit ? '' : 'none';
+        if (hit && q) sec.classList.add('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
