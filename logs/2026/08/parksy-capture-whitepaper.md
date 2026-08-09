@@ -8,140 +8,414 @@ agent: Claude
 
 > **부제:** 왜 우리는 AI와의 대화를 캡처하고, 구조화하고, 발행하는가
 > **버전:** v1.0 · 2026-08-09
-> **대상:** Tistory 마크다운 모드 발행용
+> **Tistory 발행:** 아래 HTML 코드 전체 복사 → Tistory HTML 모드에 붙여넣기
 
 ---
 
-## 개요 — 이게 뭔가
+## 📋 Tistory HTML 코드 (아래 전체 복사)
 
-ParksyCapture(`com.parksy.capture`)는 Flutter 기반 Android 앱이다. Claude·Grok·ChatGPT 같은 AI 앱과의 대화를 Share Intent로 캡처해 마크다운 파일로 저장한다. 단순한 "캡처 도구"가 아니라, AI 시대 지식 관리 파이프라인의 첫 관문이다.
+```html
+<!-- @ ParksyCapture 백서 — AI 대화를 지식 자산으로 -->
+<!-- @ Tistory HTML 모드 붙여넣기용 · JS-free · CSS-only interactive -->
 
-**핵심 명제:** AI와의 대화는 휘발성이다. ParksyCapture는 그 휘발성 대화를 영구 지식 자산으로 전환하는 인터페이스다.
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --surface2: #f3f1ec;
+    --text: #2c2416;
+    --text2: #5c5240;
+    --text3: #8a7e6c;
+    --border: #e4dcc8;
+    --accent: #b87333;
+    --accent2: #d4954a;
+    --blue: #3b6e8f;
+    --green: #4a7c59;
+    --red: #c4554d;
+    --purple: #7b5ea7;
+    --gold: #c49b3f;
+    --code-bg: #f5f2eb;
+    --shadow: 0 1px 3px rgba(44,36,22,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1814;
+      --surface: #242118;
+      --surface2: #2d2a20;
+      --text: #e8e2d2;
+      --text2: #b0a690;
+      --text3: #7a7060;
+      --border: #3d3828;
+      --accent: #d4954a;
+      --accent2: #e0a860;
+      --blue: #5a9cc0;
+      --green: #6a9e78;
+      --red: #d47068;
+      --purple: #9b7ec8;
+      --gold: #d4b050;
+      --code-bg: #2a2720;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1814;
+    --surface: #242118;
+    --surface2: #2d2a20;
+    --text: #e8e2d2;
+    --text2: #b0a690;
+    --text3: #7a7060;
+    --border: #3d3828;
+    --accent: #d4954a;
+    --accent2: #e0a860;
+    --blue: #5a9cc0;
+    --green: #6a9e78;
+    --red: #d47068;
+    --purple: #9b7ec8;
+    --gold: #d4b050;
+    --code-bg: #2a2720;
+  }
 
-### 앱 스펙
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-| 항목 | 값 |
-|------|-----|
-| 패키지명 | `com.parksy.capture` |
-| 용량 | 183MB (Flutter fat APK) |
-| 프레임워크 | Flutter + Dart VM |
-| 저장 경로 | `/sdcard/Download/parksy-logs/ParksyLog_*.md` |
-| 출력 형식 | YAML frontmatter + 마크다운 |
+  body {
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    font-size: 16px; line-height: 1.75; color: var(--text);
+    background: var(--bg); max-width: 780px; margin: 0 auto;
+    padding: 0 20px 80px;
+  }
 
----
+  .hero {
+    text-align: center; padding: 48px 0 36px; border-bottom: 2px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .hero .eyebrow {
+    font-size: 13px; letter-spacing: 0.14em; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 2rem; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 8px;
+  }
+  .hero .subtitle { font-size: 1.05rem; color: var(--text2); margin-bottom: 6px; }
+  .hero .meta { font-size: 0.8rem; color: var(--text3); }
 
-## 작동 원리 — 3단계로 이해하는 흐름
+  section { margin-bottom: 48px; }
+  h2 {
+    font-size: 1.4rem; font-weight: 700; color: var(--text);
+    border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2 .ico { font-size: 1.3rem; }
+  h3 { font-size: 1.12rem; font-weight: 700; margin: 28px 0 8px; color: var(--text); }
+  h3:first-child { margin-top: 0; }
+  p { margin-bottom: 12px; color: var(--text2); }
+  p strong { color: var(--text); }
 
-### 1단계: 캡처 (Capture)
+  .spec-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px; margin: 20px 0;
+  }
+  .spec-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow);
+  }
+  .spec-card dt {
+    font-size: 0.75rem; letter-spacing: 0.08em; color: var(--text3);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .spec-card dd { font-size: 1rem; font-weight: 600; color: var(--text); word-break: break-all; }
 
-```
-사용자가 Claude/Grok 앱에서 대화 중
-        │
-        ▼
-"공유" 버튼 탭 → Android Share Sheet
-        │
-        ▼
-ParksyCapture 선택
-        │
-        ▼
-ACTION_SEND intent 수신
-  EXTRA_TEXT = 전체 대화 내용 (텍스트)
-  EXTRA_STREAM = 이미지 URI (현재 미처리)
-        │
-        ▼
-Flutter Dart 코드가 텍스트 정제
-  - 중복 라인 제거
-  - YAML frontmatter 추가 (날짜, source)
-  - 마크다운 구조 유지
-        │
-        ▼
-/sdcard/Download/parksy-logs/
-  ParksyLog_20260725_080708.md
-```
+  .table-wrap { overflow-x: auto; margin: 20px 0; border-radius: var(--radius); }
+  table {
+    width: 100%; border-collapse: collapse; background: var(--surface);
+    font-size: 0.92rem; box-shadow: var(--shadow);
+  }
+  th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+  th {
+    background: var(--surface2); font-weight: 700; font-size: 0.82rem;
+    letter-spacing: 0.04em; color: var(--text2); white-space: nowrap;
+  }
+  td { color: var(--text2); }
+  tr:last-child td { border-bottom: none; }
 
-### 2단계: 저장 (Store)
+  details.accord {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 10px;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  details.accord summary {
+    padding: 16px 20px; cursor: pointer; font-weight: 700; color: var(--text);
+    list-style: none; display: flex; align-items: center; gap: 10px;
+    user-select: none; transition: background 0.2s;
+  }
+  details.accord summary::-webkit-details-marker { display: none; }
+  details.accord summary::before {
+    content: "▸"; display: inline-block; font-size: 0.8rem;
+    transition: transform 0.25s; color: var(--accent); min-width: 16px;
+  }
+  details.accord[open] summary::before { transform: rotate(90deg); }
+  details.accord summary:hover { background: var(--surface2); }
+  details.accord .body { padding: 0 20px 20px 46px; }
 
-캡처된 `.md` 파일은 두 경로로 저장된다:
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 6px; padding: 16px 18px; overflow-x: auto;
+    font-size: 0.83rem; line-height: 1.65; margin: 12px 0;
+    font-family: "SF Mono", "D2Coding", "Consolas", monospace;
+    color: var(--text);
+  }
 
-1. **로컬:** `/sdcard/Download/parksy-logs/` (폰 내부)
-2. **원격:** `helana_log/logs/` (GitHub, 수동 push)
+  .callout {
+    border-left: 4px solid var(--accent); background: var(--surface);
+    padding: 16px 20px; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 20px 0; font-size: 0.95rem; box-shadow: var(--shadow);
+  }
+  .callout strong { color: var(--accent); }
 
-이중 저장이 중요한 이유: 폰을 잃어버려도 GitHub에 모든 대화가 남아있다. 플랫폼 독립적.
+  .diagram {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; margin: 20px 0;
+    overflow-x: auto; text-align: center; box-shadow: var(--shadow);
+  }
+  .diagram svg { max-width: 100%; height: auto; }
 
-### 3단계: 발행 (Publish)
+  .layers { margin: 24px 0; }
+  .layer {
+    border-radius: var(--radius); padding: 18px 20px; margin-bottom: 12px;
+    position: relative; box-shadow: var(--shadow);
+  }
+  .layer.l3 { background: var(--surface); border: 2px solid var(--gold); }
+  .layer.l2 { background: var(--surface); border: 2px solid var(--blue); margin-left: 16px; }
+  .layer.l1 { background: var(--surface); border: 2px solid var(--accent); margin-left: 32px; }
+  .layer h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .layer.l3 h4 { color: var(--gold); }
+  .layer.l2 h4 { color: var(--blue); }
+  .layer.l1 h4 { color: var(--accent); }
+  .layer p { font-size: 0.88rem; margin: 0; color: var(--text2); }
 
-```
-helana_log/logs/*.md
-        │
-        ├─→ (자동) GitHub Actions 트리거
-        │      └─→ log_to_telegram.sh
-        │             ├─→ 기본: .md 그대로 Telegram 전송
-        │             │      └─→ Boss 복사 → Tistory 마크다운 모드
-        │             └─→ --html: HTML 변환 후 전송  
-        │                    └─→ Boss 복사 → Tistory HTML 모드
-        │                           (아코디언·SVG·CSS 애니메이션 포함)
-        │
-        └─→ (자동) tistory_sync.sh
-               └─→ Tistory RSS → helana_log/기자/ 동기화
-                      └─→ GitHub Pages 칠판보드 출판
-```
+  .pipeline {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    margin: 24px 0; justify-content: center;
+  }
+  .pipe-step {
+    background: var(--surface); border: 2px solid var(--border);
+    border-radius: var(--radius); padding: 14px 18px; text-align: center;
+    min-width: 110px; box-shadow: var(--shadow); transition: border-color 0.3s;
+  }
+  .pipe-step.active { border-color: var(--accent); }
+  .pipe-step .stitle { font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 2px; }
+  .pipe-step .stool { font-size: 0.72rem; color: var(--text3); }
+  .pipe-arrow { font-size: 1.4rem; color: var(--accent); font-weight: 700; flex-shrink: 0; }
 
----
+  .gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+  .gap-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow);
+  }
+  .gap-card .gtitle { font-weight: 700; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .gap-card .gtitle .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .gap-card .gleft { color: var(--red); margin-bottom: 6px; font-size: 0.9rem; }
+  .gap-card .gright { color: var(--green); font-size: 0.9rem; }
 
-## 왜 필요한가 — AI 시대 지식 관리의 역설
+  @media (max-width: 600px) {
+    .gap-grid { grid-template-columns: 1fr; }
+    body { font-size: 15px; padding: 0 14px 60px; }
+    .hero h1 { font-size: 1.5rem; }
+  }
 
-### AI와 대화할수록 지식은 더 빨리 사라진다
+  .tl { position: relative; padding-left: 32px; margin: 20px 0; }
+  .tl::before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -26px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-item .tl-label { font-size: 0.78rem; color: var(--text3); letter-spacing: 0.04em; }
+  .tl-item .tl-title { font-weight: 700; color: var(--text); font-size: 0.95rem; }
+  .tl-item .tl-desc { font-size: 0.88rem; color: var(--text2); }
 
-AI 어시스턴트와의 대화는 생산적이다. 한 세션에서 수십 개의 결정, 분석, 아이디어가 오간다. 하지만:
+  .yn-yes { color: var(--green); font-weight: 700; }
+  .yn-no { color: var(--red); font-weight: 700; }
 
-- **채팅 인터페이스는 휘발성이다.** 스레드가 길어지면 컨텍스트 윈도우 밖으로 밀려난다
-- **새 세션 = 리셋.** 이전 대화의 판단 근거가 사라진다
-- **검색 불가.** "그때 그 결정 왜 했더라?"를 찾을 수 없다
-- **암묵지의 함정.** 내 머릿속에만 있고, 남에게 설명할 수 없다
+  footer {
+    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border);
+    text-align: center; font-size: 0.82rem; color: var(--text3);
+  }
 
-### ParksyCapture가 메꾸는 4가지 구멍
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  section { animation: fadeUp 0.5s ease-out both; }
+  section:nth-child(2) { animation-delay: 0.08s; }
+  section:nth-child(3) { animation-delay: 0.16s; }
+  section:nth-child(4) { animation-delay: 0.24s; }
+</style>
 
-| 없을 때 | 있을 때 |
-|---------|---------|
-| **판단 소실:** "왜 그렇게 했는지" 사라짐 | 질문→반박→수정→결정 전 과정 보존 |
-| **기억 왜곡:** 며칠 지나면 기억이 흐려짐 | 타임스탬프 + 원본 텍스트로 정확한 복기 |
-| **전수 불가:** 나만 아는 암묵지 | 대화록 자체가 교재 — 사고 흐름이 보임 |
-| **검색 불가:** "어디에 적었더라?" | GitHub grep = 모든 대화 full-text 검색 |
+<header class="hero">
+  <div class="eyebrow">Knowledge Management · White Paper v1.0</div>
+  <h1>ParksyCapture 백서</h1>
+  <p class="subtitle">AI 대화를 지식 자산으로 — 캡처·구조화·발행 파이프라인</p>
+  <p class="meta">2026-08-09 · @helena_phone · helena751107/helana_log</p>
+</header>
 
----
+<section id="overview">
+  <h2><span class="ico">📦</span> 개요 — ParksyCapture란</h2>
 
-## 지식 3층 구조 — 날것에서 발행까지
+  <p><strong>ParksyCapture</strong> (<code>com.parksy.capture</code>)는 Flutter 기반 Android 앱이다. Claude·Grok·ChatGPT 같은 AI 앱과의 대화를 <strong>Share Intent</strong>로 캡처해 마크다운 파일로 저장한다. 단순한 "캡처 도구"가 아니라, <strong>AI 시대 지식 관리 파이프라인의 첫 관문</strong>이다.</p>
 
-ParksyCapture가 있음으로써 가능해진 지식의 층위:
+  <div class="callout">
+    <strong>핵심 명제:</strong> AI와의 대화는 휘발성이다. ParksyCapture는 그 휘발성 대화를 영구 지식 자산으로 전환하는 인터페이스다. "생각의 스크린샷" 도구.
+  </div>
 
-```
-┌─────────────────────────────────────────────┐
-│ Layer 3 — 발행 (Published)                   │
-│ Tistory HTML · GitHub Pages · YouTube · Naver │
-│ "찾아서 배울 수 있는" 층                      │
-├─────────────────────────────────────────────┤
-│ Layer 2 — 정제 (Refined)                     │
-│ Fact/Feel/Gap/Fix/Next 구조화된 대화록        │
-│ "읽으면 이해되는" 층                          │
-├─────────────────────────────────────────────┤
-│ Layer 1 — 날것 (Raw)                         │
-│ ParksyCapture 로그 · 스크린샷 · 음성 메모     │
-│ "있기만 해도 가치 있는" 층                    │
-└─────────────────────────────────────────────┘
-```
+  <h3>앱 스펙</h3>
+  <dl class="spec-grid">
+    <div class="spec-card"><dt>패키지명</dt><dd>com.parksy.capture</dd></div>
+    <div class="spec-card"><dt>용량</dt><dd>183MB (Flutter fat APK)</dd></div>
+    <div class="spec-card"><dt>프레임워크</dt><dd>Flutter + Dart VM</dd></div>
+    <div class="spec-card"><dt>저장 경로</dt><dd>/sdcard/Download/parksy-logs/</dd></div>
+    <div class="spec-card"><dt>출력 형식</dt><dd>YAML frontmatter + Markdown</dd></div>
+    <div class="spec-card"><dt>실행 환경</dt><dd>Android 10+ (S21 확인)</dd></div>
+  </dl>
+</section>
 
-**3층이 다 있어야 지식이 산다.** Layer 3만 있으면 과정이 안 보인다. Layer 1만 있으면 검색이 안 된다.
+<section id="how-it-works">
+  <h2><span class="ico">⚙️</span> 작동 원리 — 3단계 흐름</h2>
 
----
+  <details class="accord" open>
+    <summary>1단계: 캡처 (Capture)</summary>
+    <div class="body">
+      <p>사용자가 Claude·Grok 앱에서 <strong>"공유" 버튼</strong>을 탭하면 Android Share Sheet가 열린다. ParksyCapture를 선택하면 <code>ACTION_SEND</code> intent가 전달된다.</p>
+      <p><code>EXTRA_TEXT</code>에 대화 내용 전체가 텍스트로 담기고, Flutter Dart 코드가 이를 정제해 <strong>YAML frontmatter + 마크다운</strong> 형식으로 저장한다. (<code>EXTRA_STREAM</code> 이미지 URI는 현재 미처리)</p>
 
-## 기술 아키텍처 — APK 내부 구조
+      <div class="diagram">
+        <svg viewBox="0 0 680 200" width="680" height="200" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#b87333"/></marker></defs>
+          <rect x="15" y="60" width="120" height="44" rx="6" fill="#fff" stroke="#e4dcc8" stroke-width="1.5"/>
+          <text x="75" y="80" text-anchor="middle" font-size="11" fill="#5c5240" font-family="sans-serif">AI 앱 대화 중</text>
+          <text x="75" y="94" text-anchor="middle" font-size="9" fill="#8a7e6c" font-family="sans-serif">Claude·Grok·ChatGPT</text>
+          <line x1="135" y1="82" x2="172" y2="82" stroke="#b87333" stroke-width="1.5" marker-end="url(#ar)"/>
+          <rect x="178" y="60" width="120" height="44" rx="6" fill="#fff" stroke="#e4dcc8" stroke-width="1.5"/>
+          <text x="238" y="80" text-anchor="middle" font-size="11" fill="#5c5240" font-family="sans-serif">Share Sheet</text>
+          <text x="238" y="94" text-anchor="middle" font-size="9" fill="#8a7e6c" font-family="sans-serif">ParksyCapture 선택</text>
+          <line x1="298" y1="82" x2="335" y2="82" stroke="#b87333" stroke-width="1.5" marker-end="url(#ar)"/>
+          <rect x="340" y="55" width="155" height="54" rx="6" fill="#fff" stroke="#b87333" stroke-width="2"/>
+          <text x="418" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#b87333" font-family="sans-serif">ACTION_SEND intent</text>
+          <text x="418" y="92" text-anchor="middle" font-size="9" fill="#5c5240" font-family="sans-serif">EXTRA_TEXT = 전체 대화</text>
+          <text x="418" y="104" text-anchor="middle" font-size="9" fill="#8a7e6c" font-family="sans-serif">→ .md 정제 저장</text>
+          <line x1="495" y1="82" x2="532" y2="82" stroke="#b87333" stroke-width="1.5" marker-end="url(#ar)"/>
+          <rect x="538" y="60" width="130" height="44" rx="6" fill="#fff" stroke="#e4dcc8" stroke-width="1.5"/>
+          <text x="603" y="80" text-anchor="middle" font-size="11" fill="#5c5240" font-family="sans-serif">parksy-logs/*.md</text>
+          <text x="603" y="94" text-anchor="middle" font-size="9" fill="#8a7e6c" font-family="sans-serif">/sdcard/Download/</text>
+          <text x="340" y="170" font-size="10" fill="#8a7e6c" font-family="sans-serif">⚠ EXTRA_STREAM(이미지 URI) 현재 미처리 — 텍스트-only 캡처</text>
+        </svg>
+      </div>
+    </div>
+  </details>
 
-S21 실기기에서 `pm path` + `unzip`으로 추출한 실제 구조:
+  <details class="accord">
+    <summary>2단계: 저장 (Store) — 이중 저장 전략</summary>
+    <div class="body">
+      <p>캡처된 <code>.md</code> 파일은 <strong>두 곳</strong>에 저장된다:</p>
+      <ol>
+        <li><strong>로컬 (S21 폰):</strong> <code>/sdcard/Download/parksy-logs/</code> — 오프라인·즉시 접근</li>
+        <li><strong>원격 (GitHub):</strong> <code>helena751107/helana_log/logs/</code> — 영구 보존·검색·발행</li>
+      </ol>
+      <p>이중 저장의 이유: 폰을 잃어버려도 GitHub에 모든 대화가 남아있다. <strong>플랫폼 독립적</strong> 지식 보존.</p>
+      <div class="callout">
+        <strong>UID 분석:</strong> 파일 소유자 UID = <code>10264</code> (Android 앱 샌드박스). proot Ubuntu(UID 0)에서는 <strong>읽기 전용</strong> 접근만 가능. 파이프라인 연동 시 읽기 전용으로 충분.
+      </div>
+    </div>
+  </details>
 
-### 핵심 컴포넌트
+  <details class="accord">
+    <summary>3단계: 발행 (Publish) — git push → GitHub Actions → Telegram → Tistory</summary>
+    <div class="body">
+      <p>GitHub에 push된 <code>.md</code> 파일은 <strong>자동</strong>으로 처리된다:</p>
+      <div class="diagram">
+        <svg viewBox="0 0 680 120" width="680" height="120" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="ar2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#b87333"/></marker></defs>
+          <rect x="10" y="35" width="90" height="50" rx="6" fill="#fff" stroke="#b87333" stroke-width="2"/>
+          <text x="55" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="#b87333" font-family="sans-serif">git push</text>
+          <text x="55" y="73" text-anchor="middle" font-size="9" fill="#8a7e6c" font-family="sans-serif">helana_log</text>
+          <line x1="100" y1="60" x2="132" y2="60" stroke="#b87333" stroke-width="1.5" marker-end="url(#ar2)"/>
+          <rect x="138" y="30" width="140" height="60" rx="6" fill="#fff" stroke="#e4dcc8" stroke-width="1.5"/>
+          <text x="208" y="50" text-anchor="middle" font-size="11" font-weight="bold" fill="#2c2416" font-family="sans-serif">GitHub Actions</text>
+          <text x="208" y="66" text-anchor="middle" font-size="9" fill="#5c5240" font-family="sans-serif">log_to_telegram.sh</text>
+          <text x="208" y="80" text-anchor="middle" font-size="9" fill="#8a7e6c" font-family="sans-serif">MD 첨부 / --html 청크</text>
+          <line x1="278" y1="60" x2="310" y2="60" stroke="#b87333" stroke-width="1.5" marker-end="url(#ar2)"/>
+          <rect x="316" y="35" width="110" height="50" rx="6" fill="#fff" stroke="#e4dcc8" stroke-width="1.5"/>
+          <text x="371" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="#2c2416" font-family="sans-serif">Telegram</text>
+          <text x="371" y="73" text-anchor="middle" font-size="9" fill="#8a7e6c" font-family="sans-serif">@helena_logbot</text>
+          <line x1="426" y1="60" x2="458" y2="60" stroke="#b87333" stroke-width="1.5" marker-end="url(#ar2)"/>
+          <rect x="464" y="35" width="100" height="50" rx="6" fill="#fff" stroke="#b87333" stroke-width="2"/>
+          <text x="514" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="#b87333" font-family="sans-serif">Tistory</text>
+          <text x="514" y="73" text-anchor="middle" font-size="9" fill="#8a7e6c" font-family="sans-serif">복사+붙여넣기</text>
+          <rect x="250" y="100" width="110" height="18" rx="9" fill="none" stroke="#3b6e8f" stroke-width="1.2" stroke-dasharray="5,3"/>
+          <text x="305" y="114" text-anchor="middle" font-size="8" fill="#3b6e8f" font-family="sans-serif">RSS 순환 피드백</text>
+        </svg>
+      </div>
+    </div>
+  </details>
+</section>
 
-```
-base.apk (183MB)
+<section id="why">
+  <h2><span class="ico">💡</span> 왜 필요한가 — AI 시대 지식 관리의 역설</h2>
+  <p><strong>AI와 대화할수록 지식은 더 빨리 사라진다.</strong> 한 세션에서 수십 개의 결정·분석·아이디어가 오가지만, 채팅 인터페이스는 본질적으로 휘발성이다. 스레드가 길어지면 컨텍스트 윈도우 밖으로 밀려나고, 새 세션은 리셋이며, "그때 그 결정 왜 했더라?"를 검색할 수 없다.</p>
+
+  <h3>ParksyCapture가 메꾸는 4가지 구멍</h3>
+  <div class="gap-grid">
+    <div class="gap-card">
+      <div class="gtitle"><span class="dot" style="background: var(--red);"></span> 판단 소실</div>
+      <div class="gleft">❌ "왜 그렇게 했는지" 사라짐</div>
+      <div class="gright">✅ 질문→반박→수정→결정 전 과정 보존</div>
+    </div>
+    <div class="gap-card">
+      <div class="gtitle"><span class="dot" style="background: var(--gold);"></span> 기억 왜곡</div>
+      <div class="gleft">❌ 며칠 지나면 기억이 흐려짐</div>
+      <div class="gright">✅ 타임스탬프 + 원본 텍스트로 정확한 복기</div>
+    </div>
+    <div class="gap-card">
+      <div class="gtitle"><span class="dot" style="background: var(--blue);"></span> 전수 불가</div>
+      <div class="gleft">❌ 나만 아는 암묵지</div>
+      <div class="gright">✅ 대화록 자체가 교재 — 사고 흐름이 보임</div>
+    </div>
+    <div class="gap-card">
+      <div class="gtitle"><span class="dot" style="background: var(--purple);"></span> 검색 불가</div>
+      <div class="gleft">❌ "어디에 적었더라?" 찾을 수 없음</div>
+      <div class="gright">✅ GitHub grep = 모든 대화 full-text 검색</div>
+    </div>
+  </div>
+</section>
+
+<section id="three-layers">
+  <h2><span class="ico">🏗️</span> 지식 3층 구조 — 날것에서 발행까지</h2>
+  <p>ParksyCapture가 있음으로써 가능해진 지식의 층위. <strong>3층이 모두 있어야 지식이 산다.</strong></p>
+  <div class="layers">
+    <div class="layer l3">
+      <h4>Layer 3 — 발행 (Published)</h4>
+      <p>Tistory HTML · GitHub Pages · YouTube · Naver — <em>"찾아서 배울 수 있는" 층</em></p>
+    </div>
+    <div class="layer l2">
+      <h4>Layer 2 — 정제 (Refined)</h4>
+      <p>Fact / Feel / Gap / Fix / Next 구조화된 대화록 — <em>"읽으면 이해되는" 층</em></p>
+    </div>
+    <div class="layer l1">
+      <h4>Layer 1 — 날것 (Raw)</h4>
+      <p>ParksyCapture 로그 · 스크린샷 · 음성 메모 — <em>"있기만 해도 가치 있는" 층</em></p>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Layer 3만 있으면?</strong> 과정이 안 보인다. <strong>Layer 1만 있으면?</strong> 검색이 안 된다.<br>
+    <strong>3층 모두:</strong> 날것 → 정제 → 발행의 흐름으로 <em>살아있는 지식</em>이 된다.
+  </div>
+</section>
+
+<section id="architecture">
+  <h2><span class="ico">🔬</span> 기술 아키텍처 — APK 내부 구조</h2>
+  <p>S21 실기기에서 <code>pm path</code> + <code>unzip</code>으로 추출한 실제 구조:</p>
+  <pre>base.apk (183MB)
 ├── lib/arm64-v8a/
 │   ├── libflutter.so         39.8MB  ← Flutter 렌더링 엔진
 │   ├── libVkLayer_*.so       13.2MB  ← Vulkan GPU 검증 레이어
@@ -152,116 +426,146 @@ base.apk (183MB)
 │   └── MaterialIcons.otf      1.6MB  ← 머티리얼 아이콘 폰트
 ├── classes.dex               10.3MB  ← Java/Kotlin 브릿지 코드
 ├── classes[2-8].dex           0.6MB  ← AndroidX·Share·I/O 핸들러
-└── res/                              ← Android 리소스 (564 애니메이션·레이아웃)
+└── res/                              ← Android 리소스 (564개)</pre>
+
+  <h3>핵심 AndroidX API</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>라이브러리</th><th>역할</th></tr>
+      <tr><td><code>datastore</code></td><td>앱 설정·환경설정 영구 저장</td></tr>
+      <tr><td><code>activity</code></td><td>Share Intent 수신 (ACTION_SEND)</td></tr>
+      <tr><td><code>documentfile</code></td><td>공유 저장소 파일 접근 (SAF)</td></tr>
+      <tr><td><code>lifecycle</code></td><td>앱 수명주기·백그라운드 처리</td></tr>
+      <tr><td><code>browser</code></td><td>브라우저 연동 (URL 열기 등)</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="limitations">
+  <h2><span class="ico">⚠️</span> 한계와 개선 로드맵</h2>
+  <h3>현재 한계</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>항목</th><th>상태</th><th>영향</th></tr>
+      <tr><td>이미지 캡처</td><td><span class="yn-no">❌ 미처리</span></td><td>Claude CDN 이미지 누락</td></tr>
+      <tr><td>자동 git push</td><td><span class="yn-no">❌ 수동</span></td><td>캡처 → 발행 사이 사람 개입</td></tr>
+      <tr><td>토큰 필터링</td><td><span class="yn-no">❌ 없음</span></td><td>ghp_·sk- 등 민감 문자열 누출 위험</td></tr>
+      <tr><td>저장 경로</td><td><span class="yn-no">❌ 고정</span></td><td>설정에서 변경 불가</td></tr>
+      <tr><td>앱 용량</td><td><span class="yn-no">⚠ 183MB</span></td><td>Flutter fat APK, 최적화 여지 큼</td></tr>
+    </table>
+  </div>
+  <h3>개선 로드맵</h3>
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-label">단기 (1~2주)</div>
+      <div class="tl-title">Termux inotifywait 자동화</div>
+      <div class="tl-desc"><code>/sdcard/Download/parksy-logs/</code> 감시 → 새 파일 생기면 자동 git add+commit+push</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">중기 (1~3개월)</div>
+      <div class="tl-title">EXTRA_STREAM 이미지 핸들러</div>
+      <div class="tl-desc">ParksyCapture에 이미지 URI 처리 추가 — 강박사 협업</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">장기 (3~6개월)</div>
+      <div class="tl-title">APK 경량화</div>
+      <div class="tl-desc">ABI별 분리 빌드 → arm64-only ≈ 90MB (현재 183MB)</div>
+    </div>
+  </div>
+</section>
+
+<section id="manual">
+  <h2><span class="ico">📖</span> 사용 설명서 — 30초 가이드</h2>
+  <details class="accord"><summary>설치</summary><div class="body"><ol><li>APK 다운로드 (추후 Play Store / GitHub Releases)</li><li>Android "출처를 알 수 없는 앱" 허용</li><li>설치 완료 → 특별한 설정 불필요</li></ol></div></details>
+  <details class="accord"><summary>캡처 방법</summary><div class="body"><ol><li>Claude·Grok·ChatGPT 앱에서 대화 중</li><li>우측 상단 ⋮ → <strong>공유</strong></li><li>공유 대상 목록에서 <strong>ParksyCapture</strong> 선택</li><li>자동으로 <code>.md</code> 파일 생성 완료</li></ol></div></details>
+  <details class="accord"><summary>발행 방법 (표준 파이프라인)</summary><div class="body"><ol><li>캡처된 <code>.md</code> 파일을 <code>helana_log/logs/</code>에 git push</li><li>GitHub Actions 자동 트리거 → Telegram <code>@helena_logbot</code>으로 전송</li><li>Telegram에서 <code>.md</code> 첨부파일 다운로드</li><li>파일 안의 HTML 코드 전체 복사</li><li>Tistory 글쓰기 → <strong>HTML 모드</strong> → 붙여넣기 → 발행</li></ol></div></details>
+
+  <h3>파일 위치 총정리</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>장소</th><th>경로/식별자</th></tr>
+      <tr><td>S21 폰</td><td><code>/sdcard/Download/parksy-logs/ParksyLog_*.md</code></td></tr>
+      <tr><td>GitHub</td><td><code>helena751107/helana_log/logs/</code></td></tr>
+      <tr><td>Telegram 봇</td><td><code>@helena_logbot</code></td></tr>
+      <tr><td>변환기</td><td><code>helena-programming/scripts/parksy_to_html.py</code></td></tr>
+      <tr><td>전송기</td><td><code>helena-programming/scripts/log_to_telegram.sh</code></td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="ecosystem">
+  <h2><span class="ico">🌐</span> 생태계 내 위치 — 전체 지식 파이프라인</h2>
+  <div class="pipeline">
+    <div class="pipe-step active"><div class="stitle">📱 CAPTURE</div><div class="stool">ParksyCapture</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="stitle">💾 STORE</div><div class="stool">helana_log /logs/</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="stitle">🔍 REFINE</div><div class="stool">Boss + AI 검토</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="stitle">🔄 CONVERT</div><div class="stool">parksy_to_html.py</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="stitle">📢 PUBLISH</div><div class="stool">Tistory·GH Pages·YT·Naver</div></div>
+  </div>
+  <p><strong>ParksyCapture는 이 전체 파이프라인의 시작점이다.</strong> 이 앱 없이는 어떤 대화도 기록되지 않고, 기록되지 않은 대화는 지식이 될 수 없다.</p>
+</section>
+
+<section id="intent">
+  <h2><span class="ico">🎯</span> Boss의 취지 — 왜 이 파이프라인을 구축하는가</h2>
+  <div class="callout">
+    <strong>AI와 일하면서 "저장"을 하지 않는 것은, 저장 버튼 없는 워드프로세서로 글을 쓰는 것과 같다.</strong>
+    결과물은 있지만, 어떻게 거기에 도달했는지는 영원히 사라진다.
+    그리고 AI 시대에 <strong>"어떻게 도달했는가"는 "무엇을 만들었는가"만큼 중요하다.</strong>
+    더 나은 질문을 하기 위한 재료이기 때문이다.
+  </div>
+  <h3>4가지 전략적 목표</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>#</th><th>목표</th><th>설명</th></tr>
+      <tr><td>1</td><td><strong>판단의 계보</strong></td><td>모든 결정의 "왜"를 질문→반박→수정→결정 흐름으로 보존. 6개월 후에도 "왜 이렇게 했지?"에 답할 수 있다.</td></tr>
+      <tr><td>2</td><td><strong>지식의 외장화</strong></td><td>내 머릿속 암묵지를 대화록이라는 형식지로 변환. 나 아닌 사람도 읽고 이해할 수 있게.</td></tr>
+      <tr><td>3</td><td><strong>검색 가능한 기록</strong></td><td>GitHub grep 한 줄로 6개월치 대화 전체에서 키워드 검색. "어디 적었더라?"가 사라진다.</td></tr>
+      <tr><td>4</td><td><strong>발행 파이프라인</strong></td><td>날것 로그 → 정제 대화록 → Tistory·YouTube·Naver·GitHub Pages. 한 번의 캡처가 5개 채널의 콘텐츠로 증식한다.</td></tr>
+    </table>
+  </div>
+  <h3>현재 상태 (2026-08-09)</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>구성요소</th><th>상태</th><th>비고</th></tr>
+      <tr><td>ParksyCapture 앱</td><td><span class="yn-yes">✅ 설치 완료</span></td><td>S21, 최초 1회 캡처 성공</td></tr>
+      <tr><td>helana_log 저장소</td><td><span class="yn-yes">✅ 운영 중</span></td><td>logs/ + docs/dialogue/ 구조</td></tr>
+      <tr><td>GitHub Actions 자동화</td><td><span class="yn-yes">✅ 동작 확인</span></td><td>push → Telegram 자동 전송</td></tr>
+      <tr><td>@helena_logbot</td><td><span class="yn-yes">✅ 활성</span></td><td>토큰 재발급 완료 (2026-08-09)</td></tr>
+      <tr><td>parksy_to_html.py</td><td><span class="yn-yes">✅ 가동</span></td><td>대화록→HTML 변환 (speaker·gap·SVG)</td></tr>
+      <tr><td>log_to_telegram.sh v3.0</td><td><span class="yn-yes">✅ 가동</span></td><td>MD 첨부 / HTML 청크 듀얼모드</td></tr>
+      <tr><td>inotifywait 자동 push</td><td><span class="yn-no">⏳ 미구현</span></td><td>Termux 감시 스크립트 필요</td></tr>
+      <tr><td>이미지 캡처</td><td><span class="yn-no">⏳ 미구현</span></td><td>EXTRA_STREAM 처리 필요</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="conclusion">
+  <h2><span class="ico">✨</span> 결론 — "생각의 스크린샷"</h2>
+  <div style="background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); padding: 28px 24px; margin: 20px 0; box-shadow: var(--shadow);">
+    <p style="font-size: 1.08rem; font-weight: 700; color: var(--text); margin-bottom: 12px;">ParksyCapture는 "생각의 스크린샷" 도구다.</p>
+    <p style="color: var(--text2); margin-bottom: 8px;">코드를 찍는 스크린샷이 아니라, <strong style="color: var(--accent);">AI와의 사고 흐름</strong>을 찍는 도구.</p>
+    <p style="color: var(--text2); margin-bottom: 8px;">그 스크린샷(마크다운 로그)이 3층 구조(날것→정제→발행)를 거쳐 검색 가능하고, 재사용 가능하고, 발행 가능한 <strong style="color: var(--accent);">지식 자산</strong>이 된다.</p>
+    <p style="color: var(--text2);">AI와 일하면서 <strong style="color: var(--accent);">저장 버튼을 누르지 않는 것</strong>은, 저장 버튼 없는 워드프로세서로 글을 쓰는 것과 같다.</p>
+  </div>
+  <p style="text-align: center; font-size: 1.05rem; font-weight: 700; color: var(--accent); margin-top: 24px;">"어떻게 도달했는가"는 "무엇을 만들었는가"만큼 중요하다.<br>더 나은 질문을 하기 위한 재료이기 때문이다.</p>
+</section>
+
+<footer>
+  <p>ParksyCapture 백서 v1.0 · 2026-08-09 · @helena_phone</p>
+  <p style="margin-top: 4px;"><a href="https://github.com/helena751107/helana_log" style="color: var(--accent);">helena751107/helana_log</a> · <a href="https://github.com/helena751107/helena-programming" style="color: var(--accent);">helena-programming</a></p>
+</footer>
 ```
-
-### 핵심 AndroidX API
-
-| 라이브러리 | 역할 |
-|-----------|------|
-| `datastore` | 앱 설정·환경설정 영구 저장 |
-| `activity` | Share Intent 수신 (`ACTION_SEND`) |
-| `documentfile` | 공유 저장소 파일 접근 (SAF) |
-| `lifecycle` | 앱 수명주기·백그라운드 처리 |
-| `browser` | 브라우저 연동 (URL 열기 등) |
 
 ---
 
-## 실제 운영 데이터
+## 📋 사용법
 
-### 현재까지 캡처된 유일한 파일
+1. 위 HTML 코드 블록 전체를 복사한다
+2. Tistory 글쓰기 → **HTML 모드** 선택
+3. 붙여넣기 → 미리보기 확인 → 발행
 
-```
-/sdcard/Download/parksy-logs/
-  └── ParksyLog_20260725_080708.md (7,929 bytes)
-      ├── date: 2026-07-25 08:07:08
-      ├── source: android-share
-      └── 내용: Boss-Grok 토큰 보안 논의 + 이미지 캡처 한계 분석
-```
-
-### UID 분석
-
-파일 소유자 UID = `10264`. Android 앱 샌드박스 전용 사용자. proot Ubuntu(UID 0/root)에서는 읽기만 가능, 쓰기는 불가. 이 말은 **ParksyCapture만 이 디렉토리에 쓸 수 있다**는 뜻 — 파이프라인 연동 시 읽기 전용 접근으로 충분.
-
----
-
-## 한계와 개선 방향
-
-### 현재 한계
-
-| 항목 | 상태 | 영향 |
-|------|------|------|
-| 이미지 캡처 | ❌ `EXTRA_STREAM` 미처리 | Claude CDN 이미지 누락 |
-| 자동 push | ❌ 수동 git only | 캡처 → 발행 사이 사람 개입 필요 |
-| 토큰 필터링 | ❌ 없음 | `ghp_`·`sk-` 등 민감 문자열 마스킹 안 됨 |
-| 저장 경로 | 고정 | 설정에서 변경 불가 |
-| 앱 용량 | 183MB | Flutter fat APK, 최적화 여지 큼 |
-
-### 개선 로드맵
-
-1. **단기:** Termux `inotifywait`으로 `/sdcard/Download/parksy-logs/` 감시 → 새 파일 생기면 자동 git add+commit+push
-2. **중기:** ParksyCapture에 `EXTRA_STREAM` 이미지 URI 핸들러 추가 (강박사 협업)
-3. **장기:** APK 경량화 (ABI별 분리 빌드 → arm64-only = ~90MB)
-
----
-
-## 사용 설명서 — 30초 가이드
-
-### 설치
-1. APK 다운로드 ([추후 Play Store 또는 GitHub Releases])
-2. Android "출처를 알 수 없는 앱" 허용
-3. 설치 완료 → 특별한 설정 불필요
-
-### 캡처 방법
-1. Claude·Grok·ChatGPT 앱에서 대화 중
-2. 우측 상단 ⋮ → **공유**
-3. 공유 대상 목록에서 **ParksyCapture** 선택
-4. 끝. 자동으로 `.md` 파일 생성됨
-
-### 발행 방법 (표준 파이프라인)
-1. 캡처된 `.md` 파일을 `helana_log/logs/`에 git push
-2. GitHub Actions 자동 트리거 → Telegram `@helana_logbot`으로 전송
-3. Telegram에서 PART 1~N 순서대로 복사
-4. Tistory 글쓰기 → **마크다운 모드** → 붙여넣기 → 발행
-5. (선택) HTML 모드가 필요하면 `--html` 플래그 사용
-
-### 파일 위치
-- **폰:** `/sdcard/Download/parksy-logs/ParksyLog_*.md`
-- **GitHub:** `helena751107/helana_log/logs/`
-- **Telegram:** `@helana_logbot`
-
----
-
-## 생태계 내 위치 — 전체 지식 파이프라인
-
-```
-┌─────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌─────────┐
-│ CAPTURE │ →  │  STORE   │ →  │ REFINE   │ →  │ CONVERT  │ →  │PUBLISH  │
-│ Parksy  │    │helana_log│    │ Boss+AI  │    │parksy_to │    │Tistory  │
-│Capture  │    │  /logs/  │    │  검토    │    │_html.py  │    │GitHub   │
-│         │    │          │    │          │    │          │    │YouTube  │
-└─────────┘    └──────────┘    └──────────┘    └──────────┘    │Naver    │
-     ↑                                                        └─────────┘
-     │                                              │
-     └──────────── RSS 순환 ────────────────────────┘
-            (tistory_sync.sh → helana_log/기자/)
-```
-
-**ParksyCapture는 이 전체 파이프라인의 시작점이다.** 이 앱 없이는 어떤 대화도 기록되지 않고, 기록되지 않은 대화는 지식이 될 수 없다.
-
----
-
-## 결론 — 한 줄 요약
-
-> **ParksyCapture는 "생각의 스크린샷" 도구다.**
-> 
-> 코드를 찍는 스크린샷이 아니라, AI와의 사고 흐름을 찍는 도구.
-> 그 스크린샷(마크다운 로그)이 3층 구조(날것→정제→발행)를 거쳐
-> 검색 가능하고, 재사용 가능하고, 발행 가능한 지식 자산이 된다.
-> 
-> AI와 일하면서 저장 버튼을 누르지 않는 것은,
-> 저장 버튼 없는 워드프로세서로 글을 쓰는 것과 같다.
-> 결과물은 있지만, 어떻게 거기에 도달했는지는 영원히 사라진다.
-> 
-> **그리고 AI 시대에 "어떻게 도달했는가"는 "무엇을 만들었는가"만큼 중요하다.**
-> 왜냐하면 더 나은 질문을 하기 위한 재료이기 때문이다.
+> 아코디언·SVG 다이어그램·CSS 애니메이션 등 모든 인터랙티브 요소가 JS 없이 동작합니다.
