@@ -1,0 +1,75 @@
+name: Log → Tistory HTML
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'logs/**'
+      - 'docs/dialogue/**'
+  workflow_dispatch:
+    inputs:
+      files:
+        description: '변환할 .md 파일 경로 (쉼표 구분, 비우면 최근 커밋 변경분)'
+        required: false
+
+jobs:
+  convert-and-send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout helana_log
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # 직전 커밋과 diff 하려면 2개 필요
+
+      - name: Checkout helena-programming (converter)
+        uses: actions/checkout@v4
+        with:
+          repository: helena751107/helena-programming
+          path: _converter
+
+      - name: Find changed .md files
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ github.event.inputs.files }}" ]; then
+            # 수동 실행 + 파일 지정
+            echo "${{ github.event.inputs.files }}" | tr ',' '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' > /tmp/files.txt
+          else
+            # push 감지: 직전 커밋과 diff
+            if git rev-parse HEAD~1 >/dev/null 2>&1; then
+              git diff --name-only HEAD~1 HEAD | grep -E '\.md$' | grep -E '^(logs/|docs/dialogue/)' > /tmp/files.txt || true
+            else
+              # 첫 커밋: 전체 .md 파일
+              find logs/ docs/dialogue/ -name '*.md' 2>/dev/null > /tmp/files.txt || true
+            fi
+          fi
+          # 빈 줄 제거
+          sed -i '/^$/d' /tmp/files.txt 2>/dev/null || true
+          echo "files=$(cat /tmp/files.txt | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+          echo "count=$(wc -l < /tmp/files.txt)" >> $GITHUB_OUTPUT
+
+      - name: Convert & Send to Telegram
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
+        run: |
+          FILES_JSON='${{ steps.changed.outputs.files }}'
+          COUNT='${{ steps.changed.outputs.count }}'
+
+          echo "📝 변환 대상: ${COUNT}개 파일"
+
+          if [ "$COUNT" = "0" ]; then
+            echo "⚠️ 변경된 .md 파일 없음 — 건너뜀"
+            exit 0
+          fi
+
+          # 변환기 실행
+          bash _converter/scripts/log_to_telegram.sh --files "$FILES_JSON"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 📨 Log → Tistory HTML 변환 완료" >> $GITHUB_STEP_SUMMARY
+          echo "- 처리 파일 수: ${{ steps.changed.outputs.count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔑 TG_TOKEN/TG_CHAT 설정: ${{ secrets.TG_TOKEN != '' && '✅' || '❌' }}" >> $GITHUB_STEP_SUMMARY
