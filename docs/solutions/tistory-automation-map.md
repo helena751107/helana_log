@@ -114,7 +114,7 @@ python3 termux-bridge/local/tistory/login.py 이메일 비번
 | `mynote` | mynote11605.tistory.com | 기술 노트 |
 | `faith` | helana-christianity.tistory.com | 신앙 |
 | `piano` | helena-piano.tistory.com | 피아노 |
-| `psycare` | helena-psycare.tistory.com | 심리케어 |
+| `metalcare` | helena-metalcare.tistory.com | 심리케어 |
 
 ---
 

@@ -10,14 +10,14 @@ agent: Claude
 
 ## 1. 상황 — 우리가 티스토리를 만난 이유
 
-헬레나 생태계는 GitHub Pages 5종(helena_phone·helana_log·helana-faith·helena-piano·helena-psycare)을 중심으로 돌아간다. 하지만 한국에서 GitHub Pages는 검색이 안 된다. 네이버·티스토리는 한국 검색의 관문.
+헬레나 생태계는 GitHub Pages 5종(helena_phone·helana_log·helana-faith·helena-piano·helena-metalcare)을 중심으로 돌아간다. 하지만 한국에서 GitHub Pages는 검색이 안 된다. 네이버·티스토리는 한국 검색의 관문.
 
 **5개 티스토리 = 5개 GitHub 레포 = 5개 YouTube 채널 (1:1:1 매칭):**
 
 | 티스토리 | 레포 | 역할 |
 |----------|------|------|
 | galaxys21-pwuser | helena_phone | IT·개발·워크벤치 |
-| helena-metalcare | helena-psycare | 돌봄·복지·행정 |
+| helena-metalcare | helena-metalcare | 돌봄·복지·행정 |
 | helena-piano | helena-piano | 음악·취미 |
 | helana-christianity | helana-faith | 신앙 |
 | mynote11605 | — | 자유 수첩 |
