@@ -1,11 +1,13 @@
-# 트랙 개요
+# 삶의 장 — 개요
 
-Helana Log는 세 행정 축을 동시에 본다. 각 파일은 **체감 지도**이지 법령 해설서가 아니다.
+헬레나가 사는 법은 다섯 장(章)을 동시에 본다. 각 파일은 **삶의 지도**이지 법령 해설서가 아니다.
 
-| 파일 | 코드 | 초점 |
-|------|------|------|
-| [disability-welfare.md](./disability-welfare.md) | DW | 장애·정신건강 복지, 조현병 등 당사자 누나 |
-| [basic-livelihood.md](./basic-livelihood.md) | BL | 기초생활 보장·생계 안전망 |
-| [dementia-care.md](./dementia-care.md) | DC | 치매 어머니·노인 돌봄·보호자 |
+| 장 | 파일/위치 | 초점 |
+|----|-----------|------|
+| 하루 | (추가 예정) | 일상 · 약 · 식사 · 외출 |
+| 신앙 | (추가 예정) | 교회 · 기도 · 찬송 |
+| 음악 | (추가 예정) | 피아노 · 노래 |
+| 돌봄 | (추가 예정) | 가족 · 치매 어머니 · 활동지원 |
+| 제도 | [disability-welfare](./disability-welfare.md) · [basic-livelihood](./basic-livelihood.md) · [dementia-care](./dementia-care.md) | 복지·행정·병원 (삶의 한 장면) |
 
-복합 사안은 대화록 front-matter에 `CROSS`를 쓰고, 관련 트랙을 병기한다.
+복합 장면은 스토리 front-matter에 해당 장을 병기한다. (예: `- 장: 제도 + 돌봄`)
