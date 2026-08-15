@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="소득·재산·가구원이 바뀌어도 그 변화를 제때 신고·조정하지 못해, 받아야 할 급여와 돌봄 여력이 함께 새어나간다는 데 있다">
+<meta name="theme-color" content="#0a0908">
+<title>트랙 BL — 기초생활 보장의 빈틈 — Helana Log</title>
+<link rel="icon" href="../../../icons/favicon-32.png" type="image/png">
+<link rel="manifest" href="../../../site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=JetBrains+Mono:wght@400&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://helena751107.github.io/helena_phone/assets/webzine.css">
+<style>
+:root {
+  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
+  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
+  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
+  --accent:#3db8a8; --gold:#d4a84b;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --gutter:max(22px, calc(env(safe-area-inset-left,0px) + 16px));
+  --gutter-r:max(22px, calc(env(safe-area-inset-right,0px) + 16px));
+}
+[data-theme="light"] {
+  --ink:#1a1510; --ink-dim:#5c5348; --ink-mute:#8a8074;
+  --paper:#f7f1e6; --paper-2:#efe8db; --paper-3:#fffdf8;
+  --rule:rgba(26,21,16,.1); --rule2:rgba(26,21,16,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+a:hover{filter:brightness(1.15)}
+.spine{position:fixed;left:0;top:0;bottom:0;width:2px;background:var(--rule);z-index:50}
+.spine-fill{width:100%;height:0;background:var(--accent)}
+.mast{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px var(--gutter-r) 12px var(--gutter);padding-top:max(12px,env(safe-area-inset-top));
+  background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:1rem;color:var(--ink)}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.mast nav{display:flex;flex-wrap:wrap;gap:6px}
+.mast a,.mast button{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);
+  min-height:40px;padding:8px 10px;background:none;border:none;cursor:pointer;font-family:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:28px var(--gutter-r) 80px var(--gutter)}
+.kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.4rem);font-weight:600;margin-bottom:10px;padding-inline:2px}
+.deck{color:var(--ink-dim);font-weight:300;border-left:2px solid var(--accent);padding-left:12px;margin-bottom:18px}
+.meta{font-size:.75rem;color:var(--ink-mute);margin-bottom:22px;font-family:var(--mono)}
+.prose h2{font-family:var(--serif);font-size:1.35rem;margin:1.6em 0 .6em;color:var(--ink)}
+.prose h3{font-size:1.05rem;margin:1.2em 0 .5em}
+.prose p,.prose li{color:var(--ink-dim);font-weight:300;margin-bottom:.7em}
+.prose ul,.prose ol{margin:0 0 1em 1.2em}
+.prose code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
+.prose pre{background:var(--paper-2);border:1px solid var(--rule);padding:14px;overflow-x:auto;margin:1em 0;font-size:.82rem}
+.prose table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1em 0}
+.prose th,.prose td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+.prose th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.prose blockquote{border-left:2px solid var(--accent);padding:8px 14px;color:var(--ink-dim);margin:1em 0;background:var(--paper-2)}
+.appbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;padding:10px;background:var(--paper-2);border:1px solid var(--rule);position:sticky;top:56px;z-index:30}
+.appbar input{flex:1 1 140px;min-height:40px;padding:8px 10px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink);font:inherit}
+.appbar button{min-height:40px;padding:8px 12px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
+.foot .a{color:var(--accent);margin-top:8px}
+.sec{border:1px solid var(--rule);background:var(--paper-2);margin:1em 0;border-radius:2px;overflow:hidden}
+.sec > .sec-h{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:none;border:none;color:inherit;font:inherit;cursor:pointer;text-align:left;min-height:48px}
+.sec > .sec-h h2{margin:0;font-size:1.15rem;font-family:var(--serif)}
+.sec .ico{width:28px;height:28px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent)}
+.sec.open .ico{transform:rotate(45deg)}
+.sec .sec-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.sec.open .sec-b{grid-template-rows:1fr}
+.sec .sec-i{overflow:hidden;min-height:0;opacity:0;padding:0 14px;transition:opacity .25s}
+.sec.open .sec-i{opacity:1;padding:0 14px 14px}
+mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+
+.care{margin:1.4em 0}
+.care figcaption{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:.6em}
+.care-info{margin:0 0 22px}
+/* callout */
+.care-callout{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--rule2);border-left:3px solid var(--accent);background:var(--paper-2)}
+.care-callout-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;padding:3px 7px;border-radius:2px;background:var(--accent);color:#0a0908;font-weight:600;flex:none;margin-top:2px}
+.care-callout.care-warn{border-left-color:var(--gold)}
+.care-callout.care-warn .care-callout-badge{background:var(--gold)}
+.care-callout.care-danger{border-left-color:#e85d4c}
+.care-callout.care-danger .care-callout-badge{background:#e85d4c}
+.care-callout.care-check{border-left-color:#2e9e5b}
+.care-callout.care-check .care-callout-badge{background:#2e9e5b}
+.care-callout-text{color:var(--ink-dim);font-weight:300}
+/* threshold table */
+.care-threshold table{width:100%;border-collapse:collapse;font-size:.88rem}
+.care-threshold th,.care-threshold td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+.care-threshold th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.care-threshold code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
+.care-threshold tr.lv-urgent td:first-child{border-left:3px solid #e85d4c}
+.care-threshold tr.lv-warning td:first-child{border-left:3px solid var(--gold)}
+.care-threshold tr.lv-info td:first-child{border-left:3px solid var(--accent)}
+/* flow */
+.care-flow-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.care-node{padding:10px 14px;border:1px solid var(--rule2);border-radius:4px;background:var(--paper-3);font-size:.85rem}
+.care-node.start{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.care-node-label{font-family:var(--sans);font-weight:500}
+.care-edge{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink-mute)}
+.care-arrow{color:var(--accent);font-size:1.1rem}
+.care-edge-label{font-size:.68rem;color:var(--ink-mute);white-space:nowrap}
+.care-loop{margin-left:6px;padding:6px 10px;border:1px dashed var(--rule2);border-radius:999px;font-size:.75rem;color:var(--accent)}
+/* bars */
+.care-bar{display:flex;align-items:center;gap:10px;margin:.5em 0}
+.care-bar-label{width:9em;flex:none;font-size:.82rem;color:var(--ink-dim)}
+.care-bar-track{flex:1;height:14px;background:var(--paper-3);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.care-bar-fill{display:block;height:100%;background:var(--accent)}
+.care-bar-val{width:3em;text-align:right;font-family:var(--mono);font-size:.78rem;color:var(--accent)}
+/* timeline */
+.care-timeline{border-left:1px solid var(--rule2);margin-left:6px;padding-left:16px}
+.care-tl-item{position:relative;margin:.7em 0}
+.care-tl-item::before{content:"";position:absolute;left:-21px;top:.4em;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.care-tl-time{font-family:var(--mono);font-size:.72rem;color:var(--accent);margin-right:8px}
+.care-tl-label{color:var(--ink-dim)}
+.care-tl-note{color:var(--ink-mute);font-size:.8rem;margin-left:6px}
+/* checklist */
+.care-checklist ul{list-style:none;padding-left:0}
+.care-checklist li{margin:.4em 0}
+.care-checklist input{margin-right:8px;accent-color:var(--accent)}
+.care-checklist input:checked + *{text-decoration:line-through;opacity:.55}
+/* 복사 블록 */
+.care-code{position:relative;margin:1.2em 0}
+.care-code pre{background:var(--paper-2);border:1px solid var(--rule2);padding:16px;padding-top:34px;border-radius:8px;overflow-x:auto;margin:0}
+.care-code code{font-family:var(--mono);font-size:.82rem;color:var(--gold2);background:none;padding:0}
+.care-copy{position:absolute;top:8px;right:8px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:11px;font-family:var(--sans);padding:4px 11px;border-radius:6px;cursor:pointer}
+.care-copy:hover{color:var(--ink);border-color:var(--accent)}
+/* 테이블 가독성 강화 (Boss: "테이블 보이지도 않아" 대응) */
+.prose table,.care-threshold table{border-collapse:collapse}
+.prose th,.prose td,.care-threshold th,.care-threshold td{border:1px solid color-mix(in srgb,var(--ink) 32%,transparent)!important}
+.prose th,.care-threshold th{background:var(--paper-3)!important;color:var(--gold)!important}
+</style>
+</head>
+<body>
+<div class="spine" aria-hidden="true"><div class="spine-fill" id="spineFill"></div></div>
+<header class="mast">
+  <a class="brand" href="../../../">Helana <em>Log</em></a>
+  <nav>
+    <a href="../../../">Home</a>
+    <a href="../../../docs/">Docs</a>
+    <a href="https://helena751107.github.io/helena_phone/">Hub</a>
+    <button type="button" id="themeBtn">Theme</button>
+  </nav>
+</header>
+<main class="wrap">
+  <div class="kicker">돌봄 데몬 · Care</div>
+  <h1>트랙 BL — 기초생활 보장의 빈틈</h1>
+  <p class="deck">소득·재산·가구원이 바뀌어도 그 변화를 제때 신고·조정하지 못해, 받아야 할 급여와 돌봄 여력이 함께 새어나간다는 데 있다</p>
+  <div class="meta">source · docs/care-daemon/track/04-basic-livelihood.md · bridge docs↔web · _Grok</div>
+  <div class="appbar">
+    <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
+    <button type="button" id="fold">접기</button>
+    <button type="button" id="expand">펼치기</button>
+  </div>
+  <figure class="care-info" style="margin:0 0 22px"><div style="background:#14120f;border:1px solid #4a423a;border-radius:12px;overflow:hidden"><div style="height:4px;background:linear-gradient(90deg,#d4a84b,#3db8a8)"></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 22px 0"><span style="font-size:11px;font-weight:700;letter-spacing:2px;color:#3db8a8;text-transform:uppercase">CARE DAEMON · 돌봄 데몬</span><span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#d4a84b;white-space:nowrap">4 SECTION</span></div><div style="padding:8px 22px 0;font-family:'Cormorant Garamond',Georgia,'Noto Serif KR',serif;font-size:23px;font-weight:700;color:#f4efe6;line-height:1.3">트랙 BL — 기초생활 보장의 빈틈</div><div style="padding:6px 22px 0;font-size:12.5px;color:#8d8376;line-height:1.6">소득·재산·가구원이 바뀌어도 그 변화를 제때 신고·조정하지 못해, 받아야 할 급여와 돌봄 여력이 함께 새어나간다는 데 있다</div><div style="padding:14px 22px 20px"><div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">1. 가정 맥락</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">2. 자주 비는 틈</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">3. 개선 방향</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">4. 확인 창구</span></div></div></div></figure><article class="prose" id="prose"><blockquote>
+<p>기초생활은 &lsquo;숫자&rsquo;의 시간으로 흐르고, 돌봄은 &lsquo;하루&rsquo;의 시간으로 흐른다. 소득·재산·가구원이라는 숫자가 바뀌면 급여가 바뀌고, 급여가 바뀌면 그날의 돌봄이 바뀐다. 이 편은 그 두 시간의 어긋남이 한 가정의 생계 위에서 어디서 벌어지는지를 본다.</p>
+</blockquote>
+<h2 id="1">1. 가정 맥락</h2>
+<p>기초생활 보장 수급(또는 그에 준하는 생계 안전망) 위에 사는 가정의 하루는, <strong>숫자의 시간</strong>과 <strong>돌봄의 시간</strong>이 함께 흐른다.</p>
+<ul>
+<li>숫자는 <strong>몇 달</strong>의 시간을 산다. 소득·재산·가구원 기준이 심사되고, 그 결과로 생계·의료·주거·교육급여가 정해진다.</li>
+<li>돌봄은 <strong>하루</strong>의 시간을 산다. 약값, 보호자의 병원 동행, 갑작스러운 입원과 시설 입소.</li>
+<li>가족은 그 <strong>사이</strong>에서, 숫자가 바뀌는 순간을 제때 알려서 돌봄의 여력을 지키는 일을 한다.</li>
+</ul>
+<p>장애·치매 돌봄이 겹치면, 소득·재산·가구원 기준의 변화가 곧 돌봄 여력의 변화로 이어진다. 가구원이 한 명 늘거나, 입원이 길어지거나, 소득이 잠깐 늘면 — 받아야 할 급여가 바뀌고, 그 급여가 그날의 돌봄을 바꾼다.</p>
+<div class="care care-callout care-info" data-id="bl-declaration"><span class="care-callout-badge">INFO</span><span class="care-callout-text">이 트랙의 빈틈은 &#x27;돈이 없다&#x27;가 아니라 &#x27;숫자가 바뀌는 순간을 놓친다&#x27;다. 소득·재산·가구원의 변화와, 그 변화를 신고·조정하는 시점을 한 장으로 잇는 일이 돌봄 데몬의 몫.</span></div>
+
+<h2 id="2">2. 자주 비는 틈</h2>
+<p>현장에서 반복해서 발견되는 빈틈을 체크리스트로 옮겼다. 전부 &ldquo;기준이 바뀌는 순간을 놓친다&rdquo;와 &ldquo;안내 문장이 어려워서 못 챙긴다&rdquo;는 데서 온다.</p>
+<figure class="care care-checklist" data-id="bl-gaps"><figcaption>이 트랙에서 자주 비는 틈 (관찰용)</figcaption><ul><li><label><input type="checkbox" class="care-chk" data-id="bl-gaps"> 생계·의료·주거·교육급여 중 어디를 쓰는지 가정 내 공유가 없다</label></li><li><label><input type="checkbox" class="care-chk" data-id="bl-gaps"> 재산·금융·자동차 조사 안내 문장이 보호자에게 너무 어렵다</label></li><li><label><input type="checkbox" class="care-chk" data-id="bl-gaps"> 가구원 변동·장기 입원·시설 입소의 신고 시점이 모호하다</label></li><li><label><input type="checkbox" class="care-chk" data-id="bl-gaps"> 장애·노인 추가 지원과 기초생활 급여의 중복·조정 설명이 없다</label></li><li><label><input type="checkbox" class="care-chk" data-id="bl-gaps"> 온라인 신청·앱과 방문 창구의 안내가 서로 어긋난다</label></li><li><label><input type="checkbox" class="care-chk" data-id="bl-gaps"> &#x27;다음 서류&#x27;가 구두로만 전달되어 기록에 남지 않는다</label></li></ul></figure>
+
+<p>여섯 개 모두 <strong>한 번의 방문</strong>으로 해결되는 문제가 아니라, <strong>시점과 기록</strong>이 빠진 문제다. 기초생활은 기준이 바뀌는 순간이 곧 급여가 바뀌는 순간이기 때문에, &ldquo;나중에 알아보면 된다&rdquo;는 여유가 돌봄의 여력을 직접 깎는다. 그래서 답은 &ldquo;창구를 더 찾는 것&rdquo;이 아니라 &ldquo;바뀌는 순간을 미리 달력에 올려놓는 것&rdquo;이다.</p>
+<h2 id="3">3. 개선 방향</h2>
+<p>돌봄 데몬의 관점에서, 이 빈틈을 채우는 가장 작은 도구는 셋이다.</p>
+<p><strong>첫째, 수급 캘린더.</strong> 신고·갱신·증빙 마감만 모은 가정용 달력. 숫자가 바뀌는 순간을 미리 올려두고, 그날이 오면 기록을 남긴다.</p>
+<figure class="care care-timeline" data-id="bl-calendar"><figcaption>수급 캘린더 — 놓치기 쉬운 시점</figcaption><div class="care-tl-item"><span class="care-tl-time">가구 변동 시</span><span class="care-tl-label">가구원 증감 신고<span class="care-tl-note">전입·입원·입소·출산 포함</span></span></div><div class="care-tl-item"><span class="care-tl-time">소득·재산 변동 시</span><span class="care-tl-label">수시 신고<span class="care-tl-note">정기조사 밖의 변화</span></span></div><div class="care-tl-item"><span class="care-tl-time">안내문 도착 시</span><span class="care-tl-label">정기 확인·갱신<span class="care-tl-note">마감일을 달력에</span></span></div><div class="care-tl-item"><span class="care-tl-time">증빙 요청 시</span><span class="care-tl-label">서류 제출<span class="care-tl-note">스캔 후 마스킹 보관</span></span></div></figure>
+
+<p><strong>둘째, 창구 대화 스크립트.</strong> 창구에 갈 때마다 세 문장만 준비한다. &ldquo;지금 받는 급여 / 바꾸고 싶은 점 / 최근 가구 변화&rdquo;. 창구마다 안내가 다를 때 그 차이가 기록으로 남는다.</p>
+<div class="care-code"><button class="care-copy" type="button" title="코드 복사">복사</button><pre><code class="language-text">창구 대화 — 3문장 규칙
+1. 지금 받는 급여 — 생계·의료·주거·교육 중 어느 쪽인가
+2. 바꾸고 싶은 점 — 뭐가 달라졌길래 왔는가
+3. 최근 가구 변화 — 소득·재산·가구원 중 바뀐 것
+</code></pre></div>
+<p><strong>셋째, 증빙 폴더 규칙.</strong> 서류를 스캔할 때 이름 규칙을 정하고, 주민번호·계좌번호는 마스킹한 뒤 보관한다. &ldquo;그 서류 어디 갔지&rdquo;가 사라진다.</p>
+<p>세 도구 모두 <strong>자동화된 기계</strong>가 아니라 <strong>규칙을 코드처럼 남기는 습관</strong>이다. 돌봄 데몬은 이 습관을 매일 도는 루프로 옮긴 것에 가깝다 — 수급 캘린더는 스케줄로, 대화 스크립트는 기록으로, 증빙 폴더는 주기 검사로.</p>
+<h2 id="4">4. 확인 창구</h2>
+<p>법령·기준은 시기·지역·가구 상황에 따라 다르다. 아래에서 최신 기준을 직접 확인한다.</p>
+<ol>
+<li><strong>급여 신청·변경</strong> — 거주지 <strong>주민센터(행정복지센터)</strong> 또는 <strong>복지로(bokjiro.go.kr)</strong> 에서 생계·의료·주거·교육급여의 신청·갱신 절차를 확인한다.</li>
+<li><strong>추가 지원과의 조정</strong> — 장애인연금·기초연금 등 다른 지원과의 중복·조정 여부는 담당 기관에서 확인한다.</li>
+<li><strong>가구 변동 신고</strong> — 가구원 증감·입원·입소 시 신고 여부와 기한을 창구에서 재확인한다.</li>
+</ol>
+<blockquote>
+<p>이 채널은 법률 자문도 의료 가이드도 아니다. 각 창구의 최신 기준과 기한을 직접 확인할 것.</p>
+</blockquote></article>
+  <footer class="foot">
+    <div>Helana Log · Docs Webzine</div>
+    <div class="a">모든 계정은 큰누나 명의입니다.</div>
+    <p style="margin-top:12px"><a href="../../../">← Landing</a> · <a href="https://helena751107.github.io/helena_phone/">S21 Hub</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('helena-doc-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn')?.addEventListener('click', () => {
+    const n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    localStorage.setItem('helena-doc-theme', n);
+  });
+  const spine = document.getElementById('spineFill');
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (spine) spine.style.height = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+  }, { passive: true });
+  const prose = document.getElementById('prose');
+  if (prose) {
+    [...prose.querySelectorAll(':scope > h2')].forEach((h2) => {
+      const sec = document.createElement('div');
+      sec.className = 'sec open';
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'sec-h';
+      const tw = document.createElement('div'); tw.appendChild(h2.cloneNode(true));
+      const ico = document.createElement('span'); ico.className = 'ico'; ico.textContent = '+';
+      btn.appendChild(tw); btn.appendChild(ico);
+      const body = document.createElement('div'); body.className = 'sec-b';
+      const inner = document.createElement('div'); inner.className = 'sec-i';
+      let n = h2.nextSibling; const move = [];
+      while (n && !(n.nodeType === 1 && n.tagName === 'H2')) { move.push(n); n = n.nextSibling; }
+      move.forEach(x => inner.appendChild(x));
+      body.appendChild(inner); sec.appendChild(btn); sec.appendChild(body);
+      h2.replaceWith(sec);
+      btn.addEventListener('click', () => {
+        const on = !sec.classList.contains('open');
+        sec.classList.toggle('open', on);
+      });
+    });
+    const setAll = (open) => prose.querySelectorAll('.sec').forEach(s => s.classList.toggle('open', open));
+    document.getElementById('fold')?.addEventListener('click', () => setAll(false));
+    document.getElementById('expand')?.addEventListener('click', () => setAll(true));
+    document.getElementById('q')?.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      prose.querySelectorAll('.sec').forEach(sec => {
+        const hit = !q || sec.innerText.toLowerCase().includes(q);
+        sec.style.display = hit ? '' : 'none';
+        if (hit && q) sec.classList.add('open');
+      });
+    });
+  }
+})();
+</script>
+<script>
+(() => {
+  // checklist persistence (Pages)
+  document.querySelectorAll('.care-checklist').forEach(fig => {
+    const id = fig.dataset.id; const key = 'care-chk-' + id;
+    const saved = JSON.parse(localStorage.getItem(key) || '[]');
+    fig.querySelectorAll('input.care-chk').forEach((c, i) => { c.checked = saved[i] || false; });
+    fig.addEventListener('change', () => {
+      localStorage.setItem(key, JSON.stringify([...fig.querySelectorAll('input.care-chk')].map(c => c.checked)));
+    });
+  });
+  // 코드 복사 (Pages)
+  function fallbackCopy(txt, done){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy')}catch(e){} document.body.removeChild(ta); done(); }
+  document.querySelectorAll('.care-copy').forEach(b => {
+    b.addEventListener('click', () => {
+      var code = b.parentNode.querySelector('pre code');
+      if (!code) return;
+      var txt = code.innerText;
+      var done = function(){ b.textContent='복사됨'; setTimeout(function(){ b.textContent='복사'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done).catch(function(){ fallbackCopy(txt, done); });
+      } else { fallbackCopy(txt, done); }
+    });
+  });
+})();
+</script></body>
+</html>
