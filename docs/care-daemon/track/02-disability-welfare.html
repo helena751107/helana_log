@@ -75,6 +75,7 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 
 .care{margin:1.4em 0}
 .care figcaption{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:.6em}
+.care-info{margin:0 0 22px}
 /* callout */
 .care-callout{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--rule2);border-left:3px solid var(--accent);background:var(--paper-2)}
 .care-callout-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;padding:3px 7px;border-radius:2px;background:var(--accent);color:#0a0908;font-weight:600;flex:none;margin-top:2px}
@@ -120,6 +121,16 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 .care-checklist li{margin:.4em 0}
 .care-checklist input{margin-right:8px;accent-color:var(--accent)}
 .care-checklist input:checked + *{text-decoration:line-through;opacity:.55}
+/* 복사 블록 */
+.care-code{position:relative;margin:1.2em 0}
+.care-code pre{background:var(--paper-2);border:1px solid var(--rule2);padding:16px;padding-top:34px;border-radius:8px;overflow-x:auto;margin:0}
+.care-code code{font-family:var(--mono);font-size:.82rem;color:var(--gold2);background:none;padding:0}
+.care-copy{position:absolute;top:8px;right:8px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:11px;font-family:var(--sans);padding:4px 11px;border-radius:6px;cursor:pointer}
+.care-copy:hover{color:var(--ink);border-color:var(--accent)}
+/* 테이블 가독성 강화 (Boss: "테이블 보이지도 않아" 대응) */
+.prose table,.care-threshold table{border-collapse:collapse}
+.prose th,.prose td,.care-threshold th,.care-threshold td{border:1px solid color-mix(in srgb,var(--ink) 32%,transparent)!important}
+.prose th,.care-threshold th{background:var(--paper-3)!important;color:var(--gold)!important}
 </style>
 </head>
 <body>
@@ -143,7 +154,13 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
     <button type="button" id="fold">접기</button>
     <button type="button" id="expand">펼치기</button>
   </div>
-  <article class="prose" id="prose"><blockquote>
+  <figure class="care-info" style="margin:0 0 22px"><div style="background:#14120f;border:1px solid #4a423a;border-radius:12px;overflow:hidden"><div style="height:4px;background:linear-gradient(90deg,#d4a84b,#3db8a8)"></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 22px 0"><span style="font-size:11px;font-weight:700;letter-spacing:2px;color:#3db8a8;text-transform:uppercase">CARE DAEMON · 돌봄 데몬</span><span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#d4a84b;white-space:nowrap">4 SECTION</span></div><div style="padding:8px 22px 0;font-family:'Cormorant Garamond',Georgia,'Noto Serif KR',serif;font-size:23px;font-weight:700;color:#f4efe6;line-height:1.3">트랙 DW — 장애·정신건강 복지의 빈틈</div><div style="padding:6px 22px 0;font-size:12.5px;color:#8d8376;line-height:1.6">병원 소견·장애 등록·위기 대응이 서로 다른 창구에 흩어져, 정작 필요한 순간 한 장으로 이어지지 않는다는 데 있다</div><div style="padding:14px 22px 20px"><div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">1. 가정 맥락</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">2. 자주 비는 틈</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">3. 개선 방향</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">4. 확인 창구</span></div></div></div></figure><article class="prose" id="prose"><blockquote>
 <p>제도는 한 줄로 흐르지만, 삶은 여러 줄이 동시에 흐른다. 이 편은 그 어긋남이 어디서 생기는지를 본다.</p>
 </blockquote>
 <h2 id="1">1. 가정 맥락</h2>
@@ -167,6 +184,13 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 <figure class="care care-timeline" data-id="dw-stages"><figcaption>원페이지 연계 맵 — 3단</figcaption><div class="care-tl-item"><span class="care-tl-time">평상시</span><span class="care-tl-label">정신건강복지센터 · 행정복지센터<span class="care-tl-note">등록·재판정 일정 확인</span></span></div><div class="care-tl-item"><span class="care-tl-time">악화</span><span class="care-tl-label">외래 · 센터 상담<span class="care-tl-note">증상 변화를 기록으로 남기기</span></span></div><div class="care-tl-item"><span class="care-tl-time">응급</span><span class="care-tl-label">위기 대응 창구<span class="care-tl-note">가정 내 합의된 1차 연락처부터</span></span></div></figure>
 
 <p><strong>둘째, 창구 질문 카드.</strong> 방문 전에 물어볼 다섯 가지만 적어 간다. 서비스 종류 · 대기 기간 · 재판정 주기 · 서류 · 다음 담당. &ldquo;다음 서류가 뭔지&rdquo;를 구두로만 듣고 오면, 집에 와서 다시 흐려진다.</p>
+<div class="care-code"><button class="care-copy" type="button" title="코드 복사">복사</button><pre><code class="language-text">창구 질문 카드 — 복사해서 가져가기
+1. 서비스 종류 — 지금 받을 수 있는 건 뭐죠?
+2. 대기 기간 — 얼마나 걸리나요?
+3. 재판정 주기 — 언제 다시 확인해야 하나요?
+4. 서류 — 다음엔 뭘 준비해야 하나요?
+5. 다음 담당 — 또 물어보려면 어디로?
+</code></pre></div>
 <p><strong>셋째, 기록 습관.</strong> 외래·센터 상담을 다닐 때, <strong>날짜와 키워드만</strong> 대화록에 남긴다. 한 줄이면 된다. 이 습관이 쌓이면, &ldquo;지난번에 뭐라고 들었더라&rdquo;가 사라진다.</p>
 <p>세 도구 모두 <strong>자동화된 기계</strong>가 아니라 <strong>규칙을 코드처럼 남기는 습관</strong>이다. 돌봄 데몬은 이 습관을 매일 도는 루프로 옮긴 것에 가깝다.</p>
 <h2 id="4">4. 확인 창구</h2>
@@ -245,6 +269,19 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
     fig.querySelectorAll('input.care-chk').forEach((c, i) => { c.checked = saved[i] || false; });
     fig.addEventListener('change', () => {
       localStorage.setItem(key, JSON.stringify([...fig.querySelectorAll('input.care-chk')].map(c => c.checked)));
+    });
+  });
+  // 코드 복사 (Pages)
+  function fallbackCopy(txt, done){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy')}catch(e){} document.body.removeChild(ta); done(); }
+  document.querySelectorAll('.care-copy').forEach(b => {
+    b.addEventListener('click', () => {
+      var code = b.parentNode.querySelector('pre code');
+      if (!code) return;
+      var txt = code.innerText;
+      var done = function(){ b.textContent='복사됨'; setTimeout(function(){ b.textContent='복사'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done).catch(function(){ fallbackCopy(txt, done); });
+      } else { fallbackCopy(txt, done); }
     });
   });
 })();

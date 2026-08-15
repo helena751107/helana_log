@@ -75,6 +75,7 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 
 .care{margin:1.4em 0}
 .care figcaption{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:.6em}
+.care-info{margin:0 0 22px}
 /* callout */
 .care-callout{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--rule2);border-left:3px solid var(--accent);background:var(--paper-2)}
 .care-callout-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;padding:3px 7px;border-radius:2px;background:var(--accent);color:#0a0908;font-weight:600;flex:none;margin-top:2px}
@@ -120,6 +121,16 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 .care-checklist li{margin:.4em 0}
 .care-checklist input{margin-right:8px;accent-color:var(--accent)}
 .care-checklist input:checked + *{text-decoration:line-through;opacity:.55}
+/* 복사 블록 */
+.care-code{position:relative;margin:1.2em 0}
+.care-code pre{background:var(--paper-2);border:1px solid var(--rule2);padding:16px;padding-top:34px;border-radius:8px;overflow-x:auto;margin:0}
+.care-code code{font-family:var(--mono);font-size:.82rem;color:var(--gold2);background:none;padding:0}
+.care-copy{position:absolute;top:8px;right:8px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:11px;font-family:var(--sans);padding:4px 11px;border-radius:6px;cursor:pointer}
+.care-copy:hover{color:var(--ink);border-color:var(--accent)}
+/* 테이블 가독성 강화 (Boss: "테이블 보이지도 않아" 대응) */
+.prose table,.care-threshold table{border-collapse:collapse}
+.prose th,.prose td,.care-threshold th,.care-threshold td{border:1px solid color-mix(in srgb,var(--ink) 32%,transparent)!important}
+.prose th,.care-threshold th{background:var(--paper-3)!important;color:var(--gold)!important}
 </style>
 </head>
 <body>
@@ -143,7 +154,15 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
     <button type="button" id="fold">접기</button>
     <button type="button" id="expand">펼치기</button>
   </div>
-  <article class="prose" id="prose"><blockquote>
+  <figure class="care-info" style="margin:0 0 22px"><div style="background:#14120f;border:1px solid #4a423a;border-radius:12px;overflow:hidden"><div style="height:4px;background:linear-gradient(90deg,#d4a84b,#3db8a8)"></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 22px 0"><span style="font-size:11px;font-weight:700;letter-spacing:2px;color:#3db8a8;text-transform:uppercase">CARE DAEMON · 돌봄 데몬</span><span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#d4a84b;white-space:nowrap">5 SECTION</span></div><div style="padding:8px 22px 0;font-family:'Cormorant Garamond',Georgia,'Noto Serif KR',serif;font-size:23px;font-weight:700;color:#f4efe6;line-height:1.3">돌봄 데몬이란 — 기술로 돌보는 법</div><div style="padding:6px 22px 0;font-size:12.5px;color:#8d8376;line-height:1.6">사람이 지켜보지 않아도 15분마다 돌며, 이상을 감지하면 스스로 알리는 돌봄 감시 루프</div><div style="padding:14px 22px 20px"><div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">1. 선언</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">2. 왜 &quot;데몬&quot;인가</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">3. 임계값 — 데몬의 판단 기준</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">4. 10편 지도</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">5</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">5. 읽는 법</span></div></div></div></figure><article class="prose" id="prose"><blockquote>
 <p>이 채널은 <strong>돌봄(케어)을 수행하는 IT</strong>를 다룬다. 순수 기술 노트도, 순수 가족사도 아니다.<br>
 누군가의 하루를 지키는 방법을, 기계가 매일 도는 루프로 옮기는 이야기.</p>
 </blockquote>
@@ -170,6 +189,16 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 <figure class="care care-threshold" data-id="daemon-thresholds"><figcaption>돌봄 데몬의 핵심 임계값 (care.conf)</figcaption><table><thead><tr><th>항목</th><th>임계값</th><th>조치</th></tr></thead><tbody><tr class="lv-urgent"><td>배터리 저전압</td><td><code>15% 이하</code></td><td>즉시 🔴 경고</td></tr><tr class="lv-warning"><td>배터리 급감</td><td><code>30% / 60분</code></td><td>이상 보고</td></tr><tr class="lv-warning"><td>온도 과열</td><td><code>45°C 이상</code></td><td>과열 경고</td></tr><tr class="lv-warning"><td>GPS 무응답</td><td><code>2시간</code></td><td>위치 점검</td></tr><tr class="lv-urgent"><td>위치 무변동</td><td><code>6시간</code></td><td>웰니스 체크</td></tr><tr class="lv-info"><td>평소 반경</td><td><code>500m 밖</code></td><td>선택적 보고</td></tr></tbody></table></figure>
 
 <p>이 표는 설정 파일(<code>care.conf</code>)의 실제 값이다. 데몬은 이 숫자를 넘는 순간 텔레그램으로 알린다. 숫자는 바꿀 수 있다 — 돌봄의 기준이 사람마다 다르기 때문이다. 중요한 것은 <strong>기준을 코드로 남긴다</strong>는 것이다.</p>
+<p>실제 <code>care.conf</code> 는 아래와 같다. <strong>복사해서 그대로 쓸 수 있다.</strong></p>
+<div class="care-code"><button class="care-copy" type="button" title="코드 복사">복사</button><pre><code class="language-bash"># care.conf — 돌봄 데몬 임계값 (복사해서 쓰기)
+BATTERY_LOW=15              # 배터리 잔량(%) — 이하이면 즉시 경고
+BATTERY_DROP_PCT=30         # 급감 기준(%) — 이 이상 떨어지면 알림
+BATTERY_DROP_MIN=60         # 급감 감지 시간(분)
+TEMP_HIGH=45                # 배터리 온도(°C) — 이상이면 과열 경고
+GPS_SILENT_HOURS=2          # GPS 무응답 허용 시간(시간)
+NO_MOVE_HOURS=6             # 위치 무변동 허용 시간(시간)
+LOCATION_RADIUS_M=500       # 평소 반경(m) — 이 밖으로 나가면 선택적 보고
+</code></pre></div>
 <h2 id="4-10">4. 10편 지도</h2>
 <p>이 채널은 한 바퀴(10편)로 돌봄 데몬의 전모를 닫는다.</p>
 <table>
@@ -308,6 +337,19 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
     fig.querySelectorAll('input.care-chk').forEach((c, i) => { c.checked = saved[i] || false; });
     fig.addEventListener('change', () => {
       localStorage.setItem(key, JSON.stringify([...fig.querySelectorAll('input.care-chk')].map(c => c.checked)));
+    });
+  });
+  // 코드 복사 (Pages)
+  function fallbackCopy(txt, done){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy')}catch(e){} document.body.removeChild(ta); done(); }
+  document.querySelectorAll('.care-copy').forEach(b => {
+    b.addEventListener('click', () => {
+      var code = b.parentNode.querySelector('pre code');
+      if (!code) return;
+      var txt = code.innerText;
+      var done = function(){ b.textContent='복사됨'; setTimeout(function(){ b.textContent='복사'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done).catch(function(){ fallbackCopy(txt, done); });
+      } else { fallbackCopy(txt, done); }
     });
   });
 })();
