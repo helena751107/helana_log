@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="돌봄 데몬 — 돌봄(케어)을 수행하는 IT. 누군가의 하루를 지키는 방법을 기계가 매일 도는 루프로 옮기는 채널.">
+<meta name="theme-color" content="#0a0908">
+<title>돌봄 데몬 — 기술로 돌보는 법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
+  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
+  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
+  --gold:#d4a84b; --gold2:#f0c75e; --teal:#3db8a8; --coral:#e85d4c; --lilac:#8b7cf0;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1); --accent:var(--teal);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 50% at 20% -10%, color-mix(in srgb, var(--teal) 16%, transparent), transparent 55%),
+             radial-gradient(ellipse 50% 40% at 90% 80%, rgba(212,168,75,.07), transparent 50%)}
+a{color:var(--gold2);text-decoration:none}
+a:hover{color:var(--teal)}
+code{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.86em;color:var(--gold2);background:var(--paper-3);padding:2px 6px;border-radius:4px}
+.wrap{max-width:760px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 80px max(16px,env(safe-area-inset-left));position:relative;z-index:1}
+.mast{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left));
+  padding-top:max(12px,env(safe-area-inset-top));
+  background:color-mix(in srgb,var(--paper) 88%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.08em;font-size:1rem}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.mast nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.mast nav a{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);min-height:40px;padding:8px 10px;display:inline-flex;align-items:center}
+.mast nav a:hover{color:var(--accent)}
+.hero{padding:56px 0 30px}
+.kicker{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
+h1{font-family:var(--serif);font-size:clamp(2.3rem,9vw,3.5rem);line-height:1.08;font-weight:600;letter-spacing:-.02em;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--accent)}
+.deck{color:var(--ink-dim);font-weight:300;font-size:1.05rem;max-width:34em;border-left:2px solid var(--accent);padding-left:14px;margin-bottom:22px}
+.loop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 30px;color:var(--ink-mute);font-size:.82rem;letter-spacing:.06em}
+.loop .node{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 14px;border:1px solid var(--rule2);background:var(--paper-2);color:var(--ink-dim)}
+.loop .node b{color:var(--accent);font-weight:600}
+.loop .arr{color:var(--accent)}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;margin:40px 0 14px;letter-spacing:-.01em}
+h2 .num{font-size:.78rem;letter-spacing:.12em;color:var(--accent);font-weight:600;margin-right:10px;font-family:var(--sans)}
+.lead{color:var(--ink-dim);font-weight:300;max-width:38em}
+.map{border-top:1px solid var(--rule);margin-top:8px}
+.map .row{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:baseline;padding:14px 4px;border-bottom:1px solid var(--rule)}
+.map .row:hover{background:var(--paper-2)}
+.map .n{font-size:.72rem;letter-spacing:.08em;color:var(--accent);font-weight:600}
+.map .t{font-family:var(--serif);font-size:1.15rem;font-weight:600}
+.map .t small{display:block;font-family:var(--sans);font-size:.8rem;color:var(--ink-mute);font-weight:400;margin-top:2px}
+.map .st{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.map .st.done{color:var(--teal)}
+.map .st.done a{color:var(--teal)}
+.map .st.next{color:var(--ink-mute)}
+.pillars{display:grid;gap:10px;margin-top:8px}
+.pillar{border:1px solid var(--rule);background:var(--paper-2);padding:16px 18px}
+.pillar b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+.pillar b .k{color:var(--accent)}
+.pillar p{color:var(--ink-dim);font-weight:300;font-size:.92rem}
+.eco{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 28px;padding:12px;border:1px dashed var(--rule);background:var(--paper-2)}
+.eco a{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);padding:8px 10px;min-height:36px;display:inline-flex;align-items:center}
+.eco a:hover{color:var(--accent)}
+.foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
+.foot .gold{color:var(--accent);margin-top:8px;font-weight:500}
+@media(max-width:520px){
+  .mast nav a.hide{display:none}
+  h1{font-size:clamp(1.9rem,10vw,2.6rem)}
+  .map .row{grid-template-columns:36px 1fr;grid-template-rows:auto auto}
+  .map .st{grid-column:2}
+}
+</style>
+</head>
+<body>
+<header class="mast">
+  <a class="brand" href="./">돌봄 <em>데몬</em></a>
+  <nav>
+    <a class="hide" href="../../index.html">Helana Log</a>
+    <a href="https://mynote11605.tistory.com/" target="_blank" rel="noopener">Tistory</a>
+    <a href="https://github.com/helena751107/helana_log" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div class="kicker">Care Daemon · 돌봄(케어)을 수행하는 IT</div>
+    <h1>돌봄 <em>데몬</em><br>기술로 돌보는 법.</h1>
+    <p class="deck">누군가의 하루를 지키는 방법을, 기계가 매일 도는 루프로 옮기는 과정을 담은 교재.<br>가족사를 미러링해, 같은 처지의 사람들이 스스로 돌봄 기술을 만드는 법을 보여줍니다.</p>
+    <div class="loop" aria-label="돌봄 데몬의 한 바퀴">
+      <span class="node"><b>수집</b> 배터리·온도·위치</span><span class="arr">→</span>
+      <span class="node"><b>분석</b> 임계값 대조</span><span class="arr">→</span>
+      <span class="node"><b>보고</b> 이상만 알림</span><span class="arr">→</span>
+      <span class="node" style="border-style:dashed">15분 뒤 다시</span>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">01</span>선언</h2>
+    <p class="lead">돌보는 일의 가장 어려운 지점은 <b>"언제, 무엇이 잘못됐는지 아무도 모른다"</b>는 것이다.
+    사람이 곁에 있어도, 밤새 배터리가 닳듯 돌봄은 시간이 지나며 서서히 비워진다.
+    이 빈틈을 채우는 가장 작은 단위의 기술이 <b>돌봄 데몬(care daemon)</b>이다.</p>
+    <div class="pillars">
+      <div class="pillar"><b><span class="k">독립.</span> AI 의존성 제로</b><p>Claude Code 세션과 무관하게 돈다. 크론이 부르면 돌고, 안 부르면 조용히 사라진다. 한 줄의 스크립트가 매번 같은 판단을 한다.</p></div>
+      <div class="pillar"><b><span class="k">주기.</span> 15분마다 한 바퀴</b><p>사람의 관심은 끊기지만 루프는 끊기지 않는다. 배터리·온도·위치·연결을 읽고, 정해진 임계값과 대조한다.</p></div>
+      <div class="pillar"><b><span class="k">기준.</span> 임계값은 숫자다</b><p>배터리 15% 이하, 온도 45°C 이상, 위치 6시간 무변동. 이 숫자가 돌봄의 기준이 되고, 기준은 코드로 남는다.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>10편 지도 <small style="font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;color:var(--ink-mute);font-weight:400">Season 1</small></h2>
+    <p class="lead">한 바퀴(10편)로 돌봄 데몬의 전모를 닫는다. 앞 네 편은 <b>"무엇을 돌봐야 하는가"</b>(제도·하루), 뒤 다섯 편은 <b>"어떻게 기술로 돌보는가"</b>(데몬 모듈). Season 2부터는 실제 사건이 에피소드를 만든다.</p>
+    <div class="map">
+      <div class="row"><span class="n">01</span><span class="t">매니페스토<small>돌봄 데몬이란 무엇인가</small></span><span class="st done"><a href="./manifesto/01-care-daemon.html">읽기 →</a></span></div>
+      <div class="row"><span class="n">02</span><span class="t">트랙 DW<small>장애·정신건강 복지의 빈틈은 어디인가</small></span><span class="st done"><a href="./track/02-disability-welfare.html">읽기 →</a></span></div>
+      <div class="row"><span class="n">03</span><span class="t">트랙 DC<small>치매·노인 돌봄의 빈틈은 어디인가</small></span><span class="st next">준비 중</span></div>
+      <div class="row"><span class="n">04</span><span class="t">트랙 BL<small>기초생활 보장의 빈틈은 어디인가</small></span><span class="st next">준비 중</span></div>
+      <div class="row"><span class="n">05</span><span class="t">대화록 001<small>하루가 시작되기 전, 무엇이 보이는가</small></span><span class="st next">준비 중</span></div>
+      <div class="row"><span class="n">06</span><span class="t">솔루션 — 아키텍처<small>돌봄 데몬은 어떤 구조로 도는가</small></span><span class="st next">준비 중</span></div>
+      <div class="row"><span class="n">07</span><span class="t">솔루션 — 배터리·온도<small>위험을 어떻게 감지하는가</small></span><span class="st next">준비 중</span></div>
+      <div class="row"><span class="n">08</span><span class="t">솔루션 — 위치·GPS<small>무반응을 어떻게 감지하는가</small></span><span class="st next">준비 중</span></div>
+      <div class="row"><span class="n">09</span><span class="t">솔루션 — 원격 돌봄망<small>멀리서 어떻게 안전하게 잇는가</small></span><span class="st next">준비 중</span></div>
+      <div class="row"><span class="n">10</span><span class="t">솔루션 — 보고 무전기<small>이상을 누구에게 어떻게 전하는가</small></span><span class="st next">준비 중</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>에피소드는 실제 사건에서</h2>
+    <p class="lead">돌봄 현장에서 실제로 벌어지는 일 하나가, 하나의 에피소드가 된다. <b>빌드 과정 자체가 원고</b>다 — 코드를 고치고, 게이트를 통과시키고, 배포하는 그 과정이 그대로 교재가 된다. 일하는 시간과 콘텐츠를 만드는 시간이 겹친다.</p>
+    <div class="pillars">
+      <div class="pillar"><b><span class="k">사건 → 솔루션.</span></b><p>예: "오늘 누나 집에 전기가 나갔다" → <code>care-daemon.sh</code>에 <b>정전 감지</b> 규칙(충전→배터리 전환 + WiFi 소실)을 추가하는 에피소드.</p></div>
+      <div class="pillar"><b><span class="k">열린 커리큘럼.</span></b><p>10편은 Season 1의 닫힌 아크. 그 뒤로 정전·배터리 방전·위치 무반응 등 사건이 생길 때마다 에피소드가 늘어난다.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>읽는 법</h2>
+    <div class="pillars">
+      <div class="pillar"><b><span class="k">페어 발행.</span></b><p>매 편은 티스토리 글 + 이 페이지(GitHub Pages) 한 쌍. 같은 원고에서 나온다. 티스토리는 정적 본문, 이 페이지는 인터랙티브 도표까지 담는다.</p></div>
+      <div class="pillar"><b><span class="k">비단정.</span></b><p>법령·의료를 단정하지 않는다. 편마다 "확인 창구"를 남기고, 최신 기준은 직접 확인한다. 이 채널은 법률 자문도 의료 가이드도 아니다.</p></div>
+      <div class="pillar"><b><span class="k">돌봄 데이터 비공개.</span></b><p>실 GPS·정확한 주소·진료 원문·토큰은 절대 싣지 않는다. 모든 예시는 가명·일반화한다.</p></div>
+    </div>
+  </section>
+
+  <div class="eco">
+    <a href="../../index.html">Helana Log</a>
+    <a href="https://helena751107.github.io/helena_phone/" target="_blank" rel="noopener">S21 Phone Hub</a>
+    <a href="https://mynote11605.tistory.com/" target="_blank" rel="noopener">Tistory</a>
+  </div>
+
+  <footer class="foot">
+    <div>돌봄 데몬 · Care Daemon</div>
+    <div class="gold">돌봄(케어)을 수행하는 IT — 기술로 돌보는 법</div>
+    <p style="margin-top:12px"><a href="../../index.html">← Helana Log</a></p>
+  </footer>
+</main>
+</body>
+</html>
