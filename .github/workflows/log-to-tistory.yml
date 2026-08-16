@@ -31,12 +31,6 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Checkout helena-programming (scripts)
-        uses: actions/checkout@v4
-        with:
-          repository: helena751107/helena-programming
-          path: _converter
-
       - name: Find changed .md files
         id: changed
         run: |
@@ -88,7 +82,7 @@ jobs:
             exit 0
           fi
 
-          bash _converter/scripts/log_to_telegram.sh $FLAG --files "$FILES_JSON"
+          bash scripts/log_to_telegram.sh $FLAG --files "$FILES_JSON"
 
       - name: Summary
         if: always()
