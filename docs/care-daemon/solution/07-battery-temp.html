@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="termux-battery-status로 잔량·온도·충전상태를 읽고, 15% 저전압·45°C 과열·직전 대비 30% 급감 세 임계값으로 위험을 판정해 텔레그램으로 즉시 알린다">
+<meta name="theme-color" content="#0a0908">
+<title>돌봄 데몬의 배터리·온도 감시 — 방전·과열을 먼저 잡는 눈 — Helana Log</title>
+<link rel="icon" href="../../../icons/favicon-32.png" type="image/png">
+<link rel="manifest" href="../../../site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=JetBrains+Mono:wght@400&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://helena751107.github.io/helena_phone/assets/webzine.css">
+<style>
+:root {
+  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
+  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
+  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
+  --accent:#3db8a8; --gold:#d4a84b;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --gutter:max(22px, calc(env(safe-area-inset-left,0px) + 16px));
+  --gutter-r:max(22px, calc(env(safe-area-inset-right,0px) + 16px));
+}
+[data-theme="light"] {
+  --ink:#1a1510; --ink-dim:#5c5348; --ink-mute:#8a8074;
+  --paper:#f7f1e6; --paper-2:#efe8db; --paper-3:#fffdf8;
+  --rule:rgba(26,21,16,.1); --rule2:rgba(26,21,16,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+a:hover{filter:brightness(1.15)}
+.spine{position:fixed;left:0;top:0;bottom:0;width:2px;background:var(--rule);z-index:50}
+.spine-fill{width:100%;height:0;background:var(--accent)}
+.mast{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px var(--gutter-r) 12px var(--gutter);padding-top:max(12px,env(safe-area-inset-top));
+  background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:1rem;color:var(--ink)}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.mast nav{display:flex;flex-wrap:wrap;gap:6px}
+.mast a,.mast button{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);
+  min-height:40px;padding:8px 10px;background:none;border:none;cursor:pointer;font-family:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:28px var(--gutter-r) 80px var(--gutter)}
+.kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.4rem);font-weight:600;margin-bottom:10px;padding-inline:2px}
+.deck{color:var(--ink-dim);font-weight:300;border-left:2px solid var(--accent);padding-left:12px;margin-bottom:18px}
+.meta{font-size:.75rem;color:var(--ink-mute);margin-bottom:22px;font-family:var(--mono)}
+.prose h2{font-family:var(--serif);font-size:1.35rem;margin:1.6em 0 .6em;color:var(--ink)}
+.prose h3{font-size:1.05rem;margin:1.2em 0 .5em}
+.prose p,.prose li{color:var(--ink-dim);font-weight:300;margin-bottom:.7em}
+.prose ul,.prose ol{margin:0 0 1em 1.2em}
+.prose code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
+.prose pre{background:var(--paper-2);border:1px solid var(--rule);padding:14px;overflow-x:auto;margin:1em 0;font-size:.82rem}
+.prose table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1em 0}
+.prose th,.prose td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+.prose th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.prose blockquote{border-left:2px solid var(--accent);padding:8px 14px;color:var(--ink-dim);margin:1em 0;background:var(--paper-2)}
+.appbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;padding:10px;background:var(--paper-2);border:1px solid var(--rule);position:sticky;top:56px;z-index:30}
+.appbar input{flex:1 1 140px;min-height:40px;padding:8px 10px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink);font:inherit}
+.appbar button{min-height:40px;padding:8px 12px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
+.foot .a{color:var(--accent);margin-top:8px}
+.sec{border:1px solid var(--rule);background:var(--paper-2);margin:1em 0;border-radius:2px;overflow:hidden}
+.sec > .sec-h{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:none;border:none;color:inherit;font:inherit;cursor:pointer;text-align:left;min-height:48px}
+.sec > .sec-h h2{margin:0;font-size:1.15rem;font-family:var(--serif)}
+.sec .ico{width:28px;height:28px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent)}
+.sec.open .ico{transform:rotate(45deg)}
+.sec .sec-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.sec.open .sec-b{grid-template-rows:1fr}
+.sec .sec-i{overflow:hidden;min-height:0;opacity:0;padding:0 14px;transition:opacity .25s}
+.sec.open .sec-i{opacity:1;padding:0 14px 14px}
+mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+
+.care{margin:1.4em 0}
+.care figcaption{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:.6em}
+.care-info{margin:0 0 22px}
+/* callout */
+.care-callout{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--rule2);border-left:3px solid var(--accent);background:var(--paper-2)}
+.care-callout-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;padding:3px 7px;border-radius:2px;background:var(--accent);color:#0a0908;font-weight:600;flex:none;margin-top:2px}
+.care-callout.care-warn{border-left-color:var(--gold)}
+.care-callout.care-warn .care-callout-badge{background:var(--gold)}
+.care-callout.care-danger{border-left-color:#e85d4c}
+.care-callout.care-danger .care-callout-badge{background:#e85d4c}
+.care-callout.care-check{border-left-color:#2e9e5b}
+.care-callout.care-check .care-callout-badge{background:#2e9e5b}
+.care-callout-text{color:var(--ink-dim);font-weight:300}
+/* threshold table */
+.care-threshold table{width:100%;border-collapse:collapse;font-size:.88rem}
+.care-threshold th,.care-threshold td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+.care-threshold th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.care-threshold code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
+.care-threshold tr.lv-urgent td:first-child{border-left:3px solid #e85d4c}
+.care-threshold tr.lv-warning td:first-child{border-left:3px solid var(--gold)}
+.care-threshold tr.lv-info td:first-child{border-left:3px solid var(--accent)}
+/* flow */
+.care-flow-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.care-node{padding:10px 14px;border:1px solid var(--rule2);border-radius:4px;background:var(--paper-3);font-size:.85rem}
+.care-node.start{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.care-node-label{font-family:var(--sans);font-weight:500}
+.care-edge{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink-mute)}
+.care-arrow{color:var(--accent);font-size:1.1rem}
+.care-edge-label{font-size:.68rem;color:var(--ink-mute);white-space:nowrap}
+.care-loop{margin-left:6px;padding:6px 10px;border:1px dashed var(--rule2);border-radius:999px;font-size:.75rem;color:var(--accent)}
+/* bars */
+.care-bar{display:flex;align-items:center;gap:10px;margin:.5em 0}
+.care-bar-label{width:9em;flex:none;font-size:.82rem;color:var(--ink-dim)}
+.care-bar-track{flex:1;height:14px;background:var(--paper-3);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.care-bar-fill{display:block;height:100%;background:var(--accent)}
+.care-bar-val{width:3em;text-align:right;font-family:var(--mono);font-size:.78rem;color:var(--accent)}
+/* timeline */
+.care-timeline{border-left:1px solid var(--rule2);margin-left:6px;padding-left:16px}
+.care-tl-item{position:relative;margin:.7em 0}
+.care-tl-item::before{content:"";position:absolute;left:-21px;top:.4em;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.care-tl-time{font-family:var(--mono);font-size:.72rem;color:var(--accent);margin-right:8px}
+.care-tl-label{color:var(--ink-dim)}
+.care-tl-note{color:var(--ink-mute);font-size:.8rem;margin-left:6px}
+/* checklist */
+.care-checklist ul{list-style:none;padding-left:0}
+.care-checklist li{margin:.4em 0}
+.care-checklist input{margin-right:8px;accent-color:var(--accent)}
+.care-checklist input:checked + *{text-decoration:line-through;opacity:.55}
+/* 복사 블록 */
+.care-code{position:relative;margin:1.2em 0}
+.care-code pre{background:var(--paper-2);border:1px solid var(--rule2);padding:16px;padding-top:34px;border-radius:8px;overflow-x:auto;margin:0}
+.care-code code{font-family:var(--mono);font-size:.82rem;color:var(--gold2);background:none;padding:0}
+.care-copy{position:absolute;top:8px;right:8px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:11px;font-family:var(--sans);padding:4px 11px;border-radius:6px;cursor:pointer}
+.care-copy:hover{color:var(--ink);border-color:var(--accent)}
+/* 테이블 가독성 강화 (Boss: "테이블 보이지도 않아" 대응) */
+.prose table,.care-threshold table{border-collapse:collapse}
+.prose th,.prose td,.care-threshold th,.care-threshold td{border:1px solid color-mix(in srgb,var(--ink) 32%,transparent)!important}
+.prose th,.care-threshold th{background:var(--paper-3)!important;color:var(--gold)!important}
+</style>
+</head>
+<body>
+<div class="spine" aria-hidden="true"><div class="spine-fill" id="spineFill"></div></div>
+<header class="mast">
+  <a class="brand" href="../../../">Helana <em>Log</em></a>
+  <nav>
+    <a href="../../../">Home</a>
+    <a href="../../../docs/">Docs</a>
+    <a href="https://helena751107.github.io/helena_phone/">Hub</a>
+    <button type="button" id="themeBtn">Theme</button>
+  </nav>
+</header>
+<main class="wrap">
+  <div class="kicker">돌봄 데몬 · Care</div>
+  <h1>돌봄 데몬의 배터리·온도 감시 — 방전·과열을 먼저 잡는 눈</h1>
+  <p class="deck">termux-battery-status로 잔량·온도·충전상태를 읽고, 15% 저전압·45°C 과열·직전 대비 30% 급감 세 임계값으로 위험을 판정해 텔레그램으로 즉시 알린다</p>
+  <div class="meta">source · docs/care-daemon/solution/07-battery-temp.md · bridge docs↔web · _Grok</div>
+  <div class="appbar">
+    <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
+    <button type="button" id="fold">접기</button>
+    <button type="button" id="expand">펼치기</button>
+  </div>
+  <figure class="care-info" style="margin:0 0 22px"><div style="background:#14120f;border:1px solid #4a423a;border-radius:12px;overflow:hidden"><div style="height:4px;background:linear-gradient(90deg,#d4a84b,#3db8a8)"></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 22px 0"><span style="font-size:11px;font-weight:700;letter-spacing:2px;color:#3db8a8;text-transform:uppercase">CARE DAEMON · 돌봄 데몬</span><span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#d4a84b;white-space:nowrap">5 SECTION</span></div><div style="padding:8px 22px 0;font-family:'Cormorant Garamond',Georgia,'Noto Serif KR',serif;font-size:23px;font-weight:700;color:#f4efe6;line-height:1.3">돌봄 데몬의 배터리·온도 감시 — 방전·과열을 먼저 잡는 눈</div><div style="padding:6px 22px 0;font-size:12.5px;color:#8d8376;line-height:1.6">termux-battery-status로 잔량·온도·충전상태를 읽고, 15% 저전압·45°C 과열·직전 대비 30% 급감 세 임…</div><div style="padding:14px 22px 20px"><div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">1. 질문</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">2. 원리</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">3. 실물 (코드·설정)</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">4. 임계값</span></div>
+<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
+<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">5</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">5. 한계·확인 창구</span></div></div></div></figure><article class="prose" id="prose"><blockquote>
+<p>이 편은 데몬이 돌보는 숫자들 중 <strong>가장 먼저, 가장 자주</strong> 보는 두 값 — 배터리와 온도 — 을 다룬다. 전원이 꺼지면 모든 돌봄이 멈추고, 과열은 화재·기기 손상으로 이어질 수 있다. 그래서 이 두 값은 임계값 판정의 최전선이다.</p>
+</blockquote>
+<h2 id="1">1. 질문</h2>
+<p>배터리와 온도를 어떻게 감시하는가.</p>
+<p>한 줄로: <code>termux-battery-status</code> 한 번 호출로 <strong>잔량·온도·충전상태</strong>를 읽고, 세 임계값(저전압 15%·과열 45°C·급감 30%)으로 위험을 판정한다.</p>
+<h2 id="2">2. 원리</h2>
+<p>수집은 단 한 번의 호출로 끝난다. 안드로이드의 <code>termux-battery-status</code>가 JSON으로 값을 주면, 데몬은 그중 <strong>percentage(잔량)·temperature(온도)·status(충전상태)·plugged(충전기 연결)</strong> 네 필드만 뽑는다.</p>
+<p>판정은 <strong>절대 기준 두 개 + 변화 기준 한 개</strong>다.</p>
+<ul>
+<li><strong>절대 기준 ① 저전압:</strong> 잔량이 15% 아래로 떨어지면 방전 위험. 단, <strong>충전 중(PLUGGED_AC)이면 경보를 울리지 않는다</strong> — 이미 꽂혀 있는 폰에 &ldquo;방전 위험&rdquo;을 외치는 건 헛경보이기 때문이다.</li>
+<li><strong>절대 기준 ② 과열:</strong> 온도가 45°C를 넘으면 과열 경보.</li>
+<li><strong>변화 기준 ③ 급감:</strong> 직전 실행 때보다 <strong>30% 이상 떨어졌으면</strong> &ldquo;배터리 급감&rdquo;으로 잡는다. 40%여도 &ldquo;10분 전 80%였다&rdquo;면 상황이 다르다(편 06의 &ldquo;숫자보다 숫자의 변화&rdquo; 원칙).</li>
+</ul>
+<p>이 세 판정이 하나라도 걸리면 등급(level)이 올라가고, 결과는 보고 단계(편 10)로 넘어간다.</p>
+<h2 id="3">3. 실물 (코드·설정)</h2>
+<p>수집은 <code>termux-battery-status</code> 하나로, 네 필드를 <code>grep</code>으로 뽑는다.</p>
+<div class="care-code"><button class="care-copy" type="button" title="코드 복사">복사</button><pre><code class="language-bash">collect_battery() {
+  local batt_json
+  batt_json=$(termux-battery-status 2&gt;/dev/null || echo '{}')
+  local pct; pct=$(echo &quot;$batt_json&quot; | grep -o '&quot;percentage&quot;:[0-9]*' | grep -o '[0-9]*' || echo &quot;0&quot;)
+  local temp; temp=$(echo &quot;$batt_json&quot; | grep -o '&quot;temperature&quot;:[0-9.]*' | grep -o '[0-9.]*' || echo &quot;0&quot;)
+  local status; status=$(echo &quot;$batt_json&quot; | grep -o '&quot;status&quot;:&quot;[^&quot;]*&quot;' | cut -d'&quot;' -f4 || echo &quot;UNKNOWN&quot;)
+  local plugged; plugged=$(echo &quot;$batt_json&quot; | grep -o '&quot;plugged&quot;:&quot;[^&quot;]*&quot;' | cut -d'&quot;' -f4 || echo &quot;UNKNOWN&quot;)
+}
+</code></pre></div>
+<p>판정은 세 임계값이고, 값은 <code>care.conf</code>에서 바꿀 수 있다.</p>
+<div class="care-code"><button class="care-copy" type="button" title="코드 복사">복사</button><pre><code class="language-bash"># ── 저전압 (충전 중이면 헛경보 방지) ──
+if [ &quot;$batt_pct&quot; -lt &quot;$BATTERY_LOW&quot; ] &amp;&amp; [ &quot;$batt_plugged&quot; != &quot;PLUGGED_AC&quot; ]; then
+  level=&quot;urgent&quot;; alerts=&quot;${alerts} ⚠️ 배터리 ${batt_pct}% (방전 위험)&quot;
+fi
+
+# ── 과열 ──
+if [ &quot;${batt_temp%.*}&quot; -gt &quot;$TEMP_HIGH&quot; ] 2&gt;/dev/null; then
+  [ &quot;$level&quot; = &quot;info&quot; ] &amp;&amp; level=&quot;warning&quot;; alerts=&quot;${alerts} 🔥 온도 ${batt_temp}°C (과열)&quot;
+fi
+
+# ── 급감 (직전 대비) ──
+prev_batt=$(echo &quot;$PREV_STATE&quot; | grep &quot;BATTERY_PCT=&quot; | cut -d= -f2 || echo &quot;100&quot;)
+drop=$((prev_batt - batt_pct))
+if [ &quot;$drop&quot; -gt &quot;$BATTERY_DROP_PCT&quot; ]; then
+  level=&quot;urgent&quot;; alerts=&quot;${alerts} 📉 배터리 급감: ${prev_batt}% → ${batt_pct}%&quot;
+fi
+</code></pre></div>
+<figure class="care care-flow" data-id="battery-flow"><figcaption>배터리·온도 감시 흐름 — 수집 → 세 판정 → 보고</figcaption><div class="care-flow-row"><div class="care-node start"><span class="care-node-label">termux-battery-status</span></div><div class="care-edge"><span class="care-arrow">→</span><span class="care-edge-label"></span></div><div class="care-node "><span class="care-node-label">저전압 &lt; 15%?</span></div><div class="care-edge"><span class="care-arrow">→</span><span class="care-edge-label"></span></div><div class="care-node "><span class="care-node-label">과열 &gt; 45°C?</span></div><div class="care-edge"><span class="care-arrow">→</span><span class="care-edge-label"></span></div><div class="care-node "><span class="care-node-label">급감 &gt; 30%?</span></div><div class="care-edge"><span class="care-arrow">→</span><span class="care-edge-label">하나라도 걸리면</span></div><div class="care-node "><span class="care-node-label">보고 (텔레그램)</span></div></div></figure>
+
+<h2 id="4">4. 임계값</h2>
+<p>실제 <code>care.conf</code>에 박힌 값들이다.</p>
+<figure class="care care-threshold" data-id="battery-thresholds"><figcaption>배터리·온도 임계값 (care.conf)</figcaption><table><thead><tr><th>항목</th><th>임계값</th><th>조치</th></tr></thead><tbody><tr class="lv-urgent"><td>배터리 저전압</td><td><code>15%</code></td><td>즉시 🔴 경고 (urgent)</td></tr><tr class="lv-urgent"><td>배터리 급감</td><td><code>30% (직전 대비)</code></td><td>🔴 이상 보고 (urgent)</td></tr><tr class="lv-warning"><td>온도 과열</td><td><code>45°C</code></td><td>🟡 과열 경고 (warning)</td></tr></tbody></table></figure>
+
+<p>급감은 &ldquo;직전 값&rdquo;이 있어야 의미가 있다. 아래는 60분 안에 100% → 65%로 35% 떨어진 가상 사례다(30% 기준을 넘어 urgent).</p>
+<figure class="care care-bars" data-id="battery-drop-demo"><figcaption>배터리 급감 사례 (60분, 35% 하락)</figcaption><div class="care-bar"><span class="care-bar-label">0분 (직전)</span><span class="care-bar-track"><span class="care-bar-fill" style="width:100.0%"></span></span><span class="care-bar-val">100</span></div><div class="care-bar"><span class="care-bar-label">60분 (현재)</span><span class="care-bar-track"><span class="care-bar-fill" style="width:65.0%"></span></span><span class="care-bar-val">65</span></div></figure>
+
+<h2 id="5">5. 한계·확인 창구</h2>
+<ul>
+<li><strong>숫자는 잡지만 원인은 모른다.</strong> 데몬은 &ldquo;잔량이 떨어졌다&rdquo;는 결과만 안다. 어떤 앱이 배터리를 먹는지, 배터리 자체가 노화했는지는 별도 점검이 필요하다(안드로이드 설정 → 배터리 사용량).</li>
+<li><strong>온도는 배터리 온도다.</strong> 실내 온도·체온과 다르다. 사람의 건강 상태를 의미하지 않는다.</li>
+<li><strong>급감 기준(30%)은 판정이지 예측이 아니다.</strong> &ldquo;얼마나 더 버틸지&rdquo;는 이 데몬이 알려주지 않는다. 배터리 교체 시점은 기기 제조사·서비스센터에서 확인할 것.</li>
+<li><strong>법령·의료 단정 금지:</strong> 폰의 배터리·온도 수치는 건강·복지 판단의 근거가 아니다. 필요하면 보건소·의료기관에서 확인할 것.</li>
+</ul>
+<blockquote>
+<p>이 채널은 법률 자문도 의료 가이드도 아니다.</p>
+</blockquote></article>
+  <footer class="foot">
+    <div>Helana Log · Docs Webzine</div>
+    <div class="a">모든 계정은 큰누나 명의입니다.</div>
+    <p style="margin-top:12px"><a href="../../../">← Landing</a> · <a href="https://helena751107.github.io/helena_phone/">S21 Hub</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('helena-doc-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn')?.addEventListener('click', () => {
+    const n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    localStorage.setItem('helena-doc-theme', n);
+  });
+  const spine = document.getElementById('spineFill');
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (spine) spine.style.height = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+  }, { passive: true });
+  const prose = document.getElementById('prose');
+  if (prose) {
+    [...prose.querySelectorAll(':scope > h2')].forEach((h2) => {
+      const sec = document.createElement('div');
+      sec.className = 'sec open';
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'sec-h';
+      const tw = document.createElement('div'); tw.appendChild(h2.cloneNode(true));
+      const ico = document.createElement('span'); ico.className = 'ico'; ico.textContent = '+';
+      btn.appendChild(tw); btn.appendChild(ico);
+      const body = document.createElement('div'); body.className = 'sec-b';
+      const inner = document.createElement('div'); inner.className = 'sec-i';
+      let n = h2.nextSibling; const move = [];
+      while (n && !(n.nodeType === 1 && n.tagName === 'H2')) { move.push(n); n = n.nextSibling; }
+      move.forEach(x => inner.appendChild(x));
+      body.appendChild(inner); sec.appendChild(btn); sec.appendChild(body);
+      h2.replaceWith(sec);
+      btn.addEventListener('click', () => {
+        const on = !sec.classList.contains('open');
+        sec.classList.toggle('open', on);
+      });
+    });
+    const setAll = (open) => prose.querySelectorAll('.sec').forEach(s => s.classList.toggle('open', open));
+    document.getElementById('fold')?.addEventListener('click', () => setAll(false));
+    document.getElementById('expand')?.addEventListener('click', () => setAll(true));
+    document.getElementById('q')?.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      prose.querySelectorAll('.sec').forEach(sec => {
+        const hit = !q || sec.innerText.toLowerCase().includes(q);
+        sec.style.display = hit ? '' : 'none';
+        if (hit && q) sec.classList.add('open');
+      });
+    });
+  }
+})();
+</script>
+<script>
+(() => {
+  // checklist persistence (Pages)
+  document.querySelectorAll('.care-checklist').forEach(fig => {
+    const id = fig.dataset.id; const key = 'care-chk-' + id;
+    const saved = JSON.parse(localStorage.getItem(key) || '[]');
+    fig.querySelectorAll('input.care-chk').forEach((c, i) => { c.checked = saved[i] || false; });
+    fig.addEventListener('change', () => {
+      localStorage.setItem(key, JSON.stringify([...fig.querySelectorAll('input.care-chk')].map(c => c.checked)));
+    });
+  });
+  // 코드 복사 (Pages)
+  function fallbackCopy(txt, done){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy')}catch(e){} document.body.removeChild(ta); done(); }
+  document.querySelectorAll('.care-copy').forEach(b => {
+    b.addEventListener('click', () => {
+      var code = b.parentNode.querySelector('pre code');
+      if (!code) return;
+      var txt = code.innerText;
+      var done = function(){ b.textContent='복사됨'; setTimeout(function(){ b.textContent='복사'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done).catch(function(){ fallbackCopy(txt, done); });
+      } else { fallbackCopy(txt, done); }
+    });
+  });
+})();
+</script></body>
+</html>
