@@ -1,0 +1,19 @@
+name: Deploy GitHub Pages
+
+# 위성 레포 — 중앙 재사용 워크플로 호출 (정적 HTML, build=false).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    uses: helena751107/helena_phone/.github/workflows/pages-deploy.yml@main
+    with:
+      build: false
+
