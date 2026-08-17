@@ -1,0 +1,7 @@
+# Helana Log — how Helena lives, day by day
+
+> The care track: a brother watching over his sister with one phone — design to daily life. The heart of the Helena care system.
+
+- [Repository](https://github.com/helena751107/helana_log)
+- [Live site (Korean)](https://helena751107.github.io/helana_log/)
+- [README](https://github.com/helena751107/helana_log#readme)
