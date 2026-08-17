@@ -1,3 +1,12 @@
+# How Helena Lives — care, translated into technology
+
+> For my sister living with schizophrenia: a record of her days — Scene · Feel · Way · Next —
+> and beside it, a 24-hour guardian (the care daemon).
+>
+> _Korean below = the full worked example._
+
+---
+
 # 헬레나가 사는 법 — How Helena Lives
 
 > **조현병과 함께 사는 누나를 위해, 돌봄을 기술로 번역한 기록.**
