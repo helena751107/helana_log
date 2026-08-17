@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="티스토리 활용법">
+<meta name="theme-color" content="#0a0908">
+<title>티스토리 활용법 — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/기자/mynote11605_e0fc47517a06.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://github.com/helena751107#person",
+      "name": "Helena Park",
+      "url": "https://github.com/helena751107",
+      "description": "Made in Korea — not a developer. One Galaxy S21, built by voice, for a sister.",
+      "sameAs": [
+        "https://github.com/helena751107",
+        "https://helena751107.github.io/helena_phone/",
+        "https://www.youtube.com/@helena_phone",
+        "https://www.youtube.com/@HelenaPark-e7c"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://helena751107.github.io/helana_log/기자/mynote11605_e0fc47517a06.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/기자/mynote11605_e0fc47517a06.html",
+      "name": "티스토리 활용법",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://github.com/helena751107#person"
+      },
+      "author": {
+        "@id": "https://github.com/helena751107#person"
+      }
+    }
+  ]
+}
+</script>
+<link rel="icon" href="../icons/favicon-32.png" type="image/png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=JetBrains+Mono:wght@400&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://helena751107.github.io/helena_phone/assets/webzine.css">
+<style>
+:root {
+  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
+  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
+  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
+  --accent:#3db8a8; --gold:#d4a84b;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --gutter:max(22px, calc(env(safe-area-inset-left,0px) + 16px));
+  --gutter-r:max(22px, calc(env(safe-area-inset-right,0px) + 16px));
+}
+[data-theme="light"] {
+  --ink:#1a1510; --ink-dim:#5c5348; --ink-mute:#8a8074;
+  --paper:#f7f1e6; --paper-2:#efe8db; --paper-3:#fffdf8;
+  --rule:rgba(26,21,16,.1); --rule2:rgba(26,21,16,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+a:hover{filter:brightness(1.15)}
+.spine{position:fixed;left:0;top:0;bottom:0;width:2px;background:var(--rule);z-index:50}
+.spine-fill{width:100%;height:0;background:var(--accent)}
+.mast{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px var(--gutter-r) 12px var(--gutter);padding-top:max(12px,env(safe-area-inset-top));
+  background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:1rem;color:var(--ink)}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.mast nav{display:flex;flex-wrap:wrap;gap:6px}
+.mast a,.mast button{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);
+  min-height:40px;padding:8px 10px;background:none;border:none;cursor:pointer;font-family:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:28px var(--gutter-r) 80px var(--gutter)}
+.kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.4rem);font-weight:600;margin-bottom:10px;padding-inline:2px}
+.deck{color:var(--ink-dim);font-weight:300;border-left:2px solid var(--accent);padding-left:12px;margin-bottom:18px}
+.meta{font-size:.75rem;color:var(--ink-mute);margin-bottom:22px;font-family:var(--mono)}
+.prose h2{font-family:var(--serif);font-size:1.35rem;margin:1.6em 0 .6em;color:var(--ink)}
+.prose h3{font-size:1.05rem;margin:1.2em 0 .5em}
+.prose p,.prose li{color:var(--ink-dim);font-weight:300;margin-bottom:.7em}
+.prose ul,.prose ol{margin:0 0 1em 1.2em}
+.prose code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
+.prose pre{background:var(--paper-2);border:1px solid var(--rule);padding:14px;overflow-x:auto;margin:1em 0;font-size:.82rem}
+.prose table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1em 0}
+.prose th,.prose td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+.prose th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.prose blockquote{border-left:2px solid var(--accent);padding:8px 14px;color:var(--ink-dim);margin:1em 0;background:var(--paper-2)}
+.appbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;padding:10px;background:var(--paper-2);border:1px solid var(--rule);position:sticky;top:56px;z-index:30}
+.appbar input{flex:1 1 140px;min-height:40px;padding:8px 10px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink);font:inherit}
+.appbar button{min-height:40px;padding:8px 12px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
+.foot .a{color:var(--accent);margin-top:8px}
+.sec{border:1px solid var(--rule);background:var(--paper-2);margin:1em 0;border-radius:2px;overflow:hidden}
+.sec > .sec-h{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:none;border:none;color:inherit;font:inherit;cursor:pointer;text-align:left;min-height:48px}
+.sec > .sec-h h2{margin:0;font-size:1.15rem;font-family:var(--serif)}
+.sec .ico{width:28px;height:28px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent)}
+.sec.open .ico{transform:rotate(45deg)}
+.sec .sec-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.sec.open .sec-b{grid-template-rows:1fr}
+.sec .sec-i{overflow:hidden;min-height:0;opacity:0;padding:0 14px;transition:opacity .25s}
+.sec.open .sec-i{opacity:1;padding:0 14px 14px}
+mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+</style>
+</head>
+<body>
+<div class="spine" aria-hidden="true"><div class="spine-fill" id="spineFill"></div></div>
+<header class="mast">
+  <a class="brand" href="../">Helana <em>Log</em></a>
+  <nav>
+    <a href="../">Home</a>
+    <a href="../docs/">Docs</a>
+    <a href="https://helena751107.github.io/helena_phone/">Hub</a>
+    <button type="button" id="themeBtn">Theme</button>
+  </nav>
+</header>
+<main class="wrap">
+  <div class="kicker">행정 대화록 · Docs</div>
+  <h1>티스토리 활용법</h1>
+  
+  <div class="meta">source · 기자/mynote11605_e0fc47517a06.md · bridge docs↔web · _Grok</div>
+  <div class="appbar">
+    <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
+    <button type="button" id="fold">접기</button>
+    <button type="button" id="expand">펼치기</button>
+  </div>
+  <article class="prose" id="prose"><hr>
+<p>source: https://mynote11605.tistory.com/2<br>
+date: Sat, 8 Aug 2026 11:20:02 +0900<br>
+blog: mynote11605</p>
+<hr>
+<h1 id="_1">티스토리 활용법</h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width, viewport-fit=cover">
+<title>티스토리 서랍법 — 공짜 AI 대화를 백서로 남기는 기자·서랍·잡지 구조</title>
+<meta name="description" content="핸드폰 하나, 공짜 AI 대화가 사라지기 전에 웹페이지로 저장하는 법. 기자·서랍·잡지 3단 구조와 초심자용 실행 체크리스트를 정리한 백서.">
+<meta name="keywords" content="티스토리 HTML모드, 공짜 AI 대화 저장, 모바일 블로그 발행, 초심자 티스토리, 기자 서랍 잡지 구조, 애드센스 티스토리">
+<meta name="author" content="중년작가지망생 EduArt Engineer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="티스토리 서랍법 — 공짜 AI 대화를 백서로 남기는 기자·서랍·잡지 구조">
+<meta property="og:description" content="핸드폰 하나로 공짜 AI 대화를 붙잡아 티스토리 서랍에 저장하고, 네이버 잡지로 엮는 실행 백서.">
+<meta property="og:site_name" content="dtslib.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="티스토리 서랍법 — 기자·서랍·잡지 구조 백서">
+<meta name="twitter:description" content="공짜 AI 대화가 사라지기 전에, 손가락 복붙만으로 웹페이지를 만드는 법.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "티스토리 서랍법 — 공짜 AI 대화를 백서로 남기는 기자·서랍·잡지 구조",
+  "author": {"@type": "Person", "name": "중년작가지망생"},
+  "publisher": {"@type": "Organization", "name": "dtslib.com"},
+  "description": "핸드폰 하나, 공짜 AI 대화가 사라지기 전에 웹페이지로 저장하는 법을 정리한 초심자용 백서."
+}
+</script>
+<style>
+  :root{
+    --papyrus:#f4e5c9;
+    --peru:#cd853f;
+    --gold:#daa520;
+    --ink:#4a3728;
+    --saddle:#8b4513;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--papyrus);
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(139,69,19,0.06), transparent 60%),
+      radial-gradient(ellipse at 80% 90%, rgba(205,133,63,0.10), transparent 55%);
+    color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+    word-break:keep-all;
+    line-height:1.6;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:0 18px 60px;}
+  header.hero{
+    padding:44px 18px 30px;
+    text-align:center;
+    border-bottom:3px double var(--saddle);
+  }
+  .seal{
+    width:76px; height:76px; margin:0 auto 16px;
+    border-radius:50%;
+    background:var(--saddle);
+    color:var(--papyrus);
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700;
+    box-shadow:0 0 0 3px var(--papyrus), 0 0 0 5px var(--saddle);
+    transform:rotate(-8deg);
+    text-shadow:0 1px 1px rgba(0,0,0,0.3);
+  }
+  h1{
+    font-size:clamp(22px,6vw,30px);
+    margin:0 0 10px;
+    color:var(--saddle);
+    text-shadow:0 1px 0 rgba(255,255,255,0.4);
+  }
+  .lede{font-size:15px; color:var(--ink); opacity:0.85; margin:0;}
+  section{margin-top:38px;}
+  h2{
+    font-size:19px;
+    color:var(--saddle);
+    border-left:5px solid var(--gold);
+    padding-left:10px;
+    margin-bottom:14px;
+  }
+  /* 아코디언 (CSS 전용) */
+  .qa{border:1px solid rgba(139,69,19,0.25); border-radius:8px; margin-bottom:10px; overflow:hidden; background:rgba(255,255,255,0.35);}
+  .qa input{display:none;}
+  .qa label{
+    display:block; padding:14px 16px; cursor:pointer;
+    font-weight:700; color:var(--ink); background:rgba(218,165,32,0.18);
+    position:relative;
+  }
+  .qa label::after{content:"+"; position:absolute; right:16px; color:var(--saddle); font-weight:900;}
+  .qa input:checked + label::after{content:"−";}
+  .qa .a{
+    max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.35s ease;
+    padding:0 16px; font-size:14.5px;
+  }
+  .qa input:checked ~ .a{max-height:400px; padding:14px 16px;}
+  /* AI 불가능 명제 리스트 */
+  .prop-list{list-style:none; margin:0; padding:0;}
+  .prop-list li{
+    display:flex; gap:10px; padding:10px 0;
+    border-bottom:1px dashed rgba(139,69,19,0.3);
+    font-size:14.5px;
+  }
+  .prop-num{
+    flex:0 0 auto; width:26px; height:26px; border-radius:50%;
+    background:var(--saddle); color:var(--papyrus);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700;
+  }
+  /* 평가 차트 (CSS only) */
+  .chart-row{margin-bottom:16px;}
+  .chart-label{display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:4px;}
+  .chart-track{background:rgba(139,69,19,0.15); border-radius:6px; height:14px; overflow:hidden;}
+  .chart-fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--peru));}
+  .chart-note{font-size:12.5px; opacity:0.8; margin-top:4px;}
+  /* 마인드맵 (기자-서랍-잡지) */
+  .mindmap{display:flex; flex-direction:column; gap:0; align-items:center;}
+  .mm-box{
+    width:100%; max-width:320px;
+    background:rgba(255,255,255,0.45);
+    border:2px solid var(--saddle);
+    border-radius:10px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .mm-box b{display:block; font-size:16px; color:var(--saddle); margin-bottom:3px;}
+  .mm-box span{font-size:13px;}
+  .mm-arrow{font-size:22px; color:var(--gold); padding:4px 0; text-shadow:0 1px 0 rgba(0,0,0,0.15);}
+  /* Before/After */
+  .ba{display:grid; grid-template-columns:1fr; gap:10px;}
+  @media(min-width:420px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba-box{border-radius:8px; padding:14px; font-size:13.5px;}
+  .ba-box.before{background:rgba(139,69,19,0.08); border:1px solid rgba(139,69,19,0.25);}
+  .ba-box.after{background:rgba(218,165,32,0.18); border:1px solid var(--gold);}
+  .ba-box b{display:block; margin-bottom:6px; color:var(--saddle);}
+  /* 복사 박스 */
+  .copybox{
+    background:rgba(255,255,255,0.5);
+    border:1.5px dashed var(--saddle);
+    border-radius:8px;
+    padding:14px;
+    font-size:13.5px;
+    white-space:pre-wrap;
+  }
+  .copy-hint{font-size:12px; opacity:0.75; margin-top:6px;}
+  /* mailto */
+  .mailbtn{
+    display:inline-block; margin-top:10px;
+    background:var(--saddle); color:var(--papyrus)!important;
+    text-decoration:none; font-weight:700;
+    padding:12px 22px; border-radius:24px;
+    text-shadow:0 1px 1px rgba(0,0,0,0.25);
+  }
+  footer{margin-top:50px; text-align:center; font-size:12.5px; opacity:0.75; border-top:1px solid rgba(139,69,19,0.25); padding-top:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="seal">서랍<br>봉인</div>
+  <h1>공짜 AI 대화, 사라지기 전에 서랍에 넣어라</h1>
+  <p class="lede">핸드폰 하나 · 코딩 지식 0 · 기자·서랍·잡지 3단 구조 백서</p>
+</header>
+
+<section aria-label="핵심 문답">
+  <h2>대화 핵심 문답 5</h2>
+
+  <div class="qa">
+    <input type="checkbox" id="q1"><label for="q1">Q1. 일단 티스토리가 왜 필요하냐?</label>
+    <div class="a">애드센스가 붙는 몇 안 되는 국산 CMS이고, 구글 검색에 노출되며, HTML 모드로 자유롭게 구조를 짤 수 있는 유일한 조합이라서.</div>
+  </div>
+
+  <div class="qa">
+    <input type="checkbox" id="q2"><label for="q2">Q2. 결국 티스토리를 쓰는 이유가 뭐야?</label>
+    <div class="a">공짜 LLM과 나눈 대화가 날아가기 전에, 미리 만들어둔 프롬프트로 백서 형태 HTML을 뽑아 붙여넣는 것. LLM에게 "기자" 역할을 주는 것.</div>
+  </div>
+
+  <div class="qa">
+    <input type="checkbox" id="q3"><label for="q3">Q3. 전부 핸드폰 안에서만 쓰는 거야?</label>
+    <div class="a">그렇다. 브라우저 바로가기로 접근해서 에디터 조작까지 전부 손가락 클릭으로 처리한다. 자동화는 0.</div>
+  </div>
+
+  <div class="qa">
+    <input type="checkbox" id="q4"><label for="q4">Q4. CS 용어 없이 이 구조를 뭐라고 부를까?</label>
+    <div class="a">기자(LLM)가 보고서를 쓰고, 서랍(티스토리)에 넣고, 나중에 잡지(네이버)로 엮는다. 단, 서랍은 문이 유리로 된 서랍 — 등록 즉시 전체 공개다.</div>
+  </div>
+
+  <div class="qa">
+    <input type="checkbox" id="q5"><label for="q5">Q5. 점수판이랑 SEO 지적, 왜 문제야?</label>
+    <div class="a">자체 점수판은 취향 문제지만, 메타태그를 실제 내용과 다르게 꾸미는 건 구글이 실제로 페널티를 주는 항목이라 별개로 봐야 한다.</div>
+  </div>
+</section>
+
+<section aria-label="AI가 못하는 것">
+  <h2>AI 불가능 명제 질문 10</h2>
+  <ul class="prop-list">
+    <li><span class="prop-num">1</span>AI가 카카오 로그인 캡차를 대신 뚫어줄 수 있는가?</li>
+    <li><span class="prop-num">2</span>AI가 티스토리 발행 버튼을 대신 눌러줄 수 있는가?</li>
+    <li><span class="prop-num">3</span>AI가 만든 페이지의 구글 노출을 보장해줄 수 있는가?</li>
+    <li><span class="prop-num">4</span>AI가 만든 메타태그가 항상 정직한 요약이라고 스스로 보증할 수 있는가?</li>
+    <li><span class="prop-num">5</span>AI가 자기 산출물에 객관적으로 점수를 매길 수 있는가?</li>
+    <li><span class="prop-num">6</span>AI가 본인인증·관공서 서식을 대신 처리할 수 있는가?</li>
+    <li><span class="prop-num">7</span>AI가 대화가 휘발되지 않도록 스스로 저장해줄 수 있는가?</li>
+    <li><span class="prop-num">8</span>AI가 복붙 타이밍, 즉 발행 시점을 대신 판단할 수 있는가?</li>
+    <li><span class="prop-num">9</span>AI가 만든 글이 독자에게 신뢰를 줄지 스스로 알 수 있는가?</li>
+    <li><span class="prop-num">10</span>AI가 사람 개입 0으로 이 전체 파이프라인을 완결시킬 수 있는가?</li>
+  </ul>
+</section>
+
+<section aria-label="Claude 평가">
+  <h2>Claude 평가 4개 영역</h2>
+
+  <div class="chart-row">
+    <div class="chart-label"><span>기술 정합성</span><span>92점</span></div>
+    <div class="chart-track"><div class="chart-fill" style="width:92%"></div></div>
+    <div class="chart-note">JS 미사용·스킨 비의존 설계로 백업 안전성 확보, RSS 백업 실행 스텝만 보완 필요</div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-label"><span>초심자 실행 가능성</span><span>88점</span></div>
+    <div class="chart-track"><div class="chart-fill" style="width:88%"></div></div>
+    <div class="chart-note">손가락 클릭만으로 완결되나, "서랍=전체공개"라는 점은 별도 고지 필요</div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-label"><span>SEO 건전성</span><span>65점</span></div>
+    <div class="chart-track"><div class="chart-fill" style="width:65%"></div></div>
+    <div class="chart-note">메타태그 세트는 탄탄하나 "실제와 다르게 어필" 문구는 클로킹 리스크</div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-label"><span>재현성·확장성</span><span>85점</span></div>
+    <div class="chart-track"><div class="chart-fill" style="width:85%"></div></div>
+    <div class="chart-note">동일 프롬프트가 서로 다른 5개 주제 채널에 적용 가능함을 확인</div>
+  </div>
+</section>
+
+<section aria-label="구조도">
+  <h2>기자 · 서랍 · 잡지 구조</h2>
+  <div class="mindmap">
+    <div class="mm-box"><b>① 기자</b><span>LLM + 웹페이지변환 프롬프트</span></div>
+    <div class="mm-arrow">↓</div>
+    <div class="mm-box"><b>② 서랍</b><span>티스토리 HTML모드, 손가락 복붙 발행</span></div>
+    <div class="mm-arrow">↓</div>
+    <div class="mm-box"><b>③ 잡지</b><span>네이버 블로그, 선별·재편집</span></div>
+  </div>
+</section>
+
+<section aria-label="비교">
+  <h2>Before / After</h2>
+  <div class="ba">
+    <div class="ba-box before"><b>Before</b>공짜 AI와의 대화는 창을 닫으면 증발. 남는 게 없음.</div>
+    <div class="ba-box after"><b>After</b>프롬프트 한 번 돌려 서랍(티스토리)에 손가락 복붙, 영구 텍스트로 고정.</div>
+  </div>
+</section>
+
+<section aria-label="복사용 원칙">
+  <h2>서랍 사용 원칙 (복사용)</h2>
+  <div class="copybox">서랍은 임시 보관함이 아니라 전체 공개 발행함이다.
+민감한 대화는 그대로 붙여넣지 않는다.
+발행 후에는 같은 HTML을 다른 곳(예: GitHub)에도 한 번 더 남긴다.
+메타태그는 실제 본문 요약만 쓴다.</div>
+    <div class="copy-hint">문단을 길게 눌러 전체 선택 후 복사하세요.</div>
+</section>
+
+<footer>
+  <a class="mailbtn" href="mailto:REDACTED">문의: REDACTED</a>
+  <p>© dtslib.com | 저자: 중년작가지망생 EduArt Engineer</p>
+</footer>
+
+</div>
+</body>
+</html>
+
+<hr>
+<p>원문: https://mynote11605.tistory.com/2</p></article>
+  <footer class="foot">
+    <div>Helana Log · Docs Webzine</div>
+    <div class="a">모든 계정은 큰누나 명의입니다.</div>
+    <p style="margin-top:12px"><a href="../">← Landing</a> · <a href="https://helena751107.github.io/helena_phone/">S21 Hub</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('helena-doc-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn')?.addEventListener('click', () => {
+    const n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    localStorage.setItem('helena-doc-theme', n);
+  });
+  const spine = document.getElementById('spineFill');
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (spine) spine.style.height = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+  }, { passive: true });
+  const prose = document.getElementById('prose');
+  if (prose) {
+    [...prose.querySelectorAll(':scope > h2')].forEach((h2) => {
+      const sec = document.createElement('div');
+      sec.className = 'sec open';
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'sec-h';
+      const tw = document.createElement('div'); tw.appendChild(h2.cloneNode(true));
+      const ico = document.createElement('span'); ico.className = 'ico'; ico.textContent = '+';
+      btn.appendChild(tw); btn.appendChild(ico);
+      const body = document.createElement('div'); body.className = 'sec-b';
+      const inner = document.createElement('div'); inner.className = 'sec-i';
+      let n = h2.nextSibling; const move = [];
+      while (n && !(n.nodeType === 1 && n.tagName === 'H2')) { move.push(n); n = n.nextSibling; }
+      move.forEach(x => inner.appendChild(x));
+      body.appendChild(inner); sec.appendChild(btn); sec.appendChild(body);
+      h2.replaceWith(sec);
+      btn.addEventListener('click', () => {
+        const on = !sec.classList.contains('open');
+        sec.classList.toggle('open', on);
+      });
+    });
+    const setAll = (open) => prose.querySelectorAll('.sec').forEach(s => s.classList.toggle('open', open));
+    document.getElementById('fold')?.addEventListener('click', () => setAll(false));
+    document.getElementById('expand')?.addEventListener('click', () => setAll(true));
+    document.getElementById('q')?.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      prose.querySelectorAll('.sec').forEach(sec => {
+        const hit = !q || sec.innerText.toLowerCase().includes(q);
+        sec.style.display = hit ? '' : 'none';
+        if (hit && q) sec.classList.add('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

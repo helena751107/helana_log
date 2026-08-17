@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="배터리가 &quot;폰이 살아있는가&quot;를 본다면, 위치는 **&quot;사람이 움직이고 있는가&quot;** 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 **조용함** — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.">
+<meta name="description" content="helena_phone 프로젝트 18일간(7/23~8/9)의 티스토리 관련 모든 시도·실패·전환·완성 이력.">
 <meta name="theme-color" content="#0a0908">
-<title>돌봄 데몬의 위치·GPS 감시 — &#x27;안 움직임&#x27;을 잡는 눈 — Helana Log</title>
-<link rel="canonical" href="https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html">
+<title>티스토리 시행착오 전체 이력 — 인터랙티브 인포그래픽 대화록 — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/logs/2026/08/tistory-trial-and-error.html">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -26,9 +26,9 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html#webpage",
-      "url": "https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html",
-      "name": "돌봄 데몬의 위치·GPS 감시 — '안 움직임'을 잡는 눈",
+      "@id": "https://helena751107.github.io/helana_log/logs/2026/08/tistory-trial-and-error.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/logs/2026/08/tistory-trial-and-error.html",
+      "name": "티스토리 시행착오 전체 이력 — 인터랙티브 인포그래픽 대화록",
       "inLanguage": "ko",
       "publisher": {
         "@id": "https://github.com/helena751107#person"
@@ -121,119 +121,199 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 </header>
 <main class="wrap">
   <div class="kicker">행정 대화록 · Docs</div>
-  <h1>돌봄 데몬의 위치·GPS 감시 — &#x27;안 움직임&#x27;을 잡는 눈</h1>
-  <p class="deck">배터리가 &quot;폰이 살아있는가&quot;를 본다면, 위치는 **&quot;사람이 움직이고 있는가&quot;** 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 **조용함** — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.</p>
-  <div class="meta">source · docs/care-daemon/solution/08-location-gps.md · bridge docs↔web · _Grok</div>
+  <h1>티스토리 시행착오 전체 이력 — 인터랙티브 인포그래픽 대화록</h1>
+  <p class="deck">helena_phone 프로젝트 18일간(7/23~8/9)의 티스토리 관련 모든 시도·실패·전환·완성 이력.</p>
+  <div class="meta">source · logs/2026/08/tistory-trial-and-error.md · bridge docs↔web · _Grok</div>
   <div class="appbar">
     <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
     <button type="button" id="fold">접기</button>
     <button type="button" id="expand">펼치기</button>
   </div>
   <article class="prose" id="prose"><hr>
-<p>id: &ldquo;08&rdquo;<br>
-type: solution<br>
-title: &ldquo;돌봄 데몬의 위치·GPS 감시 — &lsquo;안 움직임&rsquo;을 잡는 눈&rdquo;<br>
-question: &ldquo;위치를 어떻게 감시하고 움직임 없음을 잡아내는가&rdquo;<br>
-answer: &ldquo;termux-location(GPS 우선, 네트워크 폴백)으로 좌표를 읽어, 2시간 GPS 무응답·6시간 위치 무변동을 잡아 웰니스 체크를 촉발한다&rdquo;<br>
-category: &ldquo;위치·GPS&rdquo;<br>
-category_id: 1307310<br>
-track: &ldquo;&rdquo;<br>
-sources:<br>
-  - helena_phone:care/care-daemon.sh<br>
-  - helena_phone:care/care.conf<br>
-interactive:<br>
-  - location-flow<br>
-  - location-thresholds<br>
-date: &ldquo;2026-08-16&rdquo;<br>
-민감정보: &ldquo;없음&rdquo;</p>
+<p>date: 2026-08-09<br>
+source: devlog-compilation<br>
+agent: Claude</p>
 <hr>
-<h1 id="gps">돌봄 데몬의 위치·GPS 감시 — &lsquo;안 움직임&rsquo;을 잡는 눈</h1>
+<h1 id="_1">티스토리 시행착오 전체 이력 — 인터랙티브 인포그래픽 대화록</h1>
 <blockquote>
-<p>배터리가 &ldquo;폰이 살아있는가&rdquo;를 본다면, 위치는 <strong>&ldquo;사람이 움직이고 있는가&rdquo;</strong> 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 <strong>조용함</strong> — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.</p>
+<p>helena_phone 프로젝트 18일간(7/23~8/9)의 티스토리 관련 모든 시도·실패·전환·완성 이력.</p>
 </blockquote>
-<h2 id="1">1. 질문</h2>
-<p>위치를 어떻게 감시하고 움직임 없음을 잡아내는가.</p>
-<p>한 줄로: <code>termux-location</code>으로 <strong>GPS 우선, 실패하면 네트워크 폴백</strong>으로 좌표를 읽고, 두 임계값(GPS 무응답 2시간·위치 무변동 6시간)으로 &ldquo;안 움직임&rdquo;을 판정한다.</p>
-<h2 id="2">2. 원리</h2>
-<p>위치는 다른 값과 달리 <strong>두 번 물어보는</strong> 수집이다.</p>
-<ul>
-<li><strong>1순위 GPS</strong> — <code>termux-location -p gps -r last</code>로 마지막으로 확정된 GPS 좌표를 읽는다.</li>
-<li><strong>폴백 네트워크</strong> — GPS가 안 잡히면(실내·날씨·기기 설정) <code>-p network -r last</code>로 와이파이·기지국 기반 좌표를 읽는다.</li>
-</ul>
-<p>판정도 두 갈래다.</p>
-<ul>
-<li><strong>무응답(GPS silence):</strong> 좌표가 비었거나 provider가 <code>none</code>이면, 마지막으로 위치를 잡은 시각(<code>last_gps_time</code>)과 비교해 <strong>2시간 넘게 무응답</strong>이면 경고한다. &ldquo;폰은 살아있는데 위치가 안 잡힌다&rdquo; = GPS 꺼짐·권한 회수·실내 장기 체류일 수 있다.</li>
-<li><strong>무변동(no move):</strong> 이번 좌표가 직전 좌표와 <strong>같으면</strong>, 마지막으로 움직인 시각(<code>last_move_time</code>)과 비교해 <strong>6시간 넘게 같은 자리</strong>면 urgent로 올린다. 이게 돌봄의 핵심 신호다 — 혼자 계신 분이 6시간째 같은 자리라면 확인이 필요하다.</li>
-</ul>
-<p>핵심은 <strong>&ldquo;좌표 자체가 아니라 좌표의 변화&rdquo;</strong> 를 기억한다는 점이다. 직전 좌표를 <code>care-state.json</code>에 저장해두고, 이번 좌표와 비교한다.</p>
-<h2 id="3">3. 실물 (코드·설정)</h2>
-<p>수집은 GPS 우선, 실패 시 네트워크 폴백이다.</p>
-<pre><code class="language-bash">collect_location() {
-  local loc_json
-  loc_json=$(termux-location -p gps -r last 2&gt;/dev/null \
-    || termux-location -p network -r last 2&gt;/dev/null \
-    || echo '{}')
-  local lat; lat=$(echo &quot;$loc_json&quot; | grep -o '&quot;latitude&quot;:[0-9.]*' | grep -o '[0-9.]*' || echo &quot;&quot;)
-  local lon; lon=$(echo &quot;$loc_json&quot; | grep -o '&quot;longitude&quot;:[0-9.]*' | grep -o '[0-9.]*' || echo &quot;&quot;)
-  local provider; provider=$(echo &quot;$loc_json&quot; | grep -o '&quot;provider&quot;:&quot;[^&quot;]*&quot;' | cut -d'&quot;' -f4 || echo &quot;none&quot;)
-}
-</code></pre>
-<p>판정은 무응답과 무변동 두 갈래다.</p>
-<pre><code class="language-bash"># ── GPS 무응답 (2시간) ──
-if [ -z &quot;$loc_lat&quot; ] || [ &quot;$loc_provider&quot; = &quot;none&quot; ]; then
-  prev_gps_time=$(echo &quot;$PREV_STATE&quot; | grep &quot;LAST_GPS_TIME=&quot; | cut -d= -f2 || echo &quot;$NOW_EPOCH&quot;)
-  gps_gap=$(( (NOW_EPOCH - prev_gps_time) / 3600 ))
-  if [ &quot;$gps_gap&quot; -gt &quot;$GPS_SILENT_HOURS&quot; ]; then
-    [ &quot;$level&quot; = &quot;info&quot; ] &amp;&amp; level=&quot;warning&quot;; alerts=&quot;${alerts} 📍 GPS ${gps_gap}시간째 무응답&quot;
-  fi
-fi
-
-# ── 위치 무변동 (6시간) ──
-prev_loc=$(echo &quot;$PREV_STATE&quot; | grep &quot;LOC_LAT=&quot; | cut -d= -f2 || echo &quot;&quot;)
-if [ -n &quot;$prev_loc&quot; ] &amp;&amp; [ -n &quot;$loc_lat&quot; ] &amp;&amp; [ &quot;$prev_loc&quot; = &quot;$loc_lat&quot; ]; then
-  prev_move_time=$(echo &quot;$PREV_STATE&quot; | grep &quot;LAST_MOVE_TIME=&quot; | cut -d= -f2 || echo &quot;$NOW_EPOCH&quot;)
-  still_hours=$(( (NOW_EPOCH - prev_move_time) / 3600 ))
-  if [ &quot;$still_hours&quot; -gt &quot;$NO_MOVE_HOURS&quot; ]; then
-    level=&quot;urgent&quot;; alerts=&quot;${alerts} 🛑 ${still_hours}시간째 위치 변동 없음 (웰니스 체크 필요)&quot;
-  fi
-fi
-</code></pre>
-<p>```care type=&rdquo;flow&rdquo; id=&rdquo;location-flow&rdquo;<br>
-title: 위치 감시 흐름 — GPS→폴백 → 무응답·무변동 판정 → 보고<br>
-nodes:<br>
-  - { id: gps, label: &ldquo;GPS 좌표&rdquo;, kind: start }<br>
-  - { id: net, label: &ldquo;네트워크 폴백&rdquo; }<br>
-  - { id: silent, label: &ldquo;무응답 &gt; 2시간?&rdquo; }<br>
-  - { id: still, label: &ldquo;무변동 &gt; 6시간?&rdquo; }<br>
-  - { id: report, label: &ldquo;보고 (텔레그램)&rdquo; }<br>
-edges:<br>
-  - { from: gps, to: net, label: &ldquo;GPS 실패 시&rdquo; }<br>
-  - { from: net, to: silent }<br>
-  - { from: silent, to: still }<br>
-  - { from: still, to: report, label: &ldquo;하나라도 걸리면&rdquo; }</p>
-<pre><code>
-## 4. 임계값
-
-실제 `care.conf`에 박힌 값들이다.
-
-```care type=&quot;threshold-table&quot; id=&quot;location-thresholds&quot;
-title: 위치·GPS 임계값 (care.conf)
-rows:
-  - { label: &quot;GPS 무응답&quot;, threshold: &quot;2시간&quot;, action: &quot;🟡 무응답 보고 (warning)&quot;, level: warning }
-  - { label: &quot;위치 무변동&quot;, threshold: &quot;6시간&quot;, action: &quot;🔴 웰니스 체크 (urgent)&quot;, level: urgent }
-  - { label: &quot;평소 반경&quot;, threshold: &quot;500m&quot;, action: &quot;선언만 됨 (미배선 — 아래 한계)&quot;, level: warning }
-</code></pre>
-<h2 id="5">5. 한계·확인 창구</h2>
-<ul>
-<li><strong>평소 반경 500m는 미구현이다.</strong> <code>care.conf</code>에 <code>LOCATION_RADIUS_M=500</code>(&ldquo;평소 반경&rdquo;)이 <strong>선언되어 있지만, <code>analyze()</code>에는 그 값을 쓰는 코드가 없다.</strong> &ldquo;평소 반경을 벗어나면 보고&rdquo;는 아직 동작하지 않는다. 다음 단계의 과제다(편 06의 한계에서 예고한 지점).</li>
-<li><strong>좌표는 &ldquo;같은 자리&rdquo;만 본다.</strong> 어느 자리인지(집·병원·산책로)는 판정하지 않는다. 좌표 변화가 있으면 &ldquo;움직였다&rdquo;로 본다.</li>
-<li><strong>GPS 정확도는 환경에 따라 다르다.</strong> 실내·고층·날씨에 따라 수십~수백 m 오차가 날 수 있다. &ldquo;6시간 무변동&rdquo; 판정은 이 오차 범위 안의 움직임을 못 잡을 수 있다.</li>
-<li><strong>실 GPS 좌표는 공개하지 않는다.</strong> 이 데몬은 좌표를 텔레그램 보고에 싣지만, 이 채널(원고)은 좌표·주소·동선을 절대 싣지 않는다. 돌봄 데이터 공개 금지 원칙.</li>
-<li><strong>법령·의료 단정 금지:</strong> &ldquo;6시간 무변동&rdquo;은 웰니스 확인 신호이지 의학적 판단이 아니다. 필요하면 보건소·의료기관·119에서 확인할 것.</li>
-</ul>
+<h2 id="1">1. 상황 — 우리가 티스토리를 만난 이유</h2>
+<p>헬레나 생태계는 GitHub Pages 5종(helena_phone·helana_log·helana-faith·helena-piano·helena-metalcare)을 중심으로 돌아간다. 하지만 한국에서 GitHub Pages는 검색이 안 된다. 네이버·티스토리는 한국 검색의 관문.</p>
+<p><strong>5개 티스토리 = 5개 GitHub 레포 = 5개 YouTube 채널 (1:1:1 매칭):</strong></p>
+<table>
+<thead>
+<tr>
+<th>티스토리</th>
+<th>레포</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>galaxys21-pwuser</td>
+<td>helena_phone</td>
+<td>IT·개발·워크벤치</td>
+</tr>
+<tr>
+<td>helena-metalcare</td>
+<td>helena-metalcare</td>
+<td>돌봄·복지·행정</td>
+</tr>
+<tr>
+<td>helena-piano</td>
+<td>helena-piano</td>
+<td>음악·취미</td>
+</tr>
+<tr>
+<td>helana-christianity</td>
+<td>helana-faith</td>
+<td>신앙</td>
+</tr>
+<tr>
+<td>mynote11605</td>
+<td>—</td>
+<td>자유 수첩</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-3">2. 느낀 바 — 3중 장벽에 막히다</h2>
+<h3 id="1-playwright-kakao-oauth-koe006">시도 #1: Playwright 자동 로그인 → Kakao OAuth KOE006</h3>
+<p>&ldquo;티스토리 Open API가 2024년 2월에 완전 종료됐다. 그럼 Playwright로 브라우저 흉내 내서 로그인하면 되지 않을까?&rdquo;</p>
+<p><strong>결과: ❌ 실패.</strong> Kakao OAuth가 <code>KOE006</code> 에러(앱 관리자 설정 오류)를 뱉으며 가로막았다. Tistory 쪽 설정 문제라 서버 사이드에서 우회 불가.</p>
+<h3 id="2-android-chrome">시도 #2: 북마크릿 → Android Chrome 차단</h3>
+<p>&ldquo;브라우저에서 북마크릿 실행해서 자동으로 글 쓰게 하면?&rdquo;</p>
+<p><strong>결과: ❌ 실패.</strong> Android Chrome이 북마크릿 실행을 막는다. 구글 7년째 방치된 버그. Firefox는 가능하지만 번거롭다.</p>
+<h3 id="3-cookie-db-android-sandbox">시도 #3: Cookie DB 직접 접근 → Android sandbox 차단</h3>
+<p>&ldquo;Chrome 쿠키 DB에 직접 접근해서 세션을 가져오면?&rdquo;</p>
+<p><strong>결과: ❌ 실패.</strong> <code>/data/data/</code> Android 앱 샌드박스. root 없이 접근 불가.</p>
+<h3 id="4-am-start-intent-securityexception">시도 #4: <code>am start</code> Intent → SecurityException</h3>
+<p>&ldquo;Android Intent로 javascript URL을 실행하면?&rdquo;</p>
+<p><strong>결과: ❌ 실패.</strong> Android SecurityException. 보안상 당연한 결과.</p>
+<h3 id="5-github-pages">시도 #5: GitHub Pages 추출 페이지 → 배포 지연</h3>
+<p>&ldquo;GitHub Pages에 쿠키 추출기 페이지를 호스팅해서 iframe으로?&rdquo;</p>
+<p><strong>결과: ❌ 실패.</strong> <code>_</code> 프리픽스 이슈 + Pages 배포 stuck. 게다가 iframe cross-origin 문제.</p>
+<h2 id="3">3. 빈틈 — 자동화는 불가능, 그럼 어떻게?</h2>
+<h3 id="_2">발견한 것</h3>
+<p><strong>5번의 시도, 5번의 실패. 하지만 이 과정에서 결정적인 걸 깨달았다:</strong></p>
+<ol>
+<li><strong>틱스토리 Open API는 영원히 죽었다</strong> (2024.2 종료, 부활 계획 없음)</li>
+<li><strong>Android는 자동화에 적대적이다</strong> (sandbox + SecurityException + 북마크릿 차단)</li>
+<li><strong>하지만 RSS는 살아있다</strong> — <code>/rss</code>로 제목·날짜·요약·링크 전부 파싱 가능</li>
+<li><strong>HTML 모드는 JS를 막지만 CSS는 다 통과시킨다</strong> — XSS 필터가 유일한 적</li>
+</ol>
+<h3 id="boss-44-2026-07-25">Boss의 전략적 전환 (§44, 2026-07-25)</h3>
 <blockquote>
-<p>이 채널은 법률 자문도 의료 가이드도 아니다.</p>
-</blockquote></article>
+<p>&ldquo;틱스토리랑 네이버는 기를 쓰고 뚫을 필요 없다. API 죽었고, 안티봇에 막힌다. 여기는 사람이 직접 한다.&rdquo;</p>
+</blockquote>
+<p><strong>여기서 패러다임이 바뀌었다:</strong><br>
+- 자동화(automation) → <strong>사람+AI 협업(Paste Pipeline)</strong><br>
+- 뚫기(hacking) → <strong>우회(workaround)</strong><br>
+- 기계 발행 → <strong>사람의 복사+붙여넣기</strong></p>
+<h2 id="4-5">4. 솔루션 — 5단계 진화</h2>
+<h3 id="phase-1-paste-pipeline-44">Phase 1: Paste Pipeline (§44)</h3>
+<pre><code>Claude Code가 원고 작성 → TG로 Boss에게 배달 → Boss가 복사+붙여넣기 → 발행 (5분)
+</code></pre>
+<p>핵심: API 없어도 되는 이유 — <strong>사람이 최종 5분만 투자하면 AI가 앞의 55분을 다 해낸다.</strong></p>
+<h3 id="phase-2-rss-67-69">Phase 2: RSS 역방향 리마인더 (§67-69)</h3>
+<blockquote>
+<p>&ldquo;내가 어디까지 했는지 RSS로 파싱해서 Boss에게 알려줄 수 있다&rdquo;</p>
+</blockquote>
+<pre><code>① Boss가 티스토리에 업무수첩 발행
+② Claude Code가 RSS 파싱 → 제목·날짜·링크 수집
+③ Boss에게 &quot;여기까지 했습니다&quot; 리마인더
+</code></pre>
+<p><strong>발견:</strong> 티스토리 RSS는 제목·날짜·요약·링크 모두 자동 파싱 가능. Boss가 쓴 글 제목만 봐도 전체 작업 이력이 한눈에.</p>
+<h3 id="phase-3-5-52-53">Phase 3: 5명의 기자 모델 (§52-53)</h3>
+<pre><code>5개 티스토리 = 5명의 기자
+각 기자가 자기 분야(IT·돌봄·음악·신앙·자유)의 기사를 발행
+→ RSS로 GitHub(helana_log/기자/)에 자동 동기화
+→ GitHub Pages가 &quot;편집국&quot; 역할
+</code></pre>
+<h3 id="phase-4-59-64">Phase 4: 이중 칠판 모델 (§59, §64)</h3>
+<table>
+<thead>
+<tr>
+<th>칠판</th>
+<th>플랫폼</th>
+<th>보여주는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>칠판 A</strong></td>
+<td>Naver·Tistory</td>
+<td>백서·원칙·구조·AI가 정리한 사고</td>
+</tr>
+<tr>
+<td><strong>칠판 B</strong></td>
+<td>GitHub Pages</td>
+<td>대시보드·도구·PWA·인터랙티브 실행</td>
+</tr>
+</tbody>
+</table>
+<p>Boss가 YouTube에서 두 칠판을 오가며 설명 → 콘텐츠 완결.</p>
+<h3 id="phase-5-log-tistory-html-106-2026-08-09">Phase 5: Log → Tistory HTML 자동 파이프 (§106, 2026-08-09)</h3>
+<pre><code>helana_log에 .md push
+  → GitHub Actions 트리거
+  → parksy_to_html.py 변환 (화자감지·SVG·CSS 그래프·필터·아코디언)
+  → @helana_logbot이 Telegram으로 HTML 파일 전송
+  → Boss가 파일 열기 → 전체 복사 → Tistory HTML 모드 붙여넣기
+</code></pre>
+<p><strong>기술 한도 (Tistory HTML 모드):</strong></p>
+<table>
+<thead>
+<tr>
+<th>가능 ✅</th>
+<th>불가 ❌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;details&gt;</code> 아코디언</td>
+<td><code>&lt;script&gt;</code> 태그</td>
+</tr>
+<tr>
+<td>SVG 인라인 (사고지도·결정트리)</td>
+<td><code>onclick</code> 등 모든 이벤트 핸들러</td>
+</tr>
+<tr>
+<td>CSS 애니메이션·<code>:target</code>·<code>:checked</code></td>
+<td><code>javascript:</code> URL</td>
+</tr>
+<tr>
+<td>Grid·Flexbox·<code>@keyframes</code></td>
+<td><code>&lt;iframe&gt;</code></td>
+</tr>
+<tr>
+<td><code>&lt;style&gt;</code> 태그 (글 본문 내)</td>
+<td>외부 JS 로딩</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-5">5. 다음 — 5단 콘텐츠 라이프사이클</h2>
+<pre><code>ParksyCapture(캡처)
+  → parksy_to_html.py(변환)
+  → Tistory HTML 발행(기자)
+  → tistory_sync.sh(RSS → GitHub 동기화)
+  → GitHub Pages 칠판보드(출판)
+  → YouTube 튜토리얼 녹화
+  → Naver 퀼트(최종 전시)
+</code></pre>
+<p><strong>숫자로 보는 시행착오:</strong><br>
+- 5회 자동화 시도 → 전부 실패<br>
+- 1회 패러다임 전환 (자동화→Paste Pipeline)<br>
+- 18일간의 시행착오 → 최종 자동 파이프 완성<br>
+- 5개 티스토리 기자 + RSS 동기화 + HTML 자동 변환<br>
+- 0줄의 JavaScript — 전부 CSS+SVG+HTML5만으로</p>
+<h2 id="6">6. 핵심 교훈</h2>
+<ol>
+<li><strong>API가 죽었어도 포기하지 마라.</strong> Paste Pipeline이라는 더 나은 대안을 찾았다.</li>
+<li><strong>XSS 필터는 적이 아니다.</strong> JS를 막아도 CSS+SVG로 거의 모든 인터랙션이 가능하다.</li>
+<li><strong>사람 5분 + AI 55분 = 자동화 60분.</strong> 똑같은 결과, 다른 접근.</li>
+<li><strong>RSS는 살아있는 마지막 API다.</strong> 티스토리에서 유일하게 신뢰할 수 있는 데이터 통로.</li>
+<li><strong>시행착오 자체가 콘텐츠다.</strong> 5번의 실패 이력이 하나의 완결된 이야기가 됐다.</li>
+</ol></article>
   <footer class="foot">
     <div>Helana Log · Docs Webzine</div>
     <div class="a">모든 계정은 큰누나 명의입니다.</div>

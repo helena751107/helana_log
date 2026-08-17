@@ -3,9 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="이 레포는 **대한민국 행정 대화록**이다.">
+<meta name="description" content="이 레포는 **헬레나(누나)의 인생 스토리**다.">
 <meta name="theme-color" content="#0a0908">
-<title>CLAUDE.md — Helana Log — Helana Log</title>
+<title>CLAUDE.md — 헬레나가 사는 법 (Helana Log) — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/CLAUDE.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://github.com/helena751107#person",
+      "name": "Helena Park",
+      "url": "https://github.com/helena751107",
+      "description": "Made in Korea — not a developer. One Galaxy S21, built by voice, for a sister.",
+      "sameAs": [
+        "https://github.com/helena751107",
+        "https://helena751107.github.io/helena_phone/",
+        "https://www.youtube.com/@helena_phone",
+        "https://www.youtube.com/@HelenaPark-e7c"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://helena751107.github.io/helana_log/CLAUDE.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/CLAUDE.html",
+      "name": "CLAUDE.md — 헬레나가 사는 법 (Helana Log)",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://github.com/helena751107#person"
+      },
+      "author": {
+        "@id": "https://github.com/helena751107#person"
+      }
+    }
+  ]
+}
+</script>
 <link rel="icon" href="./icons/favicon-32.png" type="image/png">
 <link rel="manifest" href="./site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,8 +121,8 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 </header>
 <main class="wrap">
   <div class="kicker">행정 대화록 · Docs</div>
-  <h1>CLAUDE.md — Helana Log</h1>
-  <p class="deck">이 레포는 **대한민국 행정 대화록**이다.</p>
+  <h1>CLAUDE.md — 헬레나가 사는 법 (Helana Log)</h1>
+  <p class="deck">이 레포는 **헬레나(누나)의 인생 스토리**다.</p>
   <div class="meta">source · CLAUDE.md · bridge docs↔web · _Grok</div>
   <div class="appbar">
     <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
@@ -96,28 +130,34 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
     <button type="button" id="expand">펼치기</button>
   </div>
   <article class="prose" id="prose"><blockquote>
-<p>이 레포는 <strong>대한민국 행정 대화록</strong>이다.<br>
-장애복지(조현병 등 당사자 누나) · 기초생활 보장 · 치매 어머니 돌봄 가정의<br>
-체감 → 개선점 → 솔루션을 기록한다. 일반 개발 로그가 아니다.</p>
+<p>이 레포는 <strong>헬레나(누나)의 인생 스토리</strong>다.<br>
+조현병과 함께 살아가는 당사자 누나가, 신앙·음악·가족의 돌봄 속에서<br>
+하루를 살아내는 방식을 기록한다. 일반 개발 로그도, 행정 민원 기록도 아니다.</p>
 </blockquote>
 <h2 id="_1">작업 전 읽을 것</h2>
 <ul>
-<li><code>docs/IDENTITY.md</code> — 정체성</li>
-<li><code>docs/METHOD.md</code> — 대화록 형식</li>
+<li><code>docs/IDENTITY.md</code> — 정체성 헌장</li>
+<li><code>docs/METHOD.md</code> — 스토리 형식</li>
 <li><code>docs/dialogue/_TEMPLATE.md</code> — 새 글 템플릿</li>
 </ul>
 <h2 id="_2">파일 구조</h2>
 <ul>
 <li><code>index.html</code> — 랜딩 (정체성 요약)</li>
 <li><code>site.webmanifest</code> + <code>icons/</code> — 홈 화면 추가용 (서비스 워커 없음)</li>
-<li><code>docs/</code> — 헌장 · 트랙 · 대화록 · 솔루션</li>
+<li><code>docs/</code> — 헌장 · 삶의 장(tracks) · 스토리(dialogue) · 솔루션</li>
 <li><code>logs/</code> — 날것 캡처 (정제 전)</li>
 <li><code>telegram/</code> — 수집 봇 (민감정보 주의)</li>
+</ul>
+<h2 id="_3">발행 인프라 (어디에 있나)</h2>
+<ul>
+<li><strong>발행 엔진은 <code>helena_phone</code>에 있다</strong> — <code>scripts/publish.py</code>(실행기), <code>scripts/save_tistory_cookie.py</code>(시드), <code>tistory-naver/post.py</code>(티스토리), <code>tistory-naver/session_post.py</code>(네이버).</li>
+<li>여기(helana_log)에는 <strong>설계 지도</strong> <code>docs/solutions/tistory-automation-map.md</code>와 <strong>CI</strong>(<code>.github/workflows/log-to-tistory.yml</code> = md→TG, <code>tistory-sync.yml</code> = RSS 당겨오기)만 있다.</li>
+<li>세션 쿠키(<code>.tistory_session_*.json</code>, <code>tistory-naver/cookies/</code>, <code>accounts.json</code>)는 <strong>절대 커밋 금지</strong> — 공개 레포에 새면 계정 탈취.</li>
 </ul>
 <h2 id="ai">AI 행동 규칙</h2>
 <ul>
 <li>개인 식별정보·진료 원문·계좌·주민번호를 커밋하지 말 것</li>
-<li>대화록은 Fact / Feel / Gap / Fix / Next 구조를 유지</li>
+<li>스토리는 장면(Scene) / 느낀 것(Feel) / 살아낸 법(Way) / 다음 하루(Next) 구조를 유지</li>
 <li>법률·의료 단정 표현 금지 (“확인 필요”로 돌릴 것)</li>
 <li>커밋은 작게, 메시지에 “왜” 포함</li>
 <li>랜딩 카피는 헌장과 모순되지 않게</li>

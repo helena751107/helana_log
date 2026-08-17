@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="helena_phone 생태계에서 ParksyCapture가 차지하는 위치와, 이것이 단순한 &quot;캡처 도구&quot;를 넘어 왜 지식 관리의 핵심 인프라인지 분석.">
+<meta name="theme-color" content="#0a0908">
+<title>ParksyCapture — 대화 캡처 앱의 지식관리적 의미 — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/logs/2026/08/parksy-capture-analysis.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://github.com/helena751107#person",
+      "name": "Helena Park",
+      "url": "https://github.com/helena751107",
+      "description": "Made in Korea — not a developer. One Galaxy S21, built by voice, for a sister.",
+      "sameAs": [
+        "https://github.com/helena751107",
+        "https://helena751107.github.io/helena_phone/",
+        "https://www.youtube.com/@helena_phone",
+        "https://www.youtube.com/@HelenaPark-e7c"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://helena751107.github.io/helana_log/logs/2026/08/parksy-capture-analysis.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/logs/2026/08/parksy-capture-analysis.html",
+      "name": "ParksyCapture — 대화 캡처 앱의 지식관리적 의미",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://github.com/helena751107#person"
+      },
+      "author": {
+        "@id": "https://github.com/helena751107#person"
+      }
+    }
+  ]
+}
+</script>
+<link rel="icon" href="../../../icons/favicon-32.png" type="image/png">
+<link rel="manifest" href="../../../site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=JetBrains+Mono:wght@400&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://helena751107.github.io/helena_phone/assets/webzine.css">
+<style>
+:root {
+  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
+  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
+  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
+  --accent:#3db8a8; --gold:#d4a84b;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --gutter:max(22px, calc(env(safe-area-inset-left,0px) + 16px));
+  --gutter-r:max(22px, calc(env(safe-area-inset-right,0px) + 16px));
+}
+[data-theme="light"] {
+  --ink:#1a1510; --ink-dim:#5c5348; --ink-mute:#8a8074;
+  --paper:#f7f1e6; --paper-2:#efe8db; --paper-3:#fffdf8;
+  --rule:rgba(26,21,16,.1); --rule2:rgba(26,21,16,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+a:hover{filter:brightness(1.15)}
+.spine{position:fixed;left:0;top:0;bottom:0;width:2px;background:var(--rule);z-index:50}
+.spine-fill{width:100%;height:0;background:var(--accent)}
+.mast{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px var(--gutter-r) 12px var(--gutter);padding-top:max(12px,env(safe-area-inset-top));
+  background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:1rem;color:var(--ink)}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.mast nav{display:flex;flex-wrap:wrap;gap:6px}
+.mast a,.mast button{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);
+  min-height:40px;padding:8px 10px;background:none;border:none;cursor:pointer;font-family:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:28px var(--gutter-r) 80px var(--gutter)}
+.kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.4rem);font-weight:600;margin-bottom:10px;padding-inline:2px}
+.deck{color:var(--ink-dim);font-weight:300;border-left:2px solid var(--accent);padding-left:12px;margin-bottom:18px}
+.meta{font-size:.75rem;color:var(--ink-mute);margin-bottom:22px;font-family:var(--mono)}
+.prose h2{font-family:var(--serif);font-size:1.35rem;margin:1.6em 0 .6em;color:var(--ink)}
+.prose h3{font-size:1.05rem;margin:1.2em 0 .5em}
+.prose p,.prose li{color:var(--ink-dim);font-weight:300;margin-bottom:.7em}
+.prose ul,.prose ol{margin:0 0 1em 1.2em}
+.prose code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
+.prose pre{background:var(--paper-2);border:1px solid var(--rule);padding:14px;overflow-x:auto;margin:1em 0;font-size:.82rem}
+.prose table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1em 0}
+.prose th,.prose td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+.prose th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.prose blockquote{border-left:2px solid var(--accent);padding:8px 14px;color:var(--ink-dim);margin:1em 0;background:var(--paper-2)}
+.appbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;padding:10px;background:var(--paper-2);border:1px solid var(--rule);position:sticky;top:56px;z-index:30}
+.appbar input{flex:1 1 140px;min-height:40px;padding:8px 10px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink);font:inherit}
+.appbar button{min-height:40px;padding:8px 12px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
+.foot .a{color:var(--accent);margin-top:8px}
+.sec{border:1px solid var(--rule);background:var(--paper-2);margin:1em 0;border-radius:2px;overflow:hidden}
+.sec > .sec-h{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:none;border:none;color:inherit;font:inherit;cursor:pointer;text-align:left;min-height:48px}
+.sec > .sec-h h2{margin:0;font-size:1.15rem;font-family:var(--serif)}
+.sec .ico{width:28px;height:28px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent)}
+.sec.open .ico{transform:rotate(45deg)}
+.sec .sec-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.sec.open .sec-b{grid-template-rows:1fr}
+.sec .sec-i{overflow:hidden;min-height:0;opacity:0;padding:0 14px;transition:opacity .25s}
+.sec.open .sec-i{opacity:1;padding:0 14px 14px}
+mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+</style>
+</head>
+<body>
+<div class="spine" aria-hidden="true"><div class="spine-fill" id="spineFill"></div></div>
+<header class="mast">
+  <a class="brand" href="../../../">Helana <em>Log</em></a>
+  <nav>
+    <a href="../../../">Home</a>
+    <a href="../../../docs/">Docs</a>
+    <a href="https://helena751107.github.io/helena_phone/">Hub</a>
+    <button type="button" id="themeBtn">Theme</button>
+  </nav>
+</header>
+<main class="wrap">
+  <div class="kicker">행정 대화록 · Docs</div>
+  <h1>ParksyCapture — 대화 캡처 앱의 지식관리적 의미</h1>
+  <p class="deck">helena_phone 생태계에서 ParksyCapture가 차지하는 위치와, 이것이 단순한 &quot;캡처 도구&quot;를 넘어 왜 지식 관리의 핵심 인프라인지 분석.</p>
+  <div class="meta">source · logs/2026/08/parksy-capture-analysis.md · bridge docs↔web · _Grok</div>
+  <div class="appbar">
+    <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
+    <button type="button" id="fold">접기</button>
+    <button type="button" id="expand">펼치기</button>
+  </div>
+  <article class="prose" id="prose"><hr>
+<p>date: 2026-08-09<br>
+source: devlog-compilation<br>
+agent: Claude</p>
+<hr>
+<h1 id="parksycapture">ParksyCapture — 대화 캡처 앱의 지식관리적 의미</h1>
+<blockquote>
+<p>helena_phone 생태계에서 ParksyCapture가 차지하는 위치와, 이것이 단순한 &ldquo;캡처 도구&rdquo;를 넘어 왜 지식 관리의 핵심 인프라인지 분석.</p>
+</blockquote>
+<h2 id="1-parksycapture">1. 상황 — ParksyCapture가 뭐고 왜 깔았나</h2>
+<h3 id="_1">앱 스펙</h3>
+<p><code>com.parksy.capture</code> — 183MB. Android Share Intent로 LLM 대화 로그를 캡처해 마크다운 파일로 저장하는 앱.</p>
+<p><strong>작동 방식:</strong></p>
+<pre><code>Claude 앱에서 대화 중 → 공유 버튼 → ParksyCapture 선택
+→ Share Intent로 EXTRA_TEXT(대화 내용) 수신
+→ 마크다운(.md) 파일로 로컬 저장
+→ helana_log 레포에 커밋·푸시 연동
+</code></pre>
+<p><strong>실제 캡처 예:</strong> <code>helana_log/logs/2026/07/ParksyLog_20260725_080708.md</code> — Boss와 AI 간의 실제 대화가 그대로 .md 파일로 저장된 첫 사례.</p>
+<h3 id="4">왜 깔았나 — 4가지 동기</h3>
+<table>
+<thead>
+<tr>
+<th>동기</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 클립보드 한계</strong></td>
+<td>Claude 앱에서 긴 대화는 &ldquo;전체 선택&rdquo;이 끊김. 중간에 코드블록·이미지 있으면 선택이 분절됨</td>
+</tr>
+<tr>
+<td><strong>② 사고 흐름 보존</strong></td>
+<td>AI와의 대화는 &ldquo;질문→답변→반박→수정→결정&rdquo;의 흐름. 결과만 남기면 판단 과정이 소실됨</td>
+</tr>
+<tr>
+<td><strong>③ 실행기록+판단기록 통합</strong></td>
+<td>실행 로그(&ldquo;뭘 했는지&rdquo;)만 있고 판단 로그(&ldquo;왜 그렇게 했는지&rdquo;)가 없으면 반쪽. 합쳐야 완전한 교재</td>
+</tr>
+<tr>
+<td><strong>④ 검색 가능한 2차 두뇌</strong></td>
+<td>GitHub에 저장하면 모든 대화가 grep/searchable. &ldquo;그때 그 결정 왜 했더라?&rdquo;를 텍스트 검색으로 찾음</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 느낀 바 — 그냥 캡처 도구가 아니었다</h2>
+<h3 id="1">발견 #1: 대화가 자산이 된다</h3>
+<p>ParksyCapture를 설치하기 전까지, AI와의 대화는 &ldquo;하고 나면 사라지는 것&rdquo;이었다. 캡처하기 시작하면서 Boss는 이걸 깨달았다:</p>
+<blockquote>
+<p><strong>&ldquo;AI와 나눈 대화 자체가 원고다. 이걸 구조화만 하면 그대로 웹페이지가 된다.&rdquo;</strong></p>
+</blockquote>
+<p>이 통찰이 ParksyCapture → Tistory HTML 파이프라인의 시발점이다.</p>
+<h3 id="2_1">발견 #2: 이미지는 사라진다</h3>
+<p>ParksyCapture의 구조적 한계: Android Share Intent는 <code>EXTRA_TEXT</code>(텍스트)만 보낸다. Claude CDN에 호스팅된 이미지는 인증이 필요해서 외부 앱이 가져올 수 없다. 이미지가 중간에 끼어 있으면 그 이미지 자리만 비어 있고 텍스트는 이어진다.</p>
+<p>이 한계가 오히려 <strong>투트랙 캡처 전략</strong>을 낳았다:</p>
+<table>
+<thead>
+<tr>
+<th>스레드 유형</th>
+<th>캡처 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>텍스트 전용</td>
+<td>ParksyCapture 단독 (완전 자동)</td>
+</tr>
+<tr>
+<td>이미지 섞인 스레드</td>
+<td>텍스트 = ParksyCapture + 이미지 = 갤러리 스크린샷 → 타임스탬프 병합</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3">발견 #3: 로그는 정제되기 전에 &lsquo;날것&rsquo;으로 존재해야 한다</h3>
+<p>helana_log의 설계 철학: <code>logs/</code>는 날것(raw) 캡처 공간이고, <code>docs/dialogue/</code>는 정제된 대화록이다.</p>
+<pre><code>logs/YYYY/MM/ParksyLog_*.md   →  날것 (비정제 원본)
+    ↓ 사람+AI가 검토·정제
+docs/dialogue/YYYY-MM-DD.md   →  정제본 (Fact/Feel/Gap/Fix/Next 구조)
+</code></pre>
+<p>이 2단계 구조가 중요한 이유: <strong>날것은 가공하기 전에 사라진다.</strong> 정제할 시간이 없으면 날것이라도 남겨야 한다. 나중에 정제할 수 있다. 날것조차 없으면 영원히 사라진다.</p>
+<h2 id="3-parksycapture">3. 빈틈 — ParksyCapture가 메꾸는 지식 관리의 구멍</h2>
+<h3 id="3_1">기존 지식 관리의 3대 실패 모드</h3>
+<table>
+<thead>
+<tr>
+<th>실패 모드</th>
+<th>증상</th>
+<th>ParksyCapture의 해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>판단 소실</strong></td>
+<td>&ldquo;왜 그렇게 했는지&rdquo;가 사라지고 &ldquo;뭘 했는지&rdquo;만 남음</td>
+<td>대화 전체를 캡처 → 질문·반박·결정의 맥락이 보존됨</td>
+</tr>
+<tr>
+<td><strong>기억 왜곡</strong></td>
+<td>며칠 지나면 &ldquo;내가 그때 왜 그 선택을 했지?&rdquo; 기억이 흐려짐</td>
+<td>타임스탬프 + 원본 텍스트로 정확한 복기 가능</td>
+</tr>
+<tr>
+<td><strong>전수 불가</strong></td>
+<td>나 혼자 아는 암묵지. 남에게 설명하려면 처음부터 다시 생각해야 함</td>
+<td>대화록 자체가 교재. &ldquo;어떻게 생각이 진화했는지&rdquo;가 그대로 보임</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3_2">지식의 3층 구조</h3>
+<p>ParksyCapture가 있음으로써 가능해진 지식의 층위:</p>
+<pre><code>Layer 1 — 날것 (Raw)
+  ParksyCapture 로그, 스크린샷, 음성 메모
+  ↙ &quot;있기만 해도 가치 있는&quot; 층
+
+Layer 2 — 정제 (Refined)  
+  Fact/Feel/Gap/Fix/Next 구조화된 대화록
+  ↙ &quot;읽으면 이해되는&quot; 층
+
+Layer 3 — 발행 (Published)
+  Tistory HTML 인터랙티브 페이지, YouTube 튜토리얼, Naver 퀼트
+  ↙ &quot;찾아서 배울 수 있는&quot; 층
+</code></pre>
+<p>이 3층 구조가 없으면: Layer 3만 있으면 과정이 안 보이고, Layer 1만 있으면 검색이 안 된다. <strong>셋이 다 있어야 지식이 산다.</strong></p>
+<h2 id="4_1">4. 솔루션 — 상호 연동 구조</h2>
+<h3 id="parksycapture_1">전체 파이프라인에서 ParksyCapture의 위치</h3>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                    지식 생산 파이프라인                      │
+├─────────┬──────────┬──────────┬──────────┬─────────────┤
+│ 캡처     │ 저장      │ 정제      │ 변환      │ 발행         │
+│ (Capture)│ (Store)   │ (Refine) │ (Convert) │ (Publish)   │
+├─────────┼──────────┼──────────┼──────────┼─────────────┤
+│ParksyCap│helana_log│Claude·   │parksy_to │Tistory·     │
+│Share    │logs/     │Boss 검토 │_html.py  │GitHub·      │
+│Intent   │          │          │          │YouTube·Naver│
+└─────────┴──────────┴──────────┴──────────┴─────────────┘
+</code></pre>
+<h3 id="_2">구체적 연동 경로</h3>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>도구</th>
+<th>입력 → 출력</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 캡처</td>
+<td>ParksyCapture</td>
+<td>Claude 대화 → <code>.md</code> 파일</td>
+</tr>
+<tr>
+<td>② 저장</td>
+<td>git push</td>
+<td><code>.md</code> → <code>helana_log/logs/</code></td>
+</tr>
+<tr>
+<td>③ 트리거</td>
+<td>GitHub Actions</td>
+<td>push 감지 → workflow 실행</td>
+</tr>
+<tr>
+<td>④ 변환</td>
+<td>parksy_to_html.py</td>
+<td><code>.md</code> → CSS-only 인터랙티브 HTML</td>
+</tr>
+<tr>
+<td>⑤ 전송</td>
+<td>@helana_logbot</td>
+<td>HTML 코드 → Telegram 메시지</td>
+</tr>
+<tr>
+<td>⑥ 발행</td>
+<td>Boss 복사+붙여넣기</td>
+<td>Telegram → Tistory HTML 모드</td>
+</tr>
+<tr>
+<td>⑦ 회수</td>
+<td>tistory_sync.sh</td>
+<td>Tistory RSS → <code>helana_log/기자/</code></td>
+</tr>
+<tr>
+<td>⑧ 출판</td>
+<td>GitHub Pages</td>
+<td><code>기자/</code> → 칠판보드 웹페이지</td>
+</tr>
+<tr>
+<td>⑨ 전시</td>
+<td>YouTube·Naver</td>
+<td>칠판보드 → 튜토리얼·퀼트</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">핵심: 양방향 순환</h3>
+<pre><code>ParksyCapture ──→ helana_log ──→ Tistory ──→ RSS ──→ helana_log ──→ GitHub Pages
+     ↑                                                                    │
+     └────────────────── YouTube · Naver · 검색 ←──────────────────────────┘
+</code></pre>
+<p><strong>데이터가 한 방향으로만 흐르는 게 아니라, 발행된 콘텐츠가 다시 로그 저장소로 돌아온다.</strong> 이게 단순한 &ldquo;백업&rdquo;과 다른 점. 기록 → 발행 → 재기록의 선순환.</p>
+<h2 id="5">5. 다음 — 이게 왜 중요한가</h2>
+<h3 id="ai">AI 시대 지식 관리의 역설</h3>
+<p>AI와 대화할수록 <strong>더 많은 지식이 생산</strong>되지만, 동시에 <strong>더 빨리 사라진다.</strong> 채팅 인터페이스는 휘발성이다. 스레드가 길어지면 컨텍스트 윈도우 밖으로 밀려나고, 새 세션을 시작하면 모든 게 리셋된다.</p>
+<p><strong>ParksyCapture의 진짜 가치:</strong> AI와의 대화를 휘발성 채팅에서 → 영구 지식 자산으로 전환하는 <strong>인터페이스 계층</strong>이다.</p>
+<h3 id="vs-parksycapture">전통적 지식 관리 vs ParksyCapture 기반 지식 관리</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>전통적 KM</th>
+<th>ParksyCapture KM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>입력</strong></td>
+<td>사람이 수동으로 문서화</td>
+<td>대화가 자동으로 기록됨</td>
+</tr>
+<tr>
+<td><strong>구조</strong></td>
+<td>폴더·태그·카테고리 (부담)</td>
+<td>날것 보존 → 나중에 정제 (무부담)</td>
+</tr>
+<tr>
+<td><strong>판단</strong></td>
+<td>결과만 기록</td>
+<td>질문·반박·수정·결정 전 과정</td>
+</tr>
+<tr>
+<td><strong>검색</strong></td>
+<td>제목·키워드 의존</td>
+<td>전문(full-text) 검색</td>
+</tr>
+<tr>
+<td><strong>재사용</strong></td>
+<td>복사+붙여넣기</td>
+<td>자동 변환 파이프라인</td>
+</tr>
+<tr>
+<td><strong>소유</strong></td>
+<td>플랫폼 종속</td>
+<td>GitHub git — 영구·이식 가능</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">한 줄 정의</h3>
+<p><strong>ParksyCapture는 &ldquo;생각의 스크린샷&rdquo; 도구다.</strong></p>
+<p>코드 스크린샷이 아니라, <strong>AI와의 사고 흐름</strong>을 찍는 도구. 그 스크린샷(마크다운 로그)을 구조화된 지식으로 승격시키는 파이프라인이 그 위에 올라간다.</p>
+<h3 id="_5">최종 의의</h3>
+<blockquote>
+<p><strong>ParksyCapture 없이 AI와 일하는 것은, 저장 버튼 없는 워드프로세서로 글 쓰는 것과 같다.</strong></p>
+<p>결과물은 있지만, 어떻게 그 결과물에 도달했는지는 영원히 사라진다.<br>
+그리고 AI 시대에, &ldquo;어떻게 도달했는가&rdquo;는 &ldquo;무엇을 만들었는가&rdquo;만큼 중요하다.<br>
+왜냐하면 다음 질문을 더 잘하기 위한 재료이기 때문이다.</p>
+</blockquote></article>
+  <footer class="foot">
+    <div>Helana Log · Docs Webzine</div>
+    <div class="a">모든 계정은 큰누나 명의입니다.</div>
+    <p style="margin-top:12px"><a href="../../../">← Landing</a> · <a href="https://helena751107.github.io/helena_phone/">S21 Hub</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('helena-doc-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn')?.addEventListener('click', () => {
+    const n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    localStorage.setItem('helena-doc-theme', n);
+  });
+  const spine = document.getElementById('spineFill');
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (spine) spine.style.height = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+  }, { passive: true });
+  const prose = document.getElementById('prose');
+  if (prose) {
+    [...prose.querySelectorAll(':scope > h2')].forEach((h2) => {
+      const sec = document.createElement('div');
+      sec.className = 'sec open';
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'sec-h';
+      const tw = document.createElement('div'); tw.appendChild(h2.cloneNode(true));
+      const ico = document.createElement('span'); ico.className = 'ico'; ico.textContent = '+';
+      btn.appendChild(tw); btn.appendChild(ico);
+      const body = document.createElement('div'); body.className = 'sec-b';
+      const inner = document.createElement('div'); inner.className = 'sec-i';
+      let n = h2.nextSibling; const move = [];
+      while (n && !(n.nodeType === 1 && n.tagName === 'H2')) { move.push(n); n = n.nextSibling; }
+      move.forEach(x => inner.appendChild(x));
+      body.appendChild(inner); sec.appendChild(btn); sec.appendChild(body);
+      h2.replaceWith(sec);
+      btn.addEventListener('click', () => {
+        const on = !sec.classList.contains('open');
+        sec.classList.toggle('open', on);
+      });
+    });
+    const setAll = (open) => prose.querySelectorAll('.sec').forEach(s => s.classList.toggle('open', open));
+    document.getElementById('fold')?.addEventListener('click', () => setAll(false));
+    document.getElementById('expand')?.addEventListener('click', () => setAll(true));
+    document.getElementById('q')?.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      prose.querySelectorAll('.sec').forEach(sec => {
+        const hit = !q || sec.innerText.toLowerCase().includes(q);
+        sec.style.display = hit ? '' : 'none';
+        if (hit && q) sec.classList.add('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

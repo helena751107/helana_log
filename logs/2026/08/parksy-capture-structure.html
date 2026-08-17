@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="배터리가 &quot;폰이 살아있는가&quot;를 본다면, 위치는 **&quot;사람이 움직이고 있는가&quot;** 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 **조용함** — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.">
+<meta name="description" content="`com.parksy.capture` APK + 런타임 데이터를 proot Ubuntu에서 `pm`, `unzip`으로 분석.">
 <meta name="theme-color" content="#0a0908">
-<title>돌봄 데몬의 위치·GPS 감시 — &#x27;안 움직임&#x27;을 잡는 눈 — Helana Log</title>
-<link rel="canonical" href="https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html">
+<title>ParksyCapture 구조 분석 — S21 실기기에서 추출 — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/logs/2026/08/parksy-capture-structure.html">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -26,9 +26,9 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html#webpage",
-      "url": "https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html",
-      "name": "돌봄 데몬의 위치·GPS 감시 — '안 움직임'을 잡는 눈",
+      "@id": "https://helena751107.github.io/helana_log/logs/2026/08/parksy-capture-structure.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/logs/2026/08/parksy-capture-structure.html",
+      "name": "ParksyCapture 구조 분석 — S21 실기기에서 추출",
       "inLanguage": "ko",
       "publisher": {
         "@id": "https://github.com/helena751107#person"
@@ -121,119 +121,189 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 </header>
 <main class="wrap">
   <div class="kicker">행정 대화록 · Docs</div>
-  <h1>돌봄 데몬의 위치·GPS 감시 — &#x27;안 움직임&#x27;을 잡는 눈</h1>
-  <p class="deck">배터리가 &quot;폰이 살아있는가&quot;를 본다면, 위치는 **&quot;사람이 움직이고 있는가&quot;** 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 **조용함** — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.</p>
-  <div class="meta">source · docs/care-daemon/solution/08-location-gps.md · bridge docs↔web · _Grok</div>
+  <h1>ParksyCapture 구조 분석 — S21 실기기에서 추출</h1>
+  <p class="deck">`com.parksy.capture` APK + 런타임 데이터를 proot Ubuntu에서 `pm`, `unzip`으로 분석.</p>
+  <div class="meta">source · logs/2026/08/parksy-capture-structure.md · bridge docs↔web · _Grok</div>
   <div class="appbar">
     <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
     <button type="button" id="fold">접기</button>
     <button type="button" id="expand">펼치기</button>
   </div>
   <article class="prose" id="prose"><hr>
-<p>id: &ldquo;08&rdquo;<br>
-type: solution<br>
-title: &ldquo;돌봄 데몬의 위치·GPS 감시 — &lsquo;안 움직임&rsquo;을 잡는 눈&rdquo;<br>
-question: &ldquo;위치를 어떻게 감시하고 움직임 없음을 잡아내는가&rdquo;<br>
-answer: &ldquo;termux-location(GPS 우선, 네트워크 폴백)으로 좌표를 읽어, 2시간 GPS 무응답·6시간 위치 무변동을 잡아 웰니스 체크를 촉발한다&rdquo;<br>
-category: &ldquo;위치·GPS&rdquo;<br>
-category_id: 1307310<br>
-track: &ldquo;&rdquo;<br>
-sources:<br>
-  - helena_phone:care/care-daemon.sh<br>
-  - helena_phone:care/care.conf<br>
-interactive:<br>
-  - location-flow<br>
-  - location-thresholds<br>
-date: &ldquo;2026-08-16&rdquo;<br>
-민감정보: &ldquo;없음&rdquo;</p>
+<p>date: 2026-08-09<br>
+source: phone-analysis<br>
+agent: Claude</p>
 <hr>
-<h1 id="gps">돌봄 데몬의 위치·GPS 감시 — &lsquo;안 움직임&rsquo;을 잡는 눈</h1>
+<h1 id="parksycapture-s21">ParksyCapture 구조 분석 — S21 실기기에서 추출</h1>
 <blockquote>
-<p>배터리가 &ldquo;폰이 살아있는가&rdquo;를 본다면, 위치는 <strong>&ldquo;사람이 움직이고 있는가&rdquo;</strong> 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 <strong>조용함</strong> — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.</p>
+<p><code>com.parksy.capture</code> APK + 런타임 데이터를 proot Ubuntu에서 <code>pm</code>, <code>unzip</code>으로 분석.</p>
 </blockquote>
-<h2 id="1">1. 질문</h2>
-<p>위치를 어떻게 감시하고 움직임 없음을 잡아내는가.</p>
-<p>한 줄로: <code>termux-location</code>으로 <strong>GPS 우선, 실패하면 네트워크 폴백</strong>으로 좌표를 읽고, 두 임계값(GPS 무응답 2시간·위치 무변동 6시간)으로 &ldquo;안 움직임&rdquo;을 판정한다.</p>
-<h2 id="2">2. 원리</h2>
-<p>위치는 다른 값과 달리 <strong>두 번 물어보는</strong> 수집이다.</p>
-<ul>
-<li><strong>1순위 GPS</strong> — <code>termux-location -p gps -r last</code>로 마지막으로 확정된 GPS 좌표를 읽는다.</li>
-<li><strong>폴백 네트워크</strong> — GPS가 안 잡히면(실내·날씨·기기 설정) <code>-p network -r last</code>로 와이파이·기지국 기반 좌표를 읽는다.</li>
-</ul>
-<p>판정도 두 갈래다.</p>
-<ul>
-<li><strong>무응답(GPS silence):</strong> 좌표가 비었거나 provider가 <code>none</code>이면, 마지막으로 위치를 잡은 시각(<code>last_gps_time</code>)과 비교해 <strong>2시간 넘게 무응답</strong>이면 경고한다. &ldquo;폰은 살아있는데 위치가 안 잡힌다&rdquo; = GPS 꺼짐·권한 회수·실내 장기 체류일 수 있다.</li>
-<li><strong>무변동(no move):</strong> 이번 좌표가 직전 좌표와 <strong>같으면</strong>, 마지막으로 움직인 시각(<code>last_move_time</code>)과 비교해 <strong>6시간 넘게 같은 자리</strong>면 urgent로 올린다. 이게 돌봄의 핵심 신호다 — 혼자 계신 분이 6시간째 같은 자리라면 확인이 필요하다.</li>
-</ul>
-<p>핵심은 <strong>&ldquo;좌표 자체가 아니라 좌표의 변화&rdquo;</strong> 를 기억한다는 점이다. 직전 좌표를 <code>care-state.json</code>에 저장해두고, 이번 좌표와 비교한다.</p>
-<h2 id="3">3. 실물 (코드·설정)</h2>
-<p>수집은 GPS 우선, 실패 시 네트워크 폴백이다.</p>
-<pre><code class="language-bash">collect_location() {
-  local loc_json
-  loc_json=$(termux-location -p gps -r last 2&gt;/dev/null \
-    || termux-location -p network -r last 2&gt;/dev/null \
-    || echo '{}')
-  local lat; lat=$(echo &quot;$loc_json&quot; | grep -o '&quot;latitude&quot;:[0-9.]*' | grep -o '[0-9.]*' || echo &quot;&quot;)
-  local lon; lon=$(echo &quot;$loc_json&quot; | grep -o '&quot;longitude&quot;:[0-9.]*' | grep -o '[0-9.]*' || echo &quot;&quot;)
-  local provider; provider=$(echo &quot;$loc_json&quot; | grep -o '&quot;provider&quot;:&quot;[^&quot;]*&quot;' | cut -d'&quot;' -f4 || echo &quot;none&quot;)
-}
-</code></pre>
-<p>판정은 무응답과 무변동 두 갈래다.</p>
-<pre><code class="language-bash"># ── GPS 무응답 (2시간) ──
-if [ -z &quot;$loc_lat&quot; ] || [ &quot;$loc_provider&quot; = &quot;none&quot; ]; then
-  prev_gps_time=$(echo &quot;$PREV_STATE&quot; | grep &quot;LAST_GPS_TIME=&quot; | cut -d= -f2 || echo &quot;$NOW_EPOCH&quot;)
-  gps_gap=$(( (NOW_EPOCH - prev_gps_time) / 3600 ))
-  if [ &quot;$gps_gap&quot; -gt &quot;$GPS_SILENT_HOURS&quot; ]; then
-    [ &quot;$level&quot; = &quot;info&quot; ] &amp;&amp; level=&quot;warning&quot;; alerts=&quot;${alerts} 📍 GPS ${gps_gap}시간째 무응답&quot;
-  fi
-fi
+<h2 id="1-apk">1. APK 기본 정보</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>패키지명</td>
+<td><code>com.parksy.capture</code></td>
+</tr>
+<tr>
+<td>APK 경로</td>
+<td><code>/data/app/~~P4dB1whLrC-ijALJocMF9Q==/com.parksy.capture-9NiX55-06c6KLcT0F0cqkw==/base.apk</code></td>
+</tr>
+<tr>
+<td>크기</td>
+<td><strong>183MB</strong></td>
+</tr>
+<tr>
+<td>파일 수</td>
+<td>570개</td>
+</tr>
+<tr>
+<td>프레임워크</td>
+<td><strong>Flutter</strong> (Dart VM)</td>
+</tr>
+<tr>
+<td>지원 아키텍처</td>
+<td>arm64-v8a · armeabi-v7a · x86 · x86_64 (fat APK)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-570">2. 내부 구조 (570개 파일)</h2>
+<h3 id="flutter">Flutter 엔진 (핵심)</h3>
+<pre><code>lib/arm64-v8a/
+  libflutter.so                    39.8MB  ← Flutter 엔진
+  libVkLayer_khronos_validation.so 13.2MB  ← Vulkan 검증 레이어 (GPU 디버깅)
+  libdatastore_shared_counter.so    7.1KB  ← 데이터 저장소 카운터
 
-# ── 위치 무변동 (6시간) ──
-prev_loc=$(echo &quot;$PREV_STATE&quot; | grep &quot;LOC_LAT=&quot; | cut -d= -f2 || echo &quot;&quot;)
-if [ -n &quot;$prev_loc&quot; ] &amp;&amp; [ -n &quot;$loc_lat&quot; ] &amp;&amp; [ &quot;$prev_loc&quot; = &quot;$loc_lat&quot; ]; then
-  prev_move_time=$(echo &quot;$PREV_STATE&quot; | grep &quot;LAST_MOVE_TIME=&quot; | cut -d= -f2 || echo &quot;$NOW_EPOCH&quot;)
-  still_hours=$(( (NOW_EPOCH - prev_move_time) / 3600 ))
-  if [ &quot;$still_hours&quot; -gt &quot;$NO_MOVE_HOURS&quot; ]; then
-    level=&quot;urgent&quot;; alerts=&quot;${alerts} 🛑 ${still_hours}시간째 위치 변동 없음 (웰니스 체크 필요)&quot;
-  fi
-fi
+assets/flutter_assets/
+  kernel_blob.bin                  40.6MB  ← Dart 커널 (앱의 모든 Dart 코드)
+  isolate_snapshot_data            10.5MB  ← Dart isolate 스냅샷
+  vm_snapshot_data                 12.7KB  ← Dart VM 스냅샷
+  shaders/ink_sparkle.frag         17.3KB  ← 잉크 효과 셰이더
+  fonts/MaterialIcons-Regular.otf   1.6MB  ← 머티리얼 아이콘
 </code></pre>
-<p>```care type=&rdquo;flow&rdquo; id=&rdquo;location-flow&rdquo;<br>
-title: 위치 감시 흐름 — GPS→폴백 → 무응답·무변동 판정 → 보고<br>
-nodes:<br>
-  - { id: gps, label: &ldquo;GPS 좌표&rdquo;, kind: start }<br>
-  - { id: net, label: &ldquo;네트워크 폴백&rdquo; }<br>
-  - { id: silent, label: &ldquo;무응답 &gt; 2시간?&rdquo; }<br>
-  - { id: still, label: &ldquo;무변동 &gt; 6시간?&rdquo; }<br>
-  - { id: report, label: &ldquo;보고 (텔레그램)&rdquo; }<br>
-edges:<br>
-  - { from: gps, to: net, label: &ldquo;GPS 실패 시&rdquo; }<br>
-  - { from: net, to: silent }<br>
-  - { from: silent, to: still }<br>
-  - { from: still, to: report, label: &ldquo;하나라도 걸리면&rdquo; }</p>
-<pre><code>
-## 4. 임계값
-
-실제 `care.conf`에 박힌 값들이다.
-
-```care type=&quot;threshold-table&quot; id=&quot;location-thresholds&quot;
-title: 위치·GPS 임계값 (care.conf)
-rows:
-  - { label: &quot;GPS 무응답&quot;, threshold: &quot;2시간&quot;, action: &quot;🟡 무응답 보고 (warning)&quot;, level: warning }
-  - { label: &quot;위치 무변동&quot;, threshold: &quot;6시간&quot;, action: &quot;🔴 웰니스 체크 (urgent)&quot;, level: urgent }
-  - { label: &quot;평소 반경&quot;, threshold: &quot;500m&quot;, action: &quot;선언만 됨 (미배선 — 아래 한계)&quot;, level: warning }
+<h3 id="_1">네이티브 코드</h3>
+<pre><code>classes.dex  10.3MB  ← 메인 Java/Kotlin 코드
+classes2.dex  42KB   ← AndroidX Share Intent 핸들러
+classes3.dex  25KB
+classes4.dex  15KB
+classes5.dex 110KB   ← DataStore + Preferences
+classes6.dex 210KB   ← 파일 I/O + 저장소 접근
+classes7.dex   2KB
+classes8.dex  32KB
 </code></pre>
-<h2 id="5">5. 한계·확인 창구</h2>
+<h3 id="androidx-meta-inf">주요 AndroidX 라이브러리 (META-INF에서 확인)</h3>
+<pre><code>androidx.datastore            ← 로컬 설정 저장
+androidx.lifecycle            ← 수명주기 관리
+androidx.activity             ← 액티비티 + Share Intent
+androidx.browser              ← 브라우저 연동
+androidx.fragment             ← 프래그먼트
+androidx.documentfile         ← 문서 파일 접근
+androidx.core                 ← 코어 유틸리티
+</code></pre>
+<h2 id="3">3. 데이터 흐름 구조 (추론)</h2>
+<pre><code>사용자가 Claude/Grok 앱에서 &quot;공유&quot; 버튼 탭
+        │
+        ▼
+Android Share Sheet 열림 → ParksyCapture 선택
+        │
+        ▼
+ACTION_SEND intent 수신 (EXTRA_TEXT = 대화 내용)
+        │
+        ▼
+Flutter Dart 코드 실행 (kernel_blob.bin)
+  ├── 텍스트 전처리 (중복 제거, 마크다운 정리)
+  ├── 메타데이터 추가 (날짜, source: android-share)
+  └── 파일 저장
+        │
+        ▼
+저장 경로: /sdcard/Download/parksy-logs/ParksyLog_YYYYMMDD_HHMMSS.md
+  (DocumentsFile API → 공유 저장소)
+        │
+        ▼
+GitHub: helana_log/logs/ 로 수동 또는 연동 push
+</code></pre>
+<h2 id="4">4. 실제 출력 확인</h2>
+<p><strong>유일한 캡처 파일:</strong> <code>/sdcard/Download/parksy-logs/ParksyLog_20260725_080708.md</code></p>
 <ul>
-<li><strong>평소 반경 500m는 미구현이다.</strong> <code>care.conf</code>에 <code>LOCATION_RADIUS_M=500</code>(&ldquo;평소 반경&rdquo;)이 <strong>선언되어 있지만, <code>analyze()</code>에는 그 값을 쓰는 코드가 없다.</strong> &ldquo;평소 반경을 벗어나면 보고&rdquo;는 아직 동작하지 않는다. 다음 단계의 과제다(편 06의 한계에서 예고한 지점).</li>
-<li><strong>좌표는 &ldquo;같은 자리&rdquo;만 본다.</strong> 어느 자리인지(집·병원·산책로)는 판정하지 않는다. 좌표 변화가 있으면 &ldquo;움직였다&rdquo;로 본다.</li>
-<li><strong>GPS 정확도는 환경에 따라 다르다.</strong> 실내·고층·날씨에 따라 수십~수백 m 오차가 날 수 있다. &ldquo;6시간 무변동&rdquo; 판정은 이 오차 범위 안의 움직임을 못 잡을 수 있다.</li>
-<li><strong>실 GPS 좌표는 공개하지 않는다.</strong> 이 데몬은 좌표를 텔레그램 보고에 싣지만, 이 채널(원고)은 좌표·주소·동선을 절대 싣지 않는다. 돌봄 데이터 공개 금지 원칙.</li>
-<li><strong>법령·의료 단정 금지:</strong> &ldquo;6시간 무변동&rdquo;은 웰니스 확인 신호이지 의학적 판단이 아니다. 필요하면 보건소·의료기관·119에서 확인할 것.</li>
+<li>UID: 10264 (앱 전용 샌드박스 사용자)</li>
+<li>크기: 7,929 bytes</li>
+<li>포맷: YAML frontmatter + 마크다운 본문</li>
+<li><code>source: android-share</code> — Share Intent 경로로 수신 확인</li>
 </ul>
-<blockquote>
-<p>이 채널은 법률 자문도 의료 가이드도 아니다.</p>
-</blockquote></article>
+<h2 id="5">5. 기술적 특징</h2>
+<h3 id="_2">강점</h3>
+<ul>
+<li><strong>Flutter 기반</strong> — 크로스플랫폼. 동일 코드가 Android·iOS·웹에서 동작 가능</li>
+<li><strong>Vulkan 레이어 포함</strong> — GPU 가속 가능성. Flutter Impeller 렌더러와 연관</li>
+<li><strong>Datastore 사용</strong> — SharedPreferences보다 현대적인 로컬 저장소. 설정·캐시에 적합</li>
+<li><strong>DocumentFile API</strong> — 공유 저장소 접근에 SAF(Storage Access Framework) 사용</li>
+<li><strong>Fat APK</strong> — arm64·armeabi·x86·x86_64 전부 포함. 호환성 최우선</li>
+</ul>
+<h3 id="_3">약점</h3>
+<ul>
+<li><strong>183MB</strong> — Flutter fat APK + Vulkan 레이어로 인한 대용량. 경량화 여지 있음</li>
+<li><strong>9개 dex 파일</strong> — 멀티덱스. 메서드 수 65K 초과. ProGuard/R8 최적화 미흡 가능성</li>
+<li><strong>데이터 경로 제한적</strong> — <code>/sdcard/Download/parksy-logs/</code> 고정. 설정 변경 불가능해 보임</li>
+<li><strong>이미지 캡처 불가</strong> — Share Intent의 EXTRA_STREAM 미처리. Claude CDN 이미지 URI 대응 안 됨</li>
+</ul>
+<h2 id="6">6. 우리 파이프라인과의 연동 지점</h2>
+<pre><code>ParksyCapture 출력 경로
+  /sdcard/Download/parksy-logs/*.md
+        │
+        ├──→ 수동: git add → commit → push (helana_log/logs/)
+        │         ⬇
+        │    GitHub Actions 트리거 (log-to-tistory.yml)
+        │         ⬇
+        │    log_to_telegram.sh → Telegram (@helana_logbot)
+        │         ⬇
+        │    Boss 복사 → Tistory 마크다운 모드 발행
+        │
+        └──→ 미실현: 자동 git push 연동 (앱 내 GitHub API 연동 또는
+              Termux inotifywait 감시 → auto-push)
+</code></pre>
+<h2 id="7">7. 개선 가능 지점</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>현재</th>
+<th>개선 방향</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이미지 지원</td>
+<td>❌ EXTRA_STREAM 미처리</td>
+<td><code>EXTRA_STREAM</code> URI 핸들러 추가</td>
+</tr>
+<tr>
+<td>자동 push</td>
+<td>❌ 수동 git</td>
+<td>GitHub API 내장 또는 Termux 감시 연동</td>
+</tr>
+<tr>
+<td>저장 경로</td>
+<td>고정 (Download)</td>
+<td>설정에서 경로 선택 가능하게</td>
+</tr>
+<tr>
+<td>파일 포맷</td>
+<td>YAML frontmatter + .md</td>
+<td>동일 포맷 유지 (우리 파이프라인과 호환)</td>
+</tr>
+<tr>
+<td>토큰 필터링</td>
+<td>❌ 없음</td>
+<td>민감 문자열(gpg_·sk-·xai-) 자동 마스킹</td>
+</tr>
+</tbody>
+</table></article>
   <footer class="foot">
     <div>Helana Log · Docs Webzine</div>
     <div class="a">모든 계정은 큰누나 명의입니다.</div>

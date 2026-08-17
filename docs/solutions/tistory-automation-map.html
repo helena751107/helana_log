@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="솔루션 스케치">
+<meta name="description" content="박씨 28개 레포 전체 뒤져서 모은 티스토리·블로그 자동화 솔루션 총정리.">
 <meta name="theme-color" content="#0a0908">
-<title>솔루션 스케치 — Helana Log</title>
-<link rel="canonical" href="https://helena751107.github.io/helana_log/docs/solutions/README.html">
+<title>티스토리 자동화 솔루션 전체 지도 — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/docs/solutions/tistory-automation-map.html">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -26,9 +26,9 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://helena751107.github.io/helana_log/docs/solutions/README.html#webpage",
-      "url": "https://helena751107.github.io/helana_log/docs/solutions/README.html",
-      "name": "솔루션 스케치",
+      "@id": "https://helena751107.github.io/helana_log/docs/solutions/tistory-automation-map.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/docs/solutions/tistory-automation-map.html",
+      "name": "티스토리 자동화 솔루션 전체 지도",
       "inLanguage": "ko",
       "publisher": {
         "@id": "https://github.com/helena751107#person"
@@ -121,47 +121,239 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 </header>
 <main class="wrap">
   <div class="kicker">행정 대화록 · Docs</div>
-  <h1>솔루션 스케치</h1>
-  
-  <div class="meta">source · docs/solutions/README.md · bridge docs↔web · _Grok</div>
+  <h1>티스토리 자동화 솔루션 전체 지도</h1>
+  <p class="deck">박씨 28개 레포 전체 뒤져서 모은 티스토리·블로그 자동화 솔루션 총정리.</p>
+  <div class="meta">source · docs/solutions/tistory-automation-map.md · bridge docs↔web · _Grok</div>
   <div class="appbar">
     <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
     <button type="button" id="fold">접기</button>
     <button type="button" id="expand">펼치기</button>
   </div>
-  <article class="prose" id="prose"><p>대화록의 <strong>Fix</strong> 섹션 중, 여러 편에서 반복되거나 바로 쓸 수 있는 것만 여기로 승격한다.</p>
+  <article class="prose" id="prose"><p><strong>작성: 2026-08-14 | 작성자: 박씨 (REDACTED) → 누나 선물</strong></p>
+<blockquote>
+<p>박씨 28개 레포 전체 뒤져서 모은 티스토리·블로그 자동화 솔루션 총정리.<br>
+<strong>결론 먼저: S21 proot-Ubuntu에서 Playwright 이미 동작 확인됨. (노트35 실증)</strong></p>
+</blockquote>
+<hr>
+<h2 id="s21-playwright">핵심 판단: S21에서 Playwright 돌아가나?</h2>
+<p><strong>✅ YES. 이미 동작 확인됨.</strong></p>
 <table>
 <thead>
 <tr>
-<th>상태</th>
-<th>아이디어</th>
-<th>트랙</th>
+<th>증거</th>
+<th>출처</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>예정</td>
-<td>정신건강·장애 위기 연락 1페이지</td>
-<td>DW</td>
+<td><code>Playwright 1.61.0 + Chromium headless(proot Ubuntu 내부, 화면 없이 정상 구동)</code></td>
+<td>helena_phone textbook.html 노트35</td>
 </tr>
 <tr>
-<td>예정</td>
-<td>기초생활 갱신·신고 체크리스트</td>
-<td>BL</td>
+<td><code>~/browser-env</code> Python venv에 playwright 설치 완료</td>
+<td>helena_phone 구조</td>
 </tr>
 <tr>
-<td>예정</td>
-<td>치매 가정 하루 타임라인</td>
-<td>DC</td>
+<td><code>scripts/publish.py</code> 래퍼 완성 (티스토리 5종 + 네이버)</td>
+<td>helena_phone/scripts/publish.py</td>
 </tr>
 <tr>
-<td>예정</td>
-<td>세 창구 질문 카드 (방문 전 5문)</td>
-<td>CROSS</td>
+<td>ARM 유저에이전트로 headless=True 실행</td>
+<td>helena_phone/scripts/save_tistory_cookie.py</td>
 </tr>
 </tbody>
 </table>
-<p>작성 규칙: 법령 조항을 단정하지 말고, “확인 창구 / 확인일”을 남긴다.</p></article>
+<p><strong>조건:</strong> <code>~/browser-env</code> venv + <code>playwright install chromium</code> 완료 상태 필요.</p>
+<hr>
+<h2 id="_2">솔루션 카탈로그 — 전체 레포 수집</h2>
+<h3 id="s21-proot-ubuntu">✅ S21 proot-Ubuntu 에서 바로 쓸 수 있는 것</h3>
+<h4 id="1-helena_phonescriptspublishpy">1. <code>helena_phone/scripts/publish.py</code> — <strong>메인 실행기</strong></h4>
+<pre><code class="language-bash">~/browser-env/bin/python3 scripts/publish.py tistory galaxys21 &quot;제목&quot;
+~/browser-env/bin/python3 scripts/publish.py naver helena &quot;제목&quot;
+~/browser-env/bin/python3 scripts/publish.py batch
+</code></pre>
+<ul>
+<li>proot Ubuntu + Playwright headless Chromium</li>
+<li>티스토리 5종 + 네이버 일괄 처리</li>
+<li>텔레그램 완료 보고 포함</li>
+</ul>
+<h4 id="2-helena_phonetistory-naverpostpy">2. <code>helena_phone/tistory-naver/post.py</code> — <strong>티스토리 포스팅</strong></h4>
+<pre><code class="language-bash">~/browser-env/bin/python3 tistory-naver/post.py --account galaxys21 --title &quot;제목&quot;
+</code></pre>
+<ul>
+<li><code>launch_persistent_context</code> 방식 (쿠키 재사용)</li>
+<li>storage_state JSON으로 세션 복원</li>
+<li>세션 만료 시 자동 재로그인</li>
+</ul>
+<h4 id="3-helena_phonescriptssave_tistory_cookiepy">3. <code>helena_phone/scripts/save_tistory_cookie.py</code> — <strong>최초 쿠키 저장</strong></h4>
+<pre><code class="language-bash"># 방법 A: 카카오 ID/PW 자동 로그인 시도
+~/browser-env/bin/python3 scripts/save_tistory_cookie.py auto 이메일@kakao.com 비번
+
+# 방법 B: 폰 브라우저 쿠키 수동 복사
+~/browser-env/bin/python3 scripts/save_tistory_cookie.py manual
+</code></pre>
+<ul>
+<li>ARM64 User-Agent 설정 (봇탐지 우회 최적화)</li>
+<li>결과물: <code>.tistory_session_galaxys21.json</code></li>
+</ul>
+<h4 id="4-helena_phonetistory-naverskinpy">4. <code>helena_phone/tistory-naver/skin.py</code> — <strong>스킨 자동 적용</strong></h4>
+<ul>
+<li>Playwright로 관리 페이지 접속 → 스킨 교체 자동화</li>
+</ul>
+<h4 id="5-helena_phonetistory-naversession_postpy">5. <code>helena_phone/tistory-naver/session_post.py</code> — <strong>네이버 세션 포스팅</strong></h4>
+<ul>
+<li>storage_state 기반 네이버 블로그 자동 포스팅</li>
+</ul>
+<hr>
+<h3 id="_3">⚠️ 조건부 동작 (설치 필요)</h3>
+<h4 id="6-termux-bridgelocaltistorytistory-loginjs-termux-cdp">6. <code>termux-bridge/local/tistory/tistory-login.js</code> — <strong>Termux 네이티브 CDP</strong></h4>
+<pre><code class="language-bash">node termux-bridge/local/tistory/tistory-login.js 이메일 비번 블로그라벨
+</code></pre>
+<ul>
+<li>Termux 네이티브 Chromium 사용 (<code>/data/data/com.termux/files/usr/bin/chromium-browser</code>)</li>
+<li><strong>proot 내부에서는 직접 실행 안 됨</strong> (Termux 네이티브 레이어)</li>
+<li>proot에서 쓰려면: ADB 브릿지로 Termux에 명령 전달해야 함</li>
+<li>장점: Playwright 설치 불필요, headless 지원</li>
+</ul>
+<h4 id="7-termux-bridgelocaltistoryloginpy-requests">7. <code>termux-bridge/local/tistory/login.py</code> — <strong>requests 기반 (브라우저 없음)</strong></h4>
+<pre><code class="language-bash">python3 termux-bridge/local/tistory/login.py 이메일 비번
+</code></pre>
+<ul>
+<li><strong>의존성 0</strong> — stdlib만 사용 (requests도 없음, urllib만)</li>
+<li>어디서든 실행 가능</li>
+<li>⚠️ <strong>Kakao 봇탐지에 막힐 가능성 높음</strong> (실제 브라우저 아님)</li>
+<li>성공하면 cookies.json 저장</li>
+</ul>
+<hr>
+<h3 id="pc-s21">❌ PC 전용 (S21 불가)</h3>
+<h4 id="8-dtslib-papyrustoolstistorytistory_cdp_publisherpy">8. <code>dtslib-papyrus/tools/tistory/tistory_cdp_publisher.py</code></h4>
+<ul>
+<li>Windows Chrome CDP (포트 9223) 직접 연결</li>
+<li><code>CDP_HTTP = "http://172.28.128.1:9223"</code> → WSL2 호스트 IP</li>
+<li>S21에서는 이 IP 접근 불가 (Tailscale SSH 터널 경유하면 이론상 가능하지만 복잡)</li>
+</ul>
+<h4 id="9-dtslib-papyrustoolstistorytistory_ws_publisherpy">9. <code>dtslib-papyrus/tools/tistory/tistory_ws_publisher.py</code></h4>
+<ul>
+<li>raw WebSocket으로 CDP 직접 연결</li>
+<li>같은 이유로 PC 전용</li>
+</ul>
+<h4 id="10-dtslib-papyrustoolstistoryloginpy-postpy">10. <code>dtslib-papyrus/tools/tistory/login.py</code> + <code>post.py</code></h4>
+<ul>
+<li><code>headless=False</code> (GUI 필요)</li>
+<li>Windows/WSL2 PC 환경 전용</li>
+</ul>
+<h4 id="11-dtslib-papyrustoolsmcp_distributor_tistory_publishpy">11. <code>dtslib-papyrus/tools/mcp_distributor/_tistory_publish.py</code></h4>
+<ul>
+<li><code>channel="chrome"</code> + <code>DISPLAY=:99</code> (Xvfb)</li>
+<li>proot에서도 Xvfb 설치하면 이론상 가능하지만 오버스펙</li>
+<li>WSL PC에 확정된 솔루션</li>
+</ul>
+<hr>
+<h2 id="5">티스토리 5종 계정 현황</h2>
+<table>
+<thead>
+<tr>
+<th>계정키</th>
+<th>블로그 URL</th>
+<th>주제</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>galaxys21</code></td>
+<td>galaxys21-pwuser.tistory.com</td>
+<td>S21 폰 활용</td>
+</tr>
+<tr>
+<td><code>mynote</code></td>
+<td>mynote11605.tistory.com</td>
+<td>기술 노트</td>
+</tr>
+<tr>
+<td><code>faith</code></td>
+<td>helana-christianity.tistory.com</td>
+<td>신앙</td>
+</tr>
+<tr>
+<td><code>piano</code></td>
+<td>helena-piano.tistory.com</td>
+<td>피아노</td>
+</tr>
+<tr>
+<td><code>metalcare</code></td>
+<td>helena-metalcare.tistory.com</td>
+<td>심리케어</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="playwright-s21">Playwright S21 설치 명령 (참고)</h2>
+<pre><code class="language-bash"># proot Ubuntu 내부에서
+apt install -y python3-venv fonts-nanum python3-pip
+
+# venv 생성 (이미 있으면 스킵)
+python3 -m venv ~/browser-env
+
+# playwright 설치
+~/browser-env/bin/pip install playwright
+
+# ARM64 Chromium 다운로드 (시간 걸림, 약 200MB)
+~/browser-env/bin/playwright install --with-deps chromium
+</code></pre>
+<p><strong>노트35 기준 버전:</strong> <code>playwright==1.61.0</code></p>
+<hr>
+<h2 id="_4">세션 관리 구조</h2>
+<pre><code>최초 1회 로그인 (수동 or 자동)
+        ↓
+.tistory_session_{account}.json  ← storage_state 저장
+        ↓
+이후 headless로 세션 복원 → 완전 자동화
+        ↓
+세션 만료 감지 → 자동 재로그인 시도
+</code></pre>
+<hr>
+<h2 id="wsl">소스 레포 위치 (박씨 WSL)</h2>
+<table>
+<thead>
+<tr>
+<th>경로</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/helena_phone/scripts/publish.py</code></td>
+<td>← <strong>S21 메인 실행기</strong></td>
+</tr>
+<tr>
+<td><code>~/helena_phone/tistory-naver/</code></td>
+<td>post.py, skin.py, session_post.py, login.cjs</td>
+</tr>
+<tr>
+<td><code>~/termux-bridge/local/tistory/</code></td>
+<td>CDP 방식, requests 방식</td>
+</tr>
+<tr>
+<td><code>~/dtslib-papyrus/tools/tistory/</code></td>
+<td>PC 전용 고급 버전</td>
+</tr>
+<tr>
+<td><code>~/dtslib-papyrus/tools/mcp_distributor/</code></td>
+<td>MCP 연동 버전</td>
+</tr>
+<tr>
+<td><code>~/parksy-logs/publishing/</code></td>
+<td>멀티계정 배치 버전</td>
+</tr>
+<tr>
+<td><code>~/helena-programming/reference/wsl-automation/</code></td>
+<td>WSL 참조 버전</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><em>작성: 2026-08-14 | 박씨가 28개 레포 뒤져서 만든 선물</em><br>
+<em>S21 Tailscale 오프라인 상태 (2026-08-14 현재) — 온라인 되면 SSH로 실행 확인 가능</em></p></article>
   <footer class="foot">
     <div>Helana Log · Docs Webzine</div>
     <div class="a">모든 계정은 큰누나 명의입니다.</div>

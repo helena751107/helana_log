@@ -3,9 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="병원 소견·장애 등록·위기 대응이 서로 다른 창구에 흩어져, 정작 필요한 순간 한 장으로 이어지지 않는다는 데 있다">
+<meta name="description" content="제도는 한 줄로 흐르지만, 삶은 여러 줄이 동시에 흐른다. 이 편은 그 어긋남이 어디서 생기는지를 본다.">
 <meta name="theme-color" content="#0a0908">
 <title>트랙 DW — 장애·정신건강 복지의 빈틈 — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/docs/care-daemon/track/02-disability-welfare.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://github.com/helena751107#person",
+      "name": "Helena Park",
+      "url": "https://github.com/helena751107",
+      "description": "Made in Korea — not a developer. One Galaxy S21, built by voice, for a sister.",
+      "sameAs": [
+        "https://github.com/helena751107",
+        "https://helena751107.github.io/helena_phone/",
+        "https://www.youtube.com/@helena_phone",
+        "https://www.youtube.com/@HelenaPark-e7c"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://helena751107.github.io/helana_log/docs/care-daemon/track/02-disability-welfare.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/docs/care-daemon/track/02-disability-welfare.html",
+      "name": "트랙 DW — 장애·정신건강 복지의 빈틈",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://github.com/helena751107#person"
+      },
+      "author": {
+        "@id": "https://github.com/helena751107#person"
+      }
+    }
+  ]
+}
+</script>
 <link rel="icon" href="../../../icons/favicon-32.png" type="image/png">
 <link rel="manifest" href="../../../site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,65 +106,6 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.4rem);font-weight:600;m
 .sec .sec-i{overflow:hidden;min-height:0;opacity:0;padding:0 14px;transition:opacity .25s}
 .sec.open .sec-i{opacity:1;padding:0 14px 14px}
 mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
-
-.care{margin:1.4em 0}
-.care figcaption{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:.6em}
-.care-info{margin:0 0 22px}
-/* callout */
-.care-callout{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--rule2);border-left:3px solid var(--accent);background:var(--paper-2)}
-.care-callout-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;padding:3px 7px;border-radius:2px;background:var(--accent);color:#0a0908;font-weight:600;flex:none;margin-top:2px}
-.care-callout.care-warn{border-left-color:var(--gold)}
-.care-callout.care-warn .care-callout-badge{background:var(--gold)}
-.care-callout.care-danger{border-left-color:#e85d4c}
-.care-callout.care-danger .care-callout-badge{background:#e85d4c}
-.care-callout.care-check{border-left-color:#2e9e5b}
-.care-callout.care-check .care-callout-badge{background:#2e9e5b}
-.care-callout-text{color:var(--ink-dim);font-weight:300}
-/* threshold table */
-.care-threshold table{width:100%;border-collapse:collapse;font-size:.88rem}
-.care-threshold th,.care-threshold td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
-.care-threshold th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
-.care-threshold code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
-.care-threshold tr.lv-urgent td:first-child{border-left:3px solid #e85d4c}
-.care-threshold tr.lv-warning td:first-child{border-left:3px solid var(--gold)}
-.care-threshold tr.lv-info td:first-child{border-left:3px solid var(--accent)}
-/* flow */
-.care-flow-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.care-node{padding:10px 14px;border:1px solid var(--rule2);border-radius:4px;background:var(--paper-3);font-size:.85rem}
-.care-node.start{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
-.care-node-label{font-family:var(--sans);font-weight:500}
-.care-edge{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink-mute)}
-.care-arrow{color:var(--accent);font-size:1.1rem}
-.care-edge-label{font-size:.68rem;color:var(--ink-mute);white-space:nowrap}
-.care-loop{margin-left:6px;padding:6px 10px;border:1px dashed var(--rule2);border-radius:999px;font-size:.75rem;color:var(--accent)}
-/* bars */
-.care-bar{display:flex;align-items:center;gap:10px;margin:.5em 0}
-.care-bar-label{width:9em;flex:none;font-size:.82rem;color:var(--ink-dim)}
-.care-bar-track{flex:1;height:14px;background:var(--paper-3);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
-.care-bar-fill{display:block;height:100%;background:var(--accent)}
-.care-bar-val{width:3em;text-align:right;font-family:var(--mono);font-size:.78rem;color:var(--accent)}
-/* timeline */
-.care-timeline{border-left:1px solid var(--rule2);margin-left:6px;padding-left:16px}
-.care-tl-item{position:relative;margin:.7em 0}
-.care-tl-item::before{content:"";position:absolute;left:-21px;top:.4em;width:9px;height:9px;border-radius:50%;background:var(--accent)}
-.care-tl-time{font-family:var(--mono);font-size:.72rem;color:var(--accent);margin-right:8px}
-.care-tl-label{color:var(--ink-dim)}
-.care-tl-note{color:var(--ink-mute);font-size:.8rem;margin-left:6px}
-/* checklist */
-.care-checklist ul{list-style:none;padding-left:0}
-.care-checklist li{margin:.4em 0}
-.care-checklist input{margin-right:8px;accent-color:var(--accent)}
-.care-checklist input:checked + *{text-decoration:line-through;opacity:.55}
-/* 복사 블록 */
-.care-code{position:relative;margin:1.2em 0}
-.care-code pre{background:var(--paper-2);border:1px solid var(--rule2);padding:16px;padding-top:34px;border-radius:8px;overflow-x:auto;margin:0}
-.care-code code{font-family:var(--mono);font-size:.82rem;color:var(--gold2);background:none;padding:0}
-.care-copy{position:absolute;top:8px;right:8px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:11px;font-family:var(--sans);padding:4px 11px;border-radius:6px;cursor:pointer}
-.care-copy:hover{color:var(--ink);border-color:var(--accent)}
-/* 테이블 가독성 강화 (Boss: "테이블 보이지도 않아" 대응) */
-.prose table,.care-threshold table{border-collapse:collapse}
-.prose th,.prose td,.care-threshold th,.care-threshold td{border:1px solid color-mix(in srgb,var(--ink) 32%,transparent)!important}
-.prose th,.care-threshold th{background:var(--paper-3)!important;color:var(--gold)!important}
 </style>
 </head>
 <body>
@@ -145,22 +120,36 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
   </nav>
 </header>
 <main class="wrap">
-  <div class="kicker">돌봄 데몬 · Care</div>
+  <div class="kicker">행정 대화록 · Docs</div>
   <h1>트랙 DW — 장애·정신건강 복지의 빈틈</h1>
-  <p class="deck">병원 소견·장애 등록·위기 대응이 서로 다른 창구에 흩어져, 정작 필요한 순간 한 장으로 이어지지 않는다는 데 있다</p>
+  <p class="deck">제도는 한 줄로 흐르지만, 삶은 여러 줄이 동시에 흐른다. 이 편은 그 어긋남이 어디서 생기는지를 본다.</p>
   <div class="meta">source · docs/care-daemon/track/02-disability-welfare.md · bridge docs↔web · _Grok</div>
   <div class="appbar">
     <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
     <button type="button" id="fold">접기</button>
     <button type="button" id="expand">펼치기</button>
   </div>
-  <figure class="care-info" style="margin:0 0 22px"><div style="background:#14120f;border:1px solid #4a423a;border-radius:12px;overflow:hidden"><div style="height:4px;background:linear-gradient(90deg,#d4a84b,#3db8a8)"></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 22px 0"><span style="font-size:11px;font-weight:700;letter-spacing:2px;color:#3db8a8;text-transform:uppercase">CARE DAEMON · 돌봄 데몬</span><span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#d4a84b;white-space:nowrap">4 SECTION</span></div><div style="padding:8px 22px 0;font-family:'Cormorant Garamond',Georgia,'Noto Serif KR',serif;font-size:23px;font-weight:700;color:#f4efe6;line-height:1.3">트랙 DW — 장애·정신건강 복지의 빈틈</div><div style="padding:6px 22px 0;font-size:12.5px;color:#8d8376;line-height:1.6">병원 소견·장애 등록·위기 대응이 서로 다른 창구에 흩어져, 정작 필요한 순간 한 장으로 이어지지 않는다는 데 있다</div><div style="padding:14px 22px 20px"><div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">1. 가정 맥락</span></div>
-<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
-<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">2. 자주 비는 틈</span></div>
-<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
-<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">3. 개선 방향</span></div>
-<div style="width:2px;height:12px;margin-left:13px;background:#8d8376;position:relative"></div>
-<div style="display:flex;align-items:center;gap:14px;padding:7px 0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,184,168,.18);border:1px solid rgba(61,184,168,.35);color:#d4a84b;font-family:ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><span style="flex:1;background:#1d1a16;border:1px solid #3a342c;border-radius:8px;padding:8px 12px;font-size:13.5px;color:#c9bdac">4. 확인 창구</span></div></div></div></figure><article class="prose" id="prose"><blockquote>
+  <article class="prose" id="prose"><hr>
+<p>id: &ldquo;02&rdquo;<br>
+type: track<br>
+title: &ldquo;트랙 DW — 장애·정신건강 복지의 빈틈&rdquo;<br>
+question: &ldquo;장애·정신건강 복지의 빈틈은 어디인가&rdquo;<br>
+answer: &ldquo;병원 소견·장애 등록·위기 대응이 서로 다른 창구에 흩어져, 정작 필요한 순간 한 장으로 이어지지 않는다는 데 있다&rdquo;<br>
+category: &ldquo;DW — 장애·정신건강 복지&rdquo;<br>
+category_id: 1307305<br>
+track: &ldquo;DW&rdquo;<br>
+sources:<br>
+  - helana_log:docs/tracks/disability-welfare.md<br>
+  - helana_log:docs/dialogue/2026-07-26-opening.md<br>
+interactive:<br>
+  - dw-declaration<br>
+  - dw-gaps<br>
+  - dw-stages<br>
+date: &ldquo;2026-08-15&rdquo;<br>
+민감정보: &ldquo;가명 처리함&rdquo;</p>
+<hr>
+<h1 id="dw">트랙 DW — 장애·정신건강 복지의 빈틈</h1>
+<blockquote>
 <p>제도는 한 줄로 흐르지만, 삶은 여러 줄이 동시에 흐른다. 이 편은 그 어긋남이 어디서 생기는지를 본다.</p>
 </blockquote>
 <h2 id="1">1. 가정 맥락</h2>
@@ -171,26 +160,45 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 <li>가족은 그 <strong>사이</strong>에서, 두 시간을 한 사람에게 맞추는 일을 한다.</li>
 </ul>
 <p>병원 소견서가 나오는 날과, 그것이 장애인 등록·재판정 일정과 맞물리는 날이 어긋나면 — 그 어긋남은 가족이 메운다. 아무도 그 어긋남을 &ldquo;한 장&rdquo;으로 기록하지 않기 때문이다.</p>
-<div class="care care-callout care-info" data-id="dw-declaration"><span class="care-callout-badge">INFO</span><span class="care-callout-text">이 트랙의 빈틈은 &#x27;정보가 없다&#x27;가 아니라 &#x27;정보가 흩어져 있다&#x27;다. 필요한 순간, 필요한 곳에 한 장으로 잇는 일이 돌봄 데몬의 몫.</span></div>
+<p>```care type=&rdquo;callout&rdquo; id=&rdquo;dw-declaration&rdquo;<br>
+level: info<br>
+text: &ldquo;이 트랙의 빈틈은 &lsquo;정보가 없다&rsquo;가 아니라 &lsquo;정보가 흩어져 있다&rsquo;다. 필요한 순간, 필요한 곳에 한 장으로 잇는 일이 돌봄 데몬의 몫.&rdquo;</p>
+<pre><code>
+## 2. 자주 비는 틈
 
-<h2 id="2">2. 자주 비는 틈</h2>
-<p>현장에서 반복해서 발견되는 빈틈을 체크리스트로 옮겼다. 전부 &ldquo;한 창구가 다른 창구를 모른다&rdquo;는 데서 온다.</p>
-<figure class="care care-checklist" data-id="dw-gaps"><figcaption>이 트랙에서 자주 비는 틈 (관찰용)</figcaption><ul><li><label><input type="checkbox" class="care-chk" data-id="dw-gaps"> 병원 소견과 장애인 등록·재판정 일정이 어긋난다</label></li><li><label><input type="checkbox" class="care-chk" data-id="dw-gaps"> 정신건강복지센터와 행정복지센터 안내가 서로 다르다</label></li><li><label><input type="checkbox" class="care-chk" data-id="dw-gaps"> 위기 시 누구 번호로 먼저 가는지 가정 내 합의가 없다</label></li><li><label><input type="checkbox" class="care-chk" data-id="dw-gaps"> 당사자 의사결정 능력과 보호자 대리 범위가 현장에서 혼선된다</label></li><li><label><input type="checkbox" class="care-chk" data-id="dw-gaps"> 활동지원·주간이용 서비스가 공백인 시간대가 있다</label></li><li><label><input type="checkbox" class="care-chk" data-id="dw-gaps"> 장애와 정신건강 용어·창구가 갈라져 한 번에 설명이 안 된다</label></li></ul></figure>
+현장에서 반복해서 발견되는 빈틈을 체크리스트로 옮겼다. 전부 &quot;한 창구가 다른 창구를 모른다&quot;는 데서 온다.
 
+```care type=&quot;checklist&quot; id=&quot;dw-gaps&quot;
+title: 이 트랙에서 자주 비는 틈 (관찰용)
+items:
+  - &quot;병원 소견과 장애인 등록·재판정 일정이 어긋난다&quot;
+  - &quot;정신건강복지센터와 행정복지센터 안내가 서로 다르다&quot;
+  - &quot;위기 시 누구 번호로 먼저 가는지 가정 내 합의가 없다&quot;
+  - &quot;당사자 의사결정 능력과 보호자 대리 범위가 현장에서 혼선된다&quot;
+  - &quot;활동지원·주간이용 서비스가 공백인 시간대가 있다&quot;
+  - &quot;장애와 정신건강 용어·창구가 갈라져 한 번에 설명이 안 된다&quot;
+</code></pre>
 <p>여섯 개 모두 <strong>한 번의 방문·한 번의 전화</strong>로 해결되는 문제가 아니라, <strong>여러 창구 사이의 연결</strong>이 빠진 문제다. 그래서 답은 &ldquo;창구를 더 찾는 것&rdquo;이 아니라 &ldquo;이미 있는 창구를 한 장으로 잇는 것&rdquo;이다.</p>
 <h2 id="3">3. 개선 방향</h2>
 <p>돌봄 데몬의 관점에서, 이 빈틈을 채우는 가장 작은 도구는 셋이다.</p>
 <p><strong>첫째, 원페이지 연계 맵.</strong> 평상시 / 악화 / 응급, 세 단계로 나눠 &ldquo;이 순간엔 누구에게 먼저&rdquo;를 한 장에 적는다.</p>
-<figure class="care care-timeline" data-id="dw-stages"><figcaption>원페이지 연계 맵 — 3단</figcaption><div class="care-tl-item"><span class="care-tl-time">평상시</span><span class="care-tl-label">정신건강복지센터 · 행정복지센터<span class="care-tl-note">등록·재판정 일정 확인</span></span></div><div class="care-tl-item"><span class="care-tl-time">악화</span><span class="care-tl-label">외래 · 센터 상담<span class="care-tl-note">증상 변화를 기록으로 남기기</span></span></div><div class="care-tl-item"><span class="care-tl-time">응급</span><span class="care-tl-label">위기 대응 창구<span class="care-tl-note">가정 내 합의된 1차 연락처부터</span></span></div></figure>
+<p>```care type=&rdquo;timeline&rdquo; id=&rdquo;dw-stages&rdquo;<br>
+title: 원페이지 연계 맵 — 3단<br>
+events:<br>
+  - { time: &ldquo;평상시&rdquo;, label: &ldquo;정신건강복지센터 · 행정복지센터&rdquo;, note: &ldquo;등록·재판정 일정 확인&rdquo; }<br>
+  - { time: &ldquo;악화&rdquo;, label: &ldquo;외래 · 센터 상담&rdquo;, note: &ldquo;증상 변화를 기록으로 남기기&rdquo; }<br>
+  - { time: &ldquo;응급&rdquo;, label: &ldquo;위기 대응 창구&rdquo;, note: &ldquo;가정 내 합의된 1차 연락처부터&rdquo; }</p>
+<pre><code>
+**둘째, 창구 질문 카드.** 방문 전에 물어볼 다섯 가지만 적어 간다. 서비스 종류 · 대기 기간 · 재판정 주기 · 서류 · 다음 담당. &quot;다음 서류가 뭔지&quot;를 구두로만 듣고 오면, 집에 와서 다시 흐려진다.
 
-<p><strong>둘째, 창구 질문 카드.</strong> 방문 전에 물어볼 다섯 가지만 적어 간다. 서비스 종류 · 대기 기간 · 재판정 주기 · 서류 · 다음 담당. &ldquo;다음 서류가 뭔지&rdquo;를 구두로만 듣고 오면, 집에 와서 다시 흐려진다.</p>
-<div class="care-code"><button class="care-copy" type="button" title="코드 복사">복사</button><pre><code class="language-text">창구 질문 카드 — 복사해서 가져가기
+```text
+창구 질문 카드 — 복사해서 가져가기
 1. 서비스 종류 — 지금 받을 수 있는 건 뭐죠?
 2. 대기 기간 — 얼마나 걸리나요?
 3. 재판정 주기 — 언제 다시 확인해야 하나요?
 4. 서류 — 다음엔 뭘 준비해야 하나요?
 5. 다음 담당 — 또 물어보려면 어디로?
-</code></pre></div>
+</code></pre>
 <p><strong>셋째, 기록 습관.</strong> 외래·센터 상담을 다닐 때, <strong>날짜와 키워드만</strong> 대화록에 남긴다. 한 줄이면 된다. 이 습관이 쌓이면, &ldquo;지난번에 뭐라고 들었더라&rdquo;가 사라진다.</p>
 <p>세 도구 모두 <strong>자동화된 기계</strong>가 아니라 <strong>규칙을 코드처럼 남기는 습관</strong>이다. 돌봄 데몬은 이 습관을 매일 도는 루프로 옮긴 것에 가깝다.</p>
 <h2 id="4">4. 확인 창구</h2>
@@ -260,30 +268,5 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
   }
 })();
 </script>
-<script>
-(() => {
-  // checklist persistence (Pages)
-  document.querySelectorAll('.care-checklist').forEach(fig => {
-    const id = fig.dataset.id; const key = 'care-chk-' + id;
-    const saved = JSON.parse(localStorage.getItem(key) || '[]');
-    fig.querySelectorAll('input.care-chk').forEach((c, i) => { c.checked = saved[i] || false; });
-    fig.addEventListener('change', () => {
-      localStorage.setItem(key, JSON.stringify([...fig.querySelectorAll('input.care-chk')].map(c => c.checked)));
-    });
-  });
-  // 코드 복사 (Pages)
-  function fallbackCopy(txt, done){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy')}catch(e){} document.body.removeChild(ta); done(); }
-  document.querySelectorAll('.care-copy').forEach(b => {
-    b.addEventListener('click', () => {
-      var code = b.parentNode.querySelector('pre code');
-      if (!code) return;
-      var txt = code.innerText;
-      var done = function(){ b.textContent='복사됨'; setTimeout(function(){ b.textContent='복사'; }, 1500); };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(txt).then(done).catch(function(){ fallbackCopy(txt, done); });
-      } else { fallbackCopy(txt, done); }
-    });
-  });
-})();
-</script></body>
+</body>
 </html>

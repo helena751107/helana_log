@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="배터리가 &quot;폰이 살아있는가&quot;를 본다면, 위치는 **&quot;사람이 움직이고 있는가&quot;** 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 **조용함** — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.">
+<meta name="description" content="00-dialogue">
 <meta name="theme-color" content="#0a0908">
-<title>돌봄 데몬의 위치·GPS 감시 — &#x27;안 움직임&#x27;을 잡는 눈 — Helana Log</title>
-<link rel="canonical" href="https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html">
+<title>00-dialogue — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/docs/care-daemon/_templates/00-dialogue.html">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -26,9 +26,9 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html#webpage",
-      "url": "https://helena751107.github.io/helana_log/docs/care-daemon/solution/08-location-gps.html",
-      "name": "돌봄 데몬의 위치·GPS 감시 — '안 움직임'을 잡는 눈",
+      "@id": "https://helena751107.github.io/helana_log/docs/care-daemon/_templates/00-dialogue.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/docs/care-daemon/_templates/00-dialogue.html",
+      "name": "00-dialogue",
       "inLanguage": "ko",
       "publisher": {
         "@id": "https://github.com/helena751107#person"
@@ -121,119 +121,45 @@ mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 </header>
 <main class="wrap">
   <div class="kicker">행정 대화록 · Docs</div>
-  <h1>돌봄 데몬의 위치·GPS 감시 — &#x27;안 움직임&#x27;을 잡는 눈</h1>
-  <p class="deck">배터리가 &quot;폰이 살아있는가&quot;를 본다면, 위치는 **&quot;사람이 움직이고 있는가&quot;** 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 **조용함** — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.</p>
-  <div class="meta">source · docs/care-daemon/solution/08-location-gps.md · bridge docs↔web · _Grok</div>
+  <h1>00-dialogue</h1>
+  
+  <div class="meta">source · docs/care-daemon/_templates/00-dialogue.md · bridge docs↔web · _Grok</div>
   <div class="appbar">
     <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
     <button type="button" id="fold">접기</button>
     <button type="button" id="expand">펼치기</button>
   </div>
   <article class="prose" id="prose"><hr>
-<p>id: &ldquo;08&rdquo;<br>
-type: solution<br>
-title: &ldquo;돌봄 데몬의 위치·GPS 감시 — &lsquo;안 움직임&rsquo;을 잡는 눈&rdquo;<br>
-question: &ldquo;위치를 어떻게 감시하고 움직임 없음을 잡아내는가&rdquo;<br>
-answer: &ldquo;termux-location(GPS 우선, 네트워크 폴백)으로 좌표를 읽어, 2시간 GPS 무응답·6시간 위치 무변동을 잡아 웰니스 체크를 촉발한다&rdquo;<br>
-category: &ldquo;위치·GPS&rdquo;<br>
-category_id: 1307310<br>
-track: &ldquo;&rdquo;<br>
+<p>id: &ldquo;05&rdquo;<br>
+type: dialogue<br>
+title: &ldquo;&rdquo;<br>
+question: &ldquo;&rdquo;<br>
+answer: &ldquo;&rdquo;<br>
+category: &ldquo;대화록 — 하루 스토리&rdquo;<br>
+category_id: 1307303<br>
+track: &ldquo;CROSS&rdquo;           # ← DW | DC | BL | CROSS<br>
 sources:<br>
-  - helena_phone:care/care-daemon.sh<br>
-  - helena_phone:care/care.conf<br>
-interactive:<br>
-  - location-flow<br>
-  - location-thresholds<br>
-date: &ldquo;2026-08-16&rdquo;<br>
-민감정보: &ldquo;없음&rdquo;</p>
+  - helana_log:docs/dialogue/2026-07-26-opening.md   # ← 인용할 대화록 메모<br>
+interactive: []<br>
+date: &ldquo;&rdquo;<br>
+민감정보: &ldquo;가명 처리함&rdquo;</p>
 <hr>
-<h1 id="gps">돌봄 데몬의 위치·GPS 감시 — &lsquo;안 움직임&rsquo;을 잡는 눈</h1>
-<blockquote>
-<p>배터리가 &ldquo;폰이 살아있는가&rdquo;를 본다면, 위치는 <strong>&ldquo;사람이 움직이고 있는가&rdquo;</strong> 를 본다. 돌봄에서 가장 무서운 것은 고장이 아니라 <strong>조용함</strong> — 오랫동안 같은 자리, 오랫동안 신호 없음. 이 편은 그 조용함을 숫자로 잡아내는 위치 감시를 다룬다.</p>
-</blockquote>
-<h2 id="1">1. 질문</h2>
-<p>위치를 어떻게 감시하고 움직임 없음을 잡아내는가.</p>
-<p>한 줄로: <code>termux-location</code>으로 <strong>GPS 우선, 실패하면 네트워크 폴백</strong>으로 좌표를 읽고, 두 임계값(GPS 무응답 2시간·위치 무변동 6시간)으로 &ldquo;안 움직임&rdquo;을 판정한다.</p>
-<h2 id="2">2. 원리</h2>
-<p>위치는 다른 값과 달리 <strong>두 번 물어보는</strong> 수집이다.</p>
-<ul>
-<li><strong>1순위 GPS</strong> — <code>termux-location -p gps -r last</code>로 마지막으로 확정된 GPS 좌표를 읽는다.</li>
-<li><strong>폴백 네트워크</strong> — GPS가 안 잡히면(실내·날씨·기기 설정) <code>-p network -r last</code>로 와이파이·기지국 기반 좌표를 읽는다.</li>
-</ul>
-<p>판정도 두 갈래다.</p>
-<ul>
-<li><strong>무응답(GPS silence):</strong> 좌표가 비었거나 provider가 <code>none</code>이면, 마지막으로 위치를 잡은 시각(<code>last_gps_time</code>)과 비교해 <strong>2시간 넘게 무응답</strong>이면 경고한다. &ldquo;폰은 살아있는데 위치가 안 잡힌다&rdquo; = GPS 꺼짐·권한 회수·실내 장기 체류일 수 있다.</li>
-<li><strong>무변동(no move):</strong> 이번 좌표가 직전 좌표와 <strong>같으면</strong>, 마지막으로 움직인 시각(<code>last_move_time</code>)과 비교해 <strong>6시간 넘게 같은 자리</strong>면 urgent로 올린다. 이게 돌봄의 핵심 신호다 — 혼자 계신 분이 6시간째 같은 자리라면 확인이 필요하다.</li>
-</ul>
-<p>핵심은 <strong>&ldquo;좌표 자체가 아니라 좌표의 변화&rdquo;</strong> 를 기억한다는 점이다. 직전 좌표를 <code>care-state.json</code>에 저장해두고, 이번 좌표와 비교한다.</p>
-<h2 id="3">3. 실물 (코드·설정)</h2>
-<p>수집은 GPS 우선, 실패 시 네트워크 폴백이다.</p>
-<pre><code class="language-bash">collect_location() {
-  local loc_json
-  loc_json=$(termux-location -p gps -r last 2&gt;/dev/null \
-    || termux-location -p network -r last 2&gt;/dev/null \
-    || echo '{}')
-  local lat; lat=$(echo &quot;$loc_json&quot; | grep -o '&quot;latitude&quot;:[0-9.]*' | grep -o '[0-9.]*' || echo &quot;&quot;)
-  local lon; lon=$(echo &quot;$loc_json&quot; | grep -o '&quot;longitude&quot;:[0-9.]*' | grep -o '[0-9.]*' || echo &quot;&quot;)
-  local provider; provider=$(echo &quot;$loc_json&quot; | grep -o '&quot;provider&quot;:&quot;[^&quot;]*&quot;' | cut -d'&quot;' -f4 || echo &quot;none&quot;)
-}
-</code></pre>
-<p>판정은 무응답과 무변동 두 갈래다.</p>
-<pre><code class="language-bash"># ── GPS 무응답 (2시간) ──
-if [ -z &quot;$loc_lat&quot; ] || [ &quot;$loc_provider&quot; = &quot;none&quot; ]; then
-  prev_gps_time=$(echo &quot;$PREV_STATE&quot; | grep &quot;LAST_GPS_TIME=&quot; | cut -d= -f2 || echo &quot;$NOW_EPOCH&quot;)
-  gps_gap=$(( (NOW_EPOCH - prev_gps_time) / 3600 ))
-  if [ &quot;$gps_gap&quot; -gt &quot;$GPS_SILENT_HOURS&quot; ]; then
-    [ &quot;$level&quot; = &quot;info&quot; ] &amp;&amp; level=&quot;warning&quot;; alerts=&quot;${alerts} 📍 GPS ${gps_gap}시간째 무응답&quot;
-  fi
-fi
+<!-- 규격: SPEC.md §4-3. METHOD.md의 Scene/Feel/Way/Next 계승 + Gap/Fix 명시. -->
 
-# ── 위치 무변동 (6시간) ──
-prev_loc=$(echo &quot;$PREV_STATE&quot; | grep &quot;LOC_LAT=&quot; | cut -d= -f2 || echo &quot;&quot;)
-if [ -n &quot;$prev_loc&quot; ] &amp;&amp; [ -n &quot;$loc_lat&quot; ] &amp;&amp; [ &quot;$prev_loc&quot; = &quot;$loc_lat&quot; ]; then
-  prev_move_time=$(echo &quot;$PREV_STATE&quot; | grep &quot;LAST_MOVE_TIME=&quot; | cut -d= -f2 || echo &quot;$NOW_EPOCH&quot;)
-  still_hours=$(( (NOW_EPOCH - prev_move_time) / 3600 ))
-  if [ &quot;$still_hours&quot; -gt &quot;$NO_MOVE_HOURS&quot; ]; then
-    level=&quot;urgent&quot;; alerts=&quot;${alerts} 🛑 ${still_hours}시간째 위치 변동 없음 (웰니스 체크 필요)&quot;
-  fi
-fi
-</code></pre>
-<p>```care type=&rdquo;flow&rdquo; id=&rdquo;location-flow&rdquo;<br>
-title: 위치 감시 흐름 — GPS→폴백 → 무응답·무변동 판정 → 보고<br>
-nodes:<br>
-  - { id: gps, label: &ldquo;GPS 좌표&rdquo;, kind: start }<br>
-  - { id: net, label: &ldquo;네트워크 폴백&rdquo; }<br>
-  - { id: silent, label: &ldquo;무응답 &gt; 2시간?&rdquo; }<br>
-  - { id: still, label: &ldquo;무변동 &gt; 6시간?&rdquo; }<br>
-  - { id: report, label: &ldquo;보고 (텔레그램)&rdquo; }<br>
-edges:<br>
-  - { from: gps, to: net, label: &ldquo;GPS 실패 시&rdquo; }<br>
-  - { from: net, to: silent }<br>
-  - { from: silent, to: still }<br>
-  - { from: still, to: report, label: &ldquo;하나라도 걸리면&rdquo; }</p>
-<pre><code>
-## 4. 임계값
+<h2 id="1-fact">1. 상황 (Fact)</h2>
+<!-- 무슨 일이 있었는가. 날짜·장소·사람·일어난 일. 개인 식별정보 없이. -->
 
-실제 `care.conf`에 박힌 값들이다.
+<h2 id="2-feel">2. 느낀 것 (Feel)</h2>
+<!-- 몸으로 느낀 것. 수치 없이도 된다. -->
 
-```care type=&quot;threshold-table&quot; id=&quot;location-thresholds&quot;
-title: 위치·GPS 임계값 (care.conf)
-rows:
-  - { label: &quot;GPS 무응답&quot;, threshold: &quot;2시간&quot;, action: &quot;🟡 무응답 보고 (warning)&quot;, level: warning }
-  - { label: &quot;위치 무변동&quot;, threshold: &quot;6시간&quot;, action: &quot;🔴 웰니스 체크 (urgent)&quot;, level: urgent }
-  - { label: &quot;평소 반경&quot;, threshold: &quot;500m&quot;, action: &quot;선언만 됨 (미배선 — 아래 한계)&quot;, level: warning }
-</code></pre>
-<h2 id="5">5. 한계·확인 창구</h2>
-<ul>
-<li><strong>평소 반경 500m는 미구현이다.</strong> <code>care.conf</code>에 <code>LOCATION_RADIUS_M=500</code>(&ldquo;평소 반경&rdquo;)이 <strong>선언되어 있지만, <code>analyze()</code>에는 그 값을 쓰는 코드가 없다.</strong> &ldquo;평소 반경을 벗어나면 보고&rdquo;는 아직 동작하지 않는다. 다음 단계의 과제다(편 06의 한계에서 예고한 지점).</li>
-<li><strong>좌표는 &ldquo;같은 자리&rdquo;만 본다.</strong> 어느 자리인지(집·병원·산책로)는 판정하지 않는다. 좌표 변화가 있으면 &ldquo;움직였다&rdquo;로 본다.</li>
-<li><strong>GPS 정확도는 환경에 따라 다르다.</strong> 실내·고층·날씨에 따라 수십~수백 m 오차가 날 수 있다. &ldquo;6시간 무변동&rdquo; 판정은 이 오차 범위 안의 움직임을 못 잡을 수 있다.</li>
-<li><strong>실 GPS 좌표는 공개하지 않는다.</strong> 이 데몬은 좌표를 텔레그램 보고에 싣지만, 이 채널(원고)은 좌표·주소·동선을 절대 싣지 않는다. 돌봄 데이터 공개 금지 원칙.</li>
-<li><strong>법령·의료 단정 금지:</strong> &ldquo;6시간 무변동&rdquo;은 웰니스 확인 신호이지 의학적 판단이 아니다. 필요하면 보건소·의료기관·119에서 확인할 것.</li>
-</ul>
-<blockquote>
-<p>이 채널은 법률 자문도 의료 가이드도 아니다.</p>
-</blockquote></article>
+<h2 id="3-gap">3. 빈틈 (Gap)</h2>
+<!-- 행정·돌봄 마찰이 어디서 생겼는가. -->
+
+<h2 id="4-fix">4. 솔루션 (Fix)</h2>
+<!-- 어떻게 통과했는지. 돌봄 데몬과의 연결 지점. -->
+
+<h2 id="5-next">5. 다음 (Next)</h2>
+<!-- 48시간 안에 할 일 1~3개. 담당 명시. --></article>
   <footer class="foot">
     <div>Helana Log · Docs Webzine</div>
     <div class="a">모든 계정은 큰누나 명의입니다.</div>

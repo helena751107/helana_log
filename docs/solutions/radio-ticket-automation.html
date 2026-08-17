@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI 에이전트(DeepSeek/Aider) + 크롤링 + GitHub Actions + GUI 자동화로">
+<meta name="theme-color" content="#0a0908">
+<title>라디오 초대권 자동화 시스템 — &quot;Classic Pass&quot; 설계 — Helana Log</title>
+<link rel="canonical" href="https://helena751107.github.io/helana_log/docs/solutions/radio-ticket-automation.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://github.com/helena751107#person",
+      "name": "Helena Park",
+      "url": "https://github.com/helena751107",
+      "description": "Made in Korea — not a developer. One Galaxy S21, built by voice, for a sister.",
+      "sameAs": [
+        "https://github.com/helena751107",
+        "https://helena751107.github.io/helena_phone/",
+        "https://www.youtube.com/@helena_phone",
+        "https://www.youtube.com/@HelenaPark-e7c"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://helena751107.github.io/helana_log/docs/solutions/radio-ticket-automation.html#webpage",
+      "url": "https://helena751107.github.io/helana_log/docs/solutions/radio-ticket-automation.html",
+      "name": "라디오 초대권 자동화 시스템 — \"Classic Pass\" 설계",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://github.com/helena751107#person"
+      },
+      "author": {
+        "@id": "https://github.com/helena751107#person"
+      }
+    }
+  ]
+}
+</script>
+<link rel="icon" href="../../icons/favicon-32.png" type="image/png">
+<link rel="manifest" href="../../site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=JetBrains+Mono:wght@400&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://helena751107.github.io/helena_phone/assets/webzine.css">
+<style>
+:root {
+  --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
+  --paper:#0a0908; --paper-2:#12100e; --paper-3:#1a1714;
+  --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
+  --accent:#3db8a8; --gold:#d4a84b;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --gutter:max(22px, calc(env(safe-area-inset-left,0px) + 16px));
+  --gutter-r:max(22px, calc(env(safe-area-inset-right,0px) + 16px));
+}
+[data-theme="light"] {
+  --ink:#1a1510; --ink-dim:#5c5348; --ink-mute:#8a8074;
+  --paper:#f7f1e6; --paper-2:#efe8db; --paper-3:#fffdf8;
+  --rule:rgba(26,21,16,.1); --rule2:rgba(26,21,16,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+a:hover{filter:brightness(1.15)}
+.spine{position:fixed;left:0;top:0;bottom:0;width:2px;background:var(--rule);z-index:50}
+.spine-fill{width:100%;height:0;background:var(--accent)}
+.mast{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px var(--gutter-r) 12px var(--gutter);padding-top:max(12px,env(safe-area-inset-top));
+  background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:1rem;color:var(--ink)}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.mast nav{display:flex;flex-wrap:wrap;gap:6px}
+.mast a,.mast button{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);
+  min-height:40px;padding:8px 10px;background:none;border:none;cursor:pointer;font-family:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:28px var(--gutter-r) 80px var(--gutter)}
+.kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.4rem);font-weight:600;margin-bottom:10px;padding-inline:2px}
+.deck{color:var(--ink-dim);font-weight:300;border-left:2px solid var(--accent);padding-left:12px;margin-bottom:18px}
+.meta{font-size:.75rem;color:var(--ink-mute);margin-bottom:22px;font-family:var(--mono)}
+.prose h2{font-family:var(--serif);font-size:1.35rem;margin:1.6em 0 .6em;color:var(--ink)}
+.prose h3{font-size:1.05rem;margin:1.2em 0 .5em}
+.prose p,.prose li{color:var(--ink-dim);font-weight:300;margin-bottom:.7em}
+.prose ul,.prose ol{margin:0 0 1em 1.2em}
+.prose code{font-family:var(--mono);font-size:.85em;color:var(--accent)}
+.prose pre{background:var(--paper-2);border:1px solid var(--rule);padding:14px;overflow-x:auto;margin:1em 0;font-size:.82rem}
+.prose table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1em 0}
+.prose th,.prose td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+.prose th{background:var(--paper-3);color:var(--ink-mute);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.prose blockquote{border-left:2px solid var(--accent);padding:8px 14px;color:var(--ink-dim);margin:1em 0;background:var(--paper-2)}
+.appbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;padding:10px;background:var(--paper-2);border:1px solid var(--rule);position:sticky;top:56px;z-index:30}
+.appbar input{flex:1 1 140px;min-height:40px;padding:8px 10px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink);font:inherit}
+.appbar button{min-height:40px;padding:8px 12px;border:1px solid var(--rule2);background:var(--paper-3);color:var(--ink-dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;font-family:inherit}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
+.foot .a{color:var(--accent);margin-top:8px}
+.sec{border:1px solid var(--rule);background:var(--paper-2);margin:1em 0;border-radius:2px;overflow:hidden}
+.sec > .sec-h{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:none;border:none;color:inherit;font:inherit;cursor:pointer;text-align:left;min-height:48px}
+.sec > .sec-h h2{margin:0;font-size:1.15rem;font-family:var(--serif)}
+.sec .ico{width:28px;height:28px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent)}
+.sec.open .ico{transform:rotate(45deg)}
+.sec .sec-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.sec.open .sec-b{grid-template-rows:1fr}
+.sec .sec-i{overflow:hidden;min-height:0;opacity:0;padding:0 14px;transition:opacity .25s}
+.sec.open .sec-i{opacity:1;padding:0 14px 14px}
+mark.hit{background:color-mix(in srgb,var(--accent) 35%,transparent)}
+</style>
+</head>
+<body>
+<div class="spine" aria-hidden="true"><div class="spine-fill" id="spineFill"></div></div>
+<header class="mast">
+  <a class="brand" href="../../">Helana <em>Log</em></a>
+  <nav>
+    <a href="../../">Home</a>
+    <a href="../../docs/">Docs</a>
+    <a href="https://helena751107.github.io/helena_phone/">Hub</a>
+    <button type="button" id="themeBtn">Theme</button>
+  </nav>
+</header>
+<main class="wrap">
+  <div class="kicker">행정 대화록 · Docs</div>
+  <h1>라디오 초대권 자동화 시스템 — &quot;Classic Pass&quot; 설계</h1>
+  <p class="deck">AI 에이전트(DeepSeek/Aider) + 크롤링 + GitHub Actions + GUI 자동화로</p>
+  <div class="meta">source · docs/solutions/radio-ticket-automation.md · bridge docs↔web · _Grok</div>
+  <div class="appbar">
+    <input type="search" id="q" placeholder="페이지 내 검색…" autocomplete="off">
+    <button type="button" id="fold">접기</button>
+    <button type="button" id="expand">펼치기</button>
+  </div>
+  <article class="prose" id="prose"><hr>
+<p>date: 2026-08-10<br>
+source: gemini-conversation<br>
+agent: Gemini + Claude Code (파싱·정제)<br>
+status: 설계 완료 → 구현 대기</p>
+<hr>
+<h1 id="classic-pass">라디오 초대권 자동화 시스템 — &ldquo;Classic Pass&rdquo; 설계</h1>
+<blockquote>
+<p>AI 에이전트(DeepSeek/Aider) + 크롤링 + GitHub Actions + GUI 자동화로<br>
+라디오 공개방송·초대권 당첨률을 극대화하는 자동화 파이프라인.</p>
+</blockquote>
+<h2 id="1-only">1. 핵심 제약 — 수요일 Only</h2>
+<p>Boss의 쉬는 날이 <strong>수요일</strong>이므로, 수요일에 진행/참여 가능한 프로그램만 타겟팅.<br>
+모든 크롤링·사연 생성·신청은 이 제약 위에서 동작.</p>
+<h2 id="2-3">2. 3대 채널 포트폴리오</h2>
+<table>
+<thead>
+<tr>
+<th>채널</th>
+<th>장르</th>
+<th>타깃 방송사</th>
+<th>프로그램 예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>채널 A</strong></td>
+<td>클래식 (치유·전공)</td>
+<td>KBS Classic FM 단일</td>
+<td>KBS 음악실, 출발 FM과 함께, 가정음악, 살롱 드 피아노</td>
+</tr>
+<tr>
+<td><strong>채널 B</strong></td>
+<td>옛날 가요 (작은누나)</td>
+<td>지상파 3사 전체</td>
+<td>KBS 열린음악회, 불후의 명곡, MBC/SBS 특집</td>
+</tr>
+<tr>
+<td><strong>채널 C</strong></td>
+<td>해외 팝 (Boss 추억)</td>
+<td>MBC FM4U 단일</td>
+<td>배철수의 음악캠프</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 기술 아키텍처</h2>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                 Classic Pass Pipeline                    │
+├──────────┬──────────┬──────────┬──────────┬────────────┤
+│ 크롤링    │ LLM 생성  │ 스케줄러   │ 전송      │ 제출        │
+│ (Python) │ (DeepSeek)│ (GH Act) │ (TG Bot) │ (GUI/수동)  │
+├──────────┼──────────┼──────────┼──────────┼────────────┤
+│5대 공연장 │역산 알고리즘│주1회 실행  │스마트폰    │ADB 매크로   │
+│3사 방청  │당첨 패턴   │cron      │알림+복사  │or Paste    │
+│배캠 공지  │학습·생성  │          │          │Pipeline    │
+└──────────┴──────────┴──────────┴──────────┴────────────┘
+</code></pre>
+<h3 id="module-1">Module 1 — 크롤링 &amp; 타겟팅 스케줄러</h3>
+<p><strong>5대 클래식 공연장 타깃 도메인:</strong><br>
+- 예술의전당 (sac.or.kr) — 달력형 HTML<br>
+- 롯데콘서트홀 (lotteconcerthall.com) — AJAX 비동기, JSON 엔드포인트 직접 타격 필요<br>
+- 세종문화회관 (sejongpac.or.kr)<br>
+- 금호아트홀 연세<br>
+- KBS홀</p>
+<p><strong>필터링 로직:</strong></p>
+<pre><code>날짜 → day_of_week == &quot;수요일&quot;
+장르 → &quot;피아노&quot; | &quot;리사이틀&quot; | &quot;오케스트라&quot; | &quot;필하모닉&quot; | &quot;협주곡&quot;
+제휴 → 주최/협찬에 &quot;KBS&quot; | &quot;KBS 클래식FM&quot; 포함
+</code></pre>
+<p><strong>가요·팝 방청 크롤링 추가:</strong><br>
+- KBS 열린음악회 방청 신청 페이지<br>
+- MBC 라디오 공개방송 공지사항<br>
+- SBS 전설의 무대 아카이브K<br>
+- MBC FM4U 배철수의 음악캠프 공지사항 게시판</p>
+<p><strong>데이터 스키마 (JSON):</strong></p>
+<pre><code class="language-json">{
+  &quot;performance_id&quot;: &quot;SAC_20260812_01&quot;,
+  &quot;location&quot;: &quot;예술의전당 콘서트홀&quot;,
+  &quot;date&quot;: &quot;2026-08-12&quot;,
+  &quot;day_of_week&quot;: &quot;수요일&quot;,
+  &quot;time&quot;: &quot;19:30&quot;,
+  &quot;title&quot;: &quot;백건우 피아노 리사이틀&quot;,
+  &quot;genre&quot;: &quot;클래식 / 솔로 악기&quot;,
+  &quot;repertoire&quot;: [&quot;쇼팽 녹턴&quot;, &quot;쇼팽 발라드 전곡&quot;],
+  &quot;hosts&quot;: [&quot;주최: 예술의전당&quot;, &quot;협찬: KBS 클래식FM&quot;],
+  &quot;program_match&quot;: &quot;KBS 음악실&quot;,
+  &quot;deadline&quot;: &quot;2026-08-05&quot;,
+  &quot;apply_url&quot;: &quot;https://...&quot;
+}
+</code></pre>
+<h3 id="module-2-deepseek">Module 2 — DeepSeek 사연 역산 생성기</h3>
+<p><strong>역산(Reverse Engineering) 로직:</strong><br>
+1. 과거 당첨 사연 수집 → 텍스트 패턴 분석<br>
+2. 패턴: 길이, 감정 단어 빈도, 문체(구어체/문어체), 스토리 구조<br>
+3. 프롬프트에 내장 → &ldquo;이 패턴을 따르되 새로운 맥락으로&rdquo;</p>
+<p><strong>디폴트 프로필 (Persona Settings):</strong><br>
+- 보호자(동생), 육체노동자, 출판사 AI 프로젝트 진행 중<br>
+- 쉬는 날: 수요일<br>
+- 가족: 치매 어머니, 조현병 작은누나(취미: 피아노), 큰누나(피아노 전공)</p>
+<p><strong>채널별 톤앤매너:</strong><br>
+| 채널 | 프로그램 | 톤 |<br>
+|------|---------|-----|<br>
+| KBS 음악실 | 살롱 드 피아노 | 우아하고 전문성 있는 클래식 애호가 |<br>
+| 출발 FM | 아침 클래식 | 산뜻하고 간결하게 |<br>
+| 가정음악 | 저녁 클래식 | 따뜻하고 차분하게 |<br>
+| 열린음악회 | 가요 방청 | 작은누나의 추억 + 감동 가족 스토리 |<br>
+| 배철수의 음악캠프 | 팝 라이브 | 젊은 날의 열정 + 깊은 팬심 |</p>
+<h3 id="module-3-github-actions-tg">Module 3 — 알림 &amp; 전송 (GitHub Actions → TG)</h3>
+<pre><code>GitHub Actions cron (매주 일요일 밤)
+  → 크롤링 스크립트 실행
+  → DeepSeek API 사연 생성
+  → 결과물을 GitHub Artifact + Telegram으로 전송
+
+TG 메시지 포맷:
+  [프로그램명] / [마감일] / [신청 페이지 링크] / [생성된 사연]
+</code></pre>
+<h3 id="module-4-gui">Module 4 — 최종 제출 (GUI/수동 하이브리드)</h3>
+<p><strong>API 없는 방송사 게시판 대응:</strong><br>
+- <strong>완전 자동화:</strong> 안드로이드 ADB + MacroDroid/Tasker → 클립보드 주입 + Input Text<br>
+- <strong>반자동 (현실적):</strong> TG로 받은 사연 복사 → 링크 눌러 게시판 이동 → 붙여넣기 → 제출 (5분)</p>
+<p><strong>WSL 한계 우회:</strong><br>
+- WSL에서는 GUI 자동화 까다로움<br>
+- 저가형 안드로이드 폰에서 ADB/Termux로 구동<br>
+- 또는 GitHub Actions에서 사연 생성까지만 하고, 제출은 사람이 Paste Pipeline으로</p>
+<h2 id="4">4. 일정 역산 로직</h2>
+<pre><code>목표일 = 공연/행사일 - 14일 (초대권 발송 프로세스 고려)
+실행일 = 목표일 - 3일 (접수 마감 여유)
+→ GitHub Actions cron: 매주 실행, 조건 충족 항목만 타겟팅
+</code></pre>
+<h2 id="5-1">5. 수요일 참여 가능 프로그램 (1차 타겟)</h2>
+<h3 id="kbs-classic-fm">클래식 (KBS Classic FM)</h3>
+<ul>
+<li>오전 11시 — KBS 음악실 (살롱 드 피아노)</li>
+<li>저녁 8시 — 출발 FM과 함께 / 가정음악</li>
+</ul>
+<h3 id="_1">달달·일상 사연</h3>
+<ul>
+<li>KBS Cool FM — 유인나의 볼륨을 높여요 (20:00~22:00)</li>
+<li>SBS Power FM — 박소현의 러브게임 (18:00~20:00)</li>
+</ul>
+<h3 id="_2">진지·감동 사연</h3>
+<ul>
+<li>MBC 표준FM — 여성시대 양희은, 김일중입니다 (09:05~11:00)</li>
+<li>CBS 음악FM — 한동준의 FM POPS (16:00~18:00)</li>
+</ul>
+<h3 id="_3">유쾌·웃음 사연</h3>
+<ul>
+<li>SBS Power FM — 두시탈출 컬투쇼 (14:00~16:00)</li>
+<li>MBC FM4U — 정오의 희망곡 김신영입니다 (12:00~14:00)</li>
+</ul>
+<h2 id="6">6. 개발 우선순위</h2>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>내용</th>
+<th>의존성</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1단계</strong></td>
+<td>3~5개 프로그램 선정, 게시판 URL 구조 파악 → 크롤러 작성</td>
+<td>없음</td>
+</tr>
+<tr>
+<td><strong>2단계</strong></td>
+<td>DeepSeek 프롬프트 튜닝 (&ldquo;당첨 치트키 패러다임&rdquo;)</td>
+<td>1단계</td>
+</tr>
+<tr>
+<td><strong>3단계</strong></td>
+<td>GitHub Actions cron 연동 + TG 알림</td>
+<td>2단계</td>
+</tr>
+<tr>
+<td><strong>4단계</strong></td>
+<td>ADB/Tasker GUI 자동화 또는 Paste Pipeline</td>
+<td>3단계</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-gemini">7. Gemini와의 대화 핵심 결론</h2>
+<ol>
+<li><strong>크롤링은 전통적 하드코딩으로</strong> — LLM에게 크롤링 맡기면 할루시네이션 위험 (날짜 오차, 동적 JS 누락). 정확한 도메인 타격이 먼저.</li>
+<li><strong>사연 생성은 LLM에게</strong> — 톤앤매너 매칭, 디폴트 프로필 유지, 감동적인 스토리텔링은 AI의 강점.</li>
+<li><strong>제출은 사람이 최종 관여</strong> — API 없음 + 캡차 + 로그인 보안. Paste Pipeline 모델 재활용.</li>
+<li><strong>채널 분리가 핵심</strong> — 클래식(KBS 단일) / 가요(3사) / 팝(배캠 단일) — 채널마다 크롤링 도메인과 사연 톤이 완전히 다름.</li>
+</ol>
+<h2 id="8-helena_phone">8. 기존 helena_phone 파이프라인과의 연계</h2>
+<table>
+<thead>
+<tr>
+<th>기존 시스템</th>
+<th>Classic Pass 재활용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PD Pipeline (P0~P6)</td>
+<td>크롤링·파싱 모듈 구조 그대로 도메인만 교체</td>
+</tr>
+<tr>
+<td>Paste Pipeline (TG→복붙)</td>
+<td>최종 제출 단계에서 동일 패턴</td>
+</tr>
+<tr>
+<td>GitHub Actions cron</td>
+<td>동일 인프라, workflow 파일 추가</td>
+</tr>
+<tr>
+<td>DeepSeek API (Aider)</td>
+<td>LLM 생성 파트에서 동일 API</td>
+</tr>
+<tr>
+<td>helana_log/기자/ RSS sync</td>
+<td>방송사 공지사항 RSS 파싱으로 확장 가능</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote>
+<p><strong>한 줄:</strong> &ldquo;AI가 사연을 쓰고, 크롤러가 일정을 따고, GitHub가 스케줄을 돌리고, 사람이 5분만 투자해서 제출한다.&rdquo;<br>
+— Boss의 Paste Pipeline 철학을 라디오 초대권으로 확장.</p>
+</blockquote></article>
+  <footer class="foot">
+    <div>Helana Log · Docs Webzine</div>
+    <div class="a">모든 계정은 큰누나 명의입니다.</div>
+    <p style="margin-top:12px"><a href="../../">← Landing</a> · <a href="https://helena751107.github.io/helena_phone/">S21 Hub</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('helena-doc-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn')?.addEventListener('click', () => {
+    const n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    localStorage.setItem('helena-doc-theme', n);
+  });
+  const spine = document.getElementById('spineFill');
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (spine) spine.style.height = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+  }, { passive: true });
+  const prose = document.getElementById('prose');
+  if (prose) {
+    [...prose.querySelectorAll(':scope > h2')].forEach((h2) => {
+      const sec = document.createElement('div');
+      sec.className = 'sec open';
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'sec-h';
+      const tw = document.createElement('div'); tw.appendChild(h2.cloneNode(true));
+      const ico = document.createElement('span'); ico.className = 'ico'; ico.textContent = '+';
+      btn.appendChild(tw); btn.appendChild(ico);
+      const body = document.createElement('div'); body.className = 'sec-b';
+      const inner = document.createElement('div'); inner.className = 'sec-i';
+      let n = h2.nextSibling; const move = [];
+      while (n && !(n.nodeType === 1 && n.tagName === 'H2')) { move.push(n); n = n.nextSibling; }
+      move.forEach(x => inner.appendChild(x));
+      body.appendChild(inner); sec.appendChild(btn); sec.appendChild(body);
+      h2.replaceWith(sec);
+      btn.addEventListener('click', () => {
+        const on = !sec.classList.contains('open');
+        sec.classList.toggle('open', on);
+      });
+    });
+    const setAll = (open) => prose.querySelectorAll('.sec').forEach(s => s.classList.toggle('open', open));
+    document.getElementById('fold')?.addEventListener('click', () => setAll(false));
+    document.getElementById('expand')?.addEventListener('click', () => setAll(true));
+    document.getElementById('q')?.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      prose.querySelectorAll('.sec').forEach(sec => {
+        const hit = !q || sec.innerText.toLowerCase().includes(q);
+        sec.style.display = hit ? '' : 'none';
+        if (hit && q) sec.classList.add('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
