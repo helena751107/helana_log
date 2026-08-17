@@ -1,5 +1,7 @@
 # How Helena Lives — care, translated into technology
 
+![How Helena Lives — care, translated into technology](assets/social-preview.jpg)
+
 > For my sister living with schizophrenia: a record of her days — Scene · Feel · Way · Next —
 > and beside it, a 24-hour guardian (the care daemon).
 >
