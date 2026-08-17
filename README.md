@@ -3,6 +3,8 @@
 > For my sister living with schizophrenia: a record of her days — Scene · Feel · Way · Next —
 > and beside it, a 24-hour guardian (the care daemon).
 >
+> Part of the [**Helena Content Foundry**](https://github.com/helena751107/helena_phone) — mobile-first, MCP-verified.
+>
 > _Korean below = the full worked example._
 
 ---
