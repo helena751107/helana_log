@@ -1,8 +1,8 @@
 {
   "id": "/helana_log/",
-  "name": "Helana Log · 행정 대화록",
-  "short_name": "행정대화록",
-  "description": "장애복지·기초생활·치매 돌봄 가정이 대한민국 행정을 마주한 체감·개선·솔루션 대화록.",
+  "name": "헬레나가 사는 법 — How Helena Lives",
+  "short_name": "헬레나가 사는 법",
+  "description": "조현병과 함께 사는 누나 헬레나의 인생 스토리. 신앙·음악·가족 돌봄 속에서 하루를 살아내는 방식을 기록.",
   "lang": "ko",
   "dir": "ltr",
   "start_url": "/helana_log/",
@@ -12,7 +12,7 @@
   "orientation": "any",
   "background_color": "#0a0908",
   "theme_color": "#0a0908",
-  "categories": ["government", "social", "education"],
+  "categories": ["lifestyle", "health", "family"],
   "prefer_related_applications": false,
   "icons": [
     {
