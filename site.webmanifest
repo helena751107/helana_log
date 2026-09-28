@@ -1,9 +1,9 @@
 {
   "id": "/helana_log/",
-  "name": "헬레나가 사는 법 — How Helena Lives",
-  "short_name": "헬레나가 사는 법",
-  "description": "조현병과 함께 사는 누나 헬레나의 인생 스토리. 신앙·음악·가족 돌봄 속에서 하루를 살아내는 방식을 기록.",
-  "lang": "ko",
+  "name": "How Helena Lives",
+  "short_name": "Helena Lives",
+  "description": "The life story of my sister Helena, living with schizophrenia. A record of how she makes it through each day — held within faith, music, and family care.",
+  "lang": "en",
   "dir": "ltr",
   "start_url": "/helana_log/",
   "scope": "/helana_log/",
