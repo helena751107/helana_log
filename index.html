@@ -34,12 +34,8 @@
       "url": "https://helena751107.github.io/helana_log/",
       "name": "How Helena Lives",
       "inLanguage": "en",
-      "publisher": {
-        "@id": "https://github.com/helena751107#person"
-      },
-      "author": {
-        "@id": "https://github.com/helena751107#person"
-      }
+      "publisher": { "@id": "https://github.com/helena751107#person" },
+      "author": { "@id": "https://github.com/helena751107#person" }
     }
   ]
 }
@@ -54,7 +50,9 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ontoviz/onto.css">
 <style>
 :root {
   --ink:#f4efe6; --ink-dim:#b5a999; --ink-mute:#7a7064;
@@ -62,12 +60,14 @@
   --rule:rgba(244,239,230,.1); --rule2:rgba(244,239,230,.18);
   --gold:#d4a84b; --gold2:#f0c75e; --teal:#3db8a8; --coral:#e85d4c; --lilac:#8b7cf0;
   --serif:'Cormorant Garamond',serif; --sans:'DM Sans','Noto Sans KR',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
   --ease:cubic-bezier(.16,1,.3,1); --accent:var(--gold);
 }
 [data-accent="teal"] { --accent:var(--teal); }
 [data-accent="coral"] { --accent:var(--coral); }
 [data-accent="lilac"] { --accent:var(--lilac); }
 [data-accent="gold"] { --accent:var(--gold); }
+[data-accent="sky"] { --accent:#8fb3c9; }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;min-height:100vh;overflow-x:hidden}
@@ -82,46 +82,49 @@ a:hover{color:var(--teal)}
   padding-top:max(12px,env(safe-area-inset-top));
   background:color-mix(in srgb,var(--paper) 88%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
 .brand{font-family:var(--serif);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:1rem}
-.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.brand em{font-style:italic;color:var(--accent);font-weight:400;text-transform:none;letter-spacing:0}
 .mast nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .mast nav a,.mast nav button{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);
   min-height:40px;padding:8px 10px;background:none;border:none;cursor:pointer;font-family:inherit}
 .mast nav a:hover,.mast nav button:hover{color:var(--accent)}
 .hero{padding:56px 0 28px}
-.kicker{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
-h1{font-family:var(--serif);font-size:clamp(2.2rem,9vw,3.4rem);line-height:1.08;font-weight:600;letter-spacing:-.02em;margin-bottom:14px}
-h1 em{font-style:italic;color:var(--accent)}
+.kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
+h1{font-family:var(--serif);font-size:clamp(2.4rem,10vw,3.8rem);line-height:1.02;font-weight:500;letter-spacing:-.02em;margin-bottom:16px}
+h1 em{font-style:italic;color:var(--accent);font-weight:400}
 .deck{color:var(--ink-dim);font-weight:300;font-size:1.05rem;max-width:34em;border-left:2px solid var(--accent);padding-left:14px;margin-bottom:22px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
 .chip{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border:1px solid var(--rule2);
   background:var(--paper-2);color:var(--ink-dim);font-size:.82rem;transition:.25s}
 .chip:hover{border-color:var(--accent);color:var(--ink)}
 .eco{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 28px;padding:12px;border:1px dashed var(--rule);background:var(--paper-2)}
-.eco a{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);padding:8px 10px;min-height:36px;display:inline-flex;align-items:center}
+.eco a{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);padding:8px 10px;min-height:36px;display:inline-flex;align-items:center}
 .eco a:hover{color:var(--accent)}
 .hero-shot{position:relative;margin:0 0 32px;border:1px solid var(--rule2);overflow:hidden;background:var(--paper-2)}
 .hero-shot img{width:100%;height:auto;display:block;filter:saturate(1.05) contrast(1.03)}
-.hero-shot .cap{position:absolute;left:14px;bottom:14px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+.hero-shot .cap{position:absolute;left:14px;bottom:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--gold2);background:rgba(10,9,8,.55);backdrop-filter:blur(6px);padding:7px 11px;border:1px solid rgba(244,239,230,.15)}
-.acc{border-top:1px solid var(--rule)}
-.acc-h{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;
-  text-align:left;background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:18px 0;min-height:56px}
-.acc-h .num{font-size:.72rem;letter-spacing:.12em;color:var(--accent);font-weight:600}
-.acc-h .t{font-family:var(--serif);font-size:1.35rem;font-weight:600}
-.acc-h .ico{width:34px;height:34px;border:1px solid var(--rule2);display:grid;place-items:center;color:var(--accent);transition:transform .3s var(--ease)}
-.acc.open .acc-h .ico{transform:rotate(45deg);background:color-mix(in srgb,var(--accent) 15%, transparent)}
-.acc-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
-.acc.open .acc-b{grid-template-rows:1fr}
-.acc-i{overflow:hidden;min-height:0;opacity:0;transition:opacity .25s;padding-bottom:0}
-.acc.open .acc-i{opacity:1;padding-bottom:18px}
-.acc-i p{color:var(--ink-dim);font-weight:300}
+/* ── the scenes, as text ─────────────────────────────────────── */
+.scene{border-top:1px solid var(--rule);padding:40px 0 6px;scroll-margin-top:64px}
+.scene .num{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;color:var(--accent);font-weight:500;display:flex;justify-content:space-between;align-items:center}
+.scene .num .kr{font-family:var(--sans);letter-spacing:.1em;color:var(--ink-mute)}
+.scene h2{font-family:var(--serif);font-size:clamp(1.7rem,5.6vw,2.3rem);line-height:1.12;font-weight:500;margin:12px 0 10px;letter-spacing:-.01em}
+.scene .deck2{color:var(--ink-dim);font-weight:300;margin-bottom:20px;max-width:36em}
+.scene ul.items{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(146px,1fr));gap:8px;margin:0 0 22px}
+.scene ul.items li{background:var(--paper-2);border:1px solid var(--rule);padding:14px 14px 13px;display:flex;flex-direction:column;gap:4px}
+.scene ul.items b{font-weight:500;font-size:.92rem;color:var(--ink)}
+.scene ul.items li:last-child:nth-child(odd){grid-column:1/-1}
+.scene ul.items span{font-family:var(--sans);font-size:.76rem;color:var(--ink-mute);letter-spacing:.04em}
+.scene blockquote{border-left:2px solid var(--accent);padding:4px 0 4px 16px;margin:0 0 10px}
+.scene blockquote p{font-family:var(--serif);font-style:italic;font-size:1.22rem;color:var(--ink);line-height:1.4}
+.scene blockquote cite{display:block;margin-top:6px;font-style:normal;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute)}
+.scene .src{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--ink-mute);margin:14px 0 20px;word-break:break-word}
+.scene .links{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
 .foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule);text-align:center;color:var(--ink-mute);font-size:.8rem}
 .foot .gold{color:var(--accent);margin-top:8px;font-weight:500}
 .giscus{min-height:120px}
 @media(max-width:520px){
   .mast nav .hide{display:none}
-  h1{font-size:clamp(1.9rem,10vw,2.6rem)}
-  .acc-h .t{font-size:1.15rem}
+  h1{font-size:clamp(2rem,10.5vw,2.8rem)}
 }
 </style>
 </head>
@@ -135,7 +138,7 @@ h1 em{font-style:italic;color:var(--accent)}
   </nav>
 </header>
 <main class="wrap">
-  <section class="hero">
+  <section class="hero" id="cover">
     <div class="kicker">How Helena Lives · A life story</div>
     <h1>How Helena<br><em>lives</em>.</h1>
     <p class="deck">A record of Helena's life — living with schizophrenia, making it through each day held within faith, music, and family care.</p>
@@ -145,7 +148,7 @@ h1 em{font-style:italic;color:var(--accent)}
     <a href="docs/care-daemon/">Care Daemon</a>
     <a href="https://helena751107.github.io/helena_phone/">S21 Phone</a>
     <a href="https://helena751107.github.io/helana_log/">Log</a>
-    <a href="https://helena751107.github.io/helana-faith/">Faith</a>
+    <a href="https://helena751107.github.io/helena-faith/">Faith</a>
     <a href="https://helena751107.github.io/helena-piano/">Piano</a>
     <a href="https://helena751107.github.io/helena-metalcare/">MetalCare</a>
   </div>
@@ -155,41 +158,116 @@ h1 em{font-style:italic;color:var(--accent)}
     <div class="cap">How Helena Lives · The Record</div>
   </div>
   </section>
-  
-    <section class="acc open" data-acc>
-      <button class="acc-h" type="button" aria-expanded="true">
-        <span class="num">01</span>
-        <span class="t">Overview</span>
-        <span class="ico" aria-hidden="true">+</span>
-      </button>
-      <div class="acc-b"><div class="acc-i"><p>How Helena (my sister) makes it through each day — a place recording daily life, faith, music, care, and systems as one person's life story.</p></div></div>
-    </section>
-    <section class="acc" data-acc>
-      <button class="acc-h" type="button" aria-expanded="false">
-        <span class="num">02</span>
-        <span class="t">Chapters of Life</span>
-        <span class="ico" aria-hidden="true">+</span>
-      </button>
-      <div class="acc-b"><div class="acc-i"><p>Daily life · Faith · Music · Care · Systems — life recorded through five scenes.</p></div></div>
-    </section>
-    <section class="acc" data-acc>
-      <button class="acc-h" type="button" aria-expanded="false">
-        <span class="num">03</span>
-        <span class="t">Integration</span>
-        <span class="ico" aria-hidden="true">+</span>
-      </button>
-      <div class="acc-b"><div class="acc-i"><p>GitHub Discussions (Giscus) comments · connected to the helena_phone main workstation.</p></div></div>
-    </section>
 
-  <section class="acc open" data-acc>
-    <button class="acc-h" type="button" aria-expanded="true">
-      <span class="num">💬</span>
-      <span class="t">Comments · Discussions</span>
-      <span class="ico" aria-hidden="true">+</span>
-    </button>
-    <div class="acc-b open"><div class="acc-i">
-      <div class="giscus"></div>
-    </div></div>
+  <section class="scene" id="daily" data-accent="gold" style="--accent:var(--gold2)">
+    <div class="num"><span>Scene 01 · 하루</span><span class="kr">Daily life</span></div>
+    <h2>A day is <em style="font-style:italic;color:var(--accent)">small</em> on paper.</h2>
+    <p class="deck2">It begins the same way every morning: waking, medication, breakfast, a short walk. Nothing about the day is dramatic. That is the point — a rhythm held steady is a life being kept.</p>
+    <ul class="items">
+      <li><b>Morning medication</b><span>아침 약</span></li>
+      <li><b>A warm meal</b><span>밥</span></li>
+      <li><b>The afternoon walk</b><span>산책</span></li>
+      <li><b>Sleep, when it comes</b><span>잠</span></li>
+      <li><b>The rhythm</b><span>규칙</span></li>
+    </ul>
+    <blockquote><p>하루를 이긴 게 아니라, 하루를 살아낸 것.</p><cite>Not beating a day — living one.</cite></blockquote>
+    <p class="src">source: docs/IDENTITY.md · 장 하루</p>
+  </section>
+
+  <section class="scene" id="faith" data-accent="sky">
+    <div class="num"><span>Scene 02 · 신앙</span><span class="kr">Faith</span></div>
+    <h2>She holds on by <em style="font-style:italic;color:var(--accent)">holding a hymn</em>.</h2>
+    <p class="deck2">Sunday morning, the church she knows. A prayer before sleep — sometimes only one line of it. Faith here is not an argument; it is a hand on something steady while the mind is loud.</p>
+    <ul class="items">
+      <li><b>The church she knows</b><span>교회</span></li>
+      <li><b>A prayer before sleep</b><span>기도</span></li>
+      <li><b>A hymn she can follow</b><span>찬송</span></li>
+      <li><b>Sunday morning</b><span>주일</span></li>
+      <li><b>The quiet after</b><span>고요</span></li>
+    </ul>
+    <blockquote><p>믿음은 설명이 아니라, 붙잡는 손이었다.</p><cite>Faith was never an explanation — it was a hand to hold.</cite></blockquote>
+    <p class="src">source: docs/IDENTITY.md · 장 신앙</p>
+  </section>
+
+  <section class="scene" id="music" data-accent="lilac">
+    <div class="num"><span>Scene 03 · 음악</span><span class="kr">Music</span></div>
+    <h2>Sound is a place she can <em style="font-style:italic;color:var(--accent)">stand</em>.</h2>
+    <p class="deck2">A piano she keeps returning to, a song she can carry all day, a voice that still comes out. Music gives the day a shape that words sometimes cannot.</p>
+    <ul class="items">
+      <li><b>The piano</b><span>피아노</span></li>
+      <li><b>Her voice</b><span>목소리</span></li>
+      <li><b>A song kept close</b><span>노래</span></li>
+      <li><b>Practice, not performance</b><span>연습</span></li>
+      <li><b>Listening first</b><span>귀</span></li>
+    </ul>
+    <blockquote><p>소리가 나를 붙잡아 줄 때가 있다.</p><cite>Sometimes the sound is what holds me up.</cite></blockquote>
+    <p class="src">source: docs/IDENTITY.md · 장 음악</p>
+  </section>
+
+  <section class="scene" id="care" data-accent="teal">
+    <div class="num"><span>Scene 04 · 돌봄</span><span class="kr">Care</span></div>
+    <h2>Care is a schedule <em style="font-style:italic;color:var(--accent)">two people</em> keep.</h2>
+    <p class="deck2">My mother lives with dementia; my sister lives with schizophrenia; I keep the record. Care is not a feeling — it is a rota of meals, medication, appointments, and someone answering the phone.</p>
+    <ul class="items">
+      <li><b>My mother</b><span>어머니</span></li>
+      <li><b>Personal assistance</b><span>활동지원</span></li>
+      <li><b>The one who writes it down</b><span>기록하는 사람</span></li>
+      <li><b>Safety at home</b><span>안전</span></li>
+      <li><b>Doing it together</b><span>함께</span></li>
+    </ul>
+    <blockquote><p>돌봄은 마음이 아니라 시간표였다.</p><cite>Care was never a feeling — it was a timetable.</cite></blockquote>
+    <p class="src">source: docs/IDENTITY.md · 장 돌봄</p>
+  </section>
+
+  <section class="scene" id="systems" data-accent="coral">
+    <div class="num"><span>Scene 05 · 제도</span><span class="kr">Systems</span></div>
+    <h2>The paperwork is <em style="font-style:italic;color:var(--accent)">part of the day</em>.</h2>
+    <p class="deck2">Disability registration, basic livelihood, hospital appointments, the local centre — different windows, different words for the same life. The documents are not the story, but they decide how the story can be lived.</p>
+    <ul class="items">
+      <li><b>Welfare &amp; benefits</b><span>복지</span></li>
+      <li><b>Hospital &amp; clinic</b><span>병원</span></li>
+      <li><b>The local centre</b><span>주민센터</span></li>
+      <li><b>Forms and next documents</b><span>서류</span></li>
+      <li><b>The phone call</b><span>전화</span></li>
+    </ul>
+    <blockquote><p>서류는 삶이 아니지만, 삶의 하루를 정한다.</p><cite>Paperwork is not a life — but it decides how one gets lived.</cite></blockquote>
+    <p class="src">source: docs/tracks/ · DW · BL · DC</p>
+  </section>
+
+  <section class="scene" id="record">
+    <div class="num"><span>Scene 06 · 기록</span><span class="kr">The record</span></div>
+    <h2>We write it down so the day is <em style="font-style:italic;color:var(--accent)">not lost</em>.</h2>
+    <p class="deck2">Every entry keeps the same shape: the scene, what it felt like, the gap, the way through, the next small step. Written in her name, because the record belongs to her.</p>
+    <ul class="items">
+      <li><b>The scene</b><span>장면</span></li>
+      <li><b>What it felt like</b><span>느낀 것</span></li>
+      <li><b>The way through</b><span>살아낸 법</span></li>
+      <li><b>The next day</b><span>다음 하루</span></li>
+      <li><b>Solution sketches</b><span>솔루션</span></li>
+    </ul>
+    <blockquote><p>기록은 하루를 두 번 살게 한다.</p><cite>A record lets the day be lived twice.</cite></blockquote>
+    <p class="src">source: docs/METHOD.md · docs/dialogue/</p>
+  </section>
+
+  <section class="scene" id="doors">
+    <div class="num"><span>Scene 07 · 문</span><span class="kr">Doors</span></div>
+    <h2>One life, <em style="font-style:italic;color:var(--accent)">many doors</em>.</h2>
+    <p class="deck2">The rest of the ecosystem: the phone hub, the faith page, the piano page, the care tools. Every door is another way into the same record.</p>
+    <div class="links">
+      <a class="chip" href="https://helena751107.github.io/helena_phone/">S21 Phone Hub</a>
+      <a class="chip" href="https://helena751107.github.io/helena-faith/">Faith</a>
+      <a class="chip" href="https://helena751107.github.io/helena-piano/">Piano</a>
+      <a class="chip" href="https://helena751107.github.io/helena-metalcare/">MetalCare</a>
+      <a class="chip" href="docs/care-daemon/">Care Daemon docs</a>
+      <a class="chip" href="https://github.com/helena751107/helana_log">GitHub · the source</a>
+    </div>
+    <blockquote><p>하나의 삶, 여러 개의 문.</p><cite>One life, many doors.</cite></blockquote>
+    <p class="src">source: index.html · ecosystem</p>
+  </section>
+
+  <section class="acc open" data-acc style="border-top:1px solid var(--rule);padding-top:32px">
+    <h2 class="kicker" style="font-size:.68rem">💬 Comments · Discussions</h2>
+    <div class="giscus"></div>
   </section>
   <script src="https://giscus.app/client.js"
     data-repo="helena751107/helana_log"
@@ -216,7 +294,6 @@ h1 em{font-style:italic;color:var(--accent)}
   const root = document.documentElement;
   const saved = localStorage.getItem('s21-sat-theme');
   if (saved) root.setAttribute('data-theme', saved);
-  // light vars
   const apply = () => {
     if (root.getAttribute('data-theme') === 'light') {
       root.style.setProperty('--ink','#1a1510');
@@ -238,15 +315,16 @@ h1 em{font-style:italic;color:var(--accent)}
     localStorage.setItem('s21-sat-theme', n);
     apply();
   });
-  document.querySelectorAll('[data-acc]').forEach(sec => {
-    const btn = sec.querySelector('.acc-h');
-    btn?.addEventListener('click', () => {
-      const on = !sec.classList.contains('open');
-      sec.classList.toggle('open', on);
-      btn.setAttribute('aria-expanded', on ? 'true' : 'false');
-    });
-  });
 })();
+</script>
+<script type="importmap">
+{"imports":{"three":"./ontoviz/vendor/three/build/three.webgpu.js","three/webgpu":"./ontoviz/vendor/three/build/three.webgpu.js","three/tsl":"./ontoviz/vendor/three/build/three.tsl.js","three/addons/":"./ontoviz/vendor/three/examples/jsm/"}}
+</script>
+<script type="module">
+import { initOnto } from './ontoviz/log.js';
+const ready = initOnto().catch((e) => { console.warn('[onto] failed:', e && e.message); });
+if (document.readyState !== 'complete') addEventListener('load', () => ready, { once: true });
+window.ontoReady = ready;
 </script>
 </body>
 </html>

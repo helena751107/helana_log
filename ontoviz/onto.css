@@ -1,0 +1,62 @@
+/* HOW HELENA LIVES 3D — the canvas is the page. */
+
+html[data-onto="on"] { scroll-behavior: auto; background: #0a0908; }
+html[data-onto="on"] body { margin: 0; background: #0a0908; }
+html[data-onto="on"] body > * { visibility: hidden; }
+html[data-onto="on"] body > .onto { visibility: visible; }
+
+html[data-onto="on"] { scrollbar-width: thin; scrollbar-color: rgba(212,168,75,.34) transparent; }
+html[data-onto="on"]::-webkit-scrollbar { width: 8px; }
+html[data-onto="on"]::-webkit-scrollbar-track { background: rgba(10,9,8,.9); }
+html[data-onto="on"]::-webkit-scrollbar-thumb { background: rgba(212,168,75,.3); border-radius: 8px; }
+html[data-onto="on"]::-webkit-scrollbar-thumb:hover { background: rgba(212,168,75,.5); }
+
+/* the plain webzine keeps the same warm scrollbar, just quieter */
+html:not([data-onto="on"]) { scrollbar-width: thin; scrollbar-color: rgba(180,150,100,.22) transparent; }
+html:not([data-onto="on"])::-webkit-scrollbar { width: 10px; }
+html:not([data-onto="on"])::-webkit-scrollbar-track { background: #0a0908; }
+html:not([data-onto="on"])::-webkit-scrollbar-thumb { background: rgba(180,150,100,.2); border-radius: 10px; border: 2px solid #0a0908; }
+html:not([data-onto="on"])::-webkit-scrollbar-thumb:hover { background: rgba(180,150,100,.34); }
+
+.onto { position: relative; z-index: 1; }
+
+#ontoGl {
+  position: fixed; inset: 0; z-index: 0;
+  background: #0a0908;
+}
+#ontoGl canvas {
+  display: block; width: 100% !important; height: 100% !important;
+  background: #0a0908;
+  touch-action: pan-y;
+}
+.ov-scroll { width: 1px; height: 1000vh; pointer-events: none; }
+
+/* a text-mode visitor never sees the 3D shell */
+html[data-onto="off"] .onto { display: none !important; }
+html:not([data-onto]) .onto { display: none !important; }
+
+/* node hover tooltip from the GPU graph runtime */
+.scene-tooltip {
+  background: rgba(16,14,11,.94);
+  border: 1px solid rgba(212,168,75,.42);
+  padding: 7px 10px;
+  font: 500 10px/1.4 "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #f4efe6;
+  box-shadow: 0 18px 44px -22px rgba(0,0,0,.95);
+  backdrop-filter: blur(8px);
+}
+
+/* text-mode skip link: invisible unless focused */
+.ov-sr {
+  position: fixed; left: 12px; top: 12px; z-index: 50;
+  padding: 10px 14px;
+  background: #f4efe6; color: #0a0908;
+  font: 500 12px/1 "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: .08em; text-transform: uppercase;
+  transform: translateY(-180%);
+  transition: transform .18s ease;
+}
+.ov-sr:focus { transform: none; }
+@media (prefers-reduced-motion: reduce) { .ov-sr { transition: none; } }
